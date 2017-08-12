@@ -1,9 +1,9 @@
 {
   "rules": {
-    ".read": "auth != null",
-    ".write": "auth != null",
-
     "projects": {
+      ".read": "auth != null && root.child('users/'+auth.uid+'/access').val() == true",
+      ".write": "auth != null && root.child('users/'+auth.uid+'/access').val() == true",
+
       "$pid": {
         "name": {
           ".validate": "newData.isString()"
@@ -32,6 +32,17 @@
               ".validate": "newData.isString()"
             }
           }
+        }
+      }
+    },
+
+    "users": {
+      ".read": false,
+      ".write": false,
+
+      "$uid": {
+        "access": {
+          ".validate": "newData.isBoolean()"
         }
       }
     }
