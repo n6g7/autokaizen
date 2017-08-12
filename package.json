@@ -1,0 +1,15 @@
+{
+  "name": "autokaizen",
+  "version": "0.1.0",
+  "description": "Automatic kaizen",
+  "main": "index.js",
+  "author": "Nathan Gaberel <nathang@theodo.co.uk>",
+  "license": "MIT",
+  "scripts": {
+    "deploy": "firebase deploy",
+    "pretest": "standard"
+  },
+  "devDependencies": {
+    "standard": "^10.0.3"
+  }
+}

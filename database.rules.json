@@ -1,0 +1,39 @@
+{
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null",
+
+    "projects": {
+      "$pid": {
+        "name": {
+          ".validate": "newData.isString()"
+        },
+        "hookId": {
+          ".validate": "newData.isString()"
+        },
+
+        "defects": {
+          "$did": {
+            "cardId": {
+              ".validate": "newData.isString()"
+            },
+            "labelId": {
+              ".validate": "newData.isString()"
+            }
+          }
+        },
+
+        "labels": {
+          "$lid": {
+            "colour": {
+              ".validate": "newData.isString()"
+            },
+            "name": {
+              ".validate": "newData.isString()"
+            }
+          }
+        }
+      }
+    }
+  }
+}
