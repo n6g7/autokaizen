@@ -7,9 +7,33 @@
   "license": "MIT",
   "scripts": {
     "deploy": "firebase deploy",
+    "dev": "webpack-dashboard -- webpack-dev-server",
     "pretest": "standard"
   },
+  "dependencies": {
+    "firebase": "^4.2.0",
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-saga": "^0.15.6",
+    "redux-saga-firebase": "^0.3.0"
+  },
   "devDependencies": {
-    "standard": "^10.0.3"
+    "babel-core": "^6.25.0",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.1",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "standard": "^10.0.3",
+    "webpack": "^3.5.3",
+    "webpack-dashboard": "^0.4.0",
+    "webpack-dev-server": "^2.7.1"
+  },
+  "standard": {
+    "parser": "babel-eslint"
   }
 }

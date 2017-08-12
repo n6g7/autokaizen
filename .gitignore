@@ -1,3 +1,5 @@
 .firebaserc
+dist/*
+!dist/index.html
 functions/node_modules
 node_modules
