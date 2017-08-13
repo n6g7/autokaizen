@@ -16,7 +16,7 @@ function processAction (action, res) {
         return projects
           .isRedBucketLabel(board.id, label.id)
           .then(redBucket => redBucket
-            ? projects.addDefect(board.id, card.id, label.id)
+            ? projects.addDefect(board.id, card.id, card.idShort, label.id, card.name)
             : null
           )
       case 'removeLabelFromCard':

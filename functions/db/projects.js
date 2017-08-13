@@ -23,13 +23,15 @@ function isRedBucketLabel (boardId, labelId) {
     .then(snap => snap.exists())
 }
 
-function addDefect (boardId, cardId, labelId) {
+function addDefect (boardId, cardId, cardNumber, labelId, userStory) {
   return admin
     .database()
     .ref(`projects/${boardId}/defects`)
     .push({
       cardId,
-      labelId
+      cardNumber,
+      labelId,
+      userStory
     })
 }
 
@@ -47,6 +49,7 @@ function removeDefect (boardId, cardId, labelId) {
         return defect.cardId === cardId && defect.labelId === labelId
       })
 
+      if (!defectId) return
       return snapshot.ref.child(defectId).remove()
     })
 }
