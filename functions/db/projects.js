@@ -33,12 +33,18 @@ function isRedBucketLabel (boardId, labelId) {
 function addDefect (boardId, cardId, cardNumber, labelId, userStory) {
   return admin
     .database()
-    .ref(`projects/${boardId}/defects`)
-    .push({
-      cardId,
-      cardNumber,
-      labelId,
-      userStory
+    .ref(`projects/${boardId}`)
+    .once('value')
+    .then(snap => {
+      const { currentSprint } = snap.val()
+
+      return snap.ref.child('defects').push({
+        cardId,
+        cardNumber,
+        labelId,
+        sprint: currentSprint,
+        userStory
+      })
     })
 }
 

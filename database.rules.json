@@ -5,35 +5,24 @@
       ".write": "auth != null && root.child('users/'+auth.uid+'/access').val() == true",
 
       "$pid": {
-        "currentSprint": {
-          ".validate": "newData.isNumber()"
-        },
-        "name": {
-          ".validate": "newData.isString()"
-        },
-        "hookId": {
-          ".validate": "newData.isString()"
-        },
+        "currentSprint": { ".validate": "newData.isNumber()" },
+        "name": { ".validate": "newData.isString()" },
+        "hookId": { ".validate": "!data.exists() && newData.isString()" },
 
         "defects": {
           "$did": {
-            "cardId": {
-              ".validate": "newData.isString()"
-            },
-            "labelId": {
-              ".validate": "newData.isString()"
-            }
+            "cardId": { ".validate": "newData.isString()" },
+            "cardNumber": { ".validate": "newData.isNumber()" },
+            "labelId": { ".validate": "newData.isString()" },
+            "sprint": { ".validate": "newData.isNumber()" },
+            "userStory": { ".validate": "newData.isString()" }
           }
         },
 
         "labels": {
           "$lid": {
-            "colour": {
-              ".validate": "newData.isString()"
-            },
-            "name": {
-              ".validate": "newData.isString()"
-            }
+            "colour": { ".validate": "newData.isString()" },
+            "name": { ".validate": "newData.isString()" }
           }
         }
       }
@@ -44,9 +33,7 @@
       ".write": false,
 
       "$uid": {
-        "access": {
-          ".validate": "newData.isBoolean()"
-        }
+        "access": { ".validate": "newData.isBoolean()" }
       }
     }
   }
