@@ -15,6 +15,13 @@ function createOrUpdate (boardId, data) {
     .set(data)
 }
 
+function setCurrentSprint (boardId, sprintNumber) {
+  return admin
+    .database()
+    .ref(`projects/${boardId}/currentSprint`)
+    .set(sprintNumber)
+}
+
 function isRedBucketLabel (boardId, labelId) {
   return admin
     .database()
@@ -59,5 +66,6 @@ module.exports = {
   createOrUpdate,
   isRedBucketLabel,
   isTracked,
-  removeDefect
+  removeDefect,
+  setCurrentSprint
 }

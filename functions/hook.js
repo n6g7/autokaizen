@@ -3,7 +3,7 @@ const { projects } = require('./db')
 
 function processAction (action, res) {
   const {
-    data: { board, card, label },
+    data: { board, card, label, list },
     type
   } = action
 
@@ -26,6 +26,14 @@ function processAction (action, res) {
             ? projects.removeDefect(board.id, card.id, label.id)
             : null
           )
+      case 'createList':
+        const result = /done.+#(\d+)/i.exec(list.name)
+
+        return result
+          ? projects.setCurrentSprint(board.id, parseInt(result[1]))
+          : null
+      default:
+        console.log(`Unknown type: "${type}".`)
     }
   })
   .then(() => res.send('Done'))
