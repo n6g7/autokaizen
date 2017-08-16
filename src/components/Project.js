@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
+import Score from './Score'
+
 class Project extends PureComponent {
   static propTypes = {
     match: PropTypes.object.isRequired,
@@ -61,6 +63,11 @@ class Project extends PureComponent {
 
       { this.renderCategories(project) }
       { this.renderDefects(project) }
+
+      <Score
+        defects={project.defects}
+        labels={project.labels}
+      />
     </article>
   }
 }
