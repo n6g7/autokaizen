@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import * as d3 from 'd3'
+import { buildAxis } from '@services/d3help'
 
 class Score extends PureComponent {
   static propTypes = {
@@ -60,18 +61,18 @@ class Score extends PureComponent {
 
     const svg = d3.select('svg')
 
-    svg.append('g')
-      .attr('transform', 'translate(0,' + y(0) + ')')
-      .call(d3.axisBottom(x))
+    const xAxis = buildAxis(svg, d3.axisBottom(x))
+    xAxis.attr('transform', 'translate(0,' + y(0) + ')')
+
     svg.append('text')
       .text('Sprints')
       .attr('x', margin.left + (width - margin.left - margin.right) / 2)
       .attr('y', height - 5)
       .attr('text-anchor', 'middle')
 
-    svg.append('g')
-      .attr('transform', 'translate(' + margin.left + ',0)')
-      .call(d3.axisLeft(y))
+    const yAxis = buildAxis(svg, d3.axisLeft(y))
+    yAxis.attr('transform', 'translate(' + margin.left + ',0)')
+
     svg.append('text')
         .text('Defects')
         .attr('x', -margin.top - (height - margin.top - margin.bottom) / 2)
