@@ -9,6 +9,7 @@ import {
   syncUser,
   types
 } from '@actions/auth'
+import { loadBoards } from '@actions/boards'
 
 import Trello from '@services/trello'
 
@@ -39,6 +40,7 @@ function * syncUserSaga () {
     if (user) {
       yield call(Trello.authorize)
       yield put(syncUser(user))
+      yield put(loadBoards())
     } else {
       yield put(syncUser(null))
     }
