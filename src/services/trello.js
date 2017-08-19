@@ -22,5 +22,14 @@ export default {
         reject
       )
     })
+  },
+  getBoards () {
+    return new Promise((resolve, reject) => {
+      window.Trello.get(
+        '/member/me/boards',
+        resolve,
+        reject
+      )
+    })
   }
 }
