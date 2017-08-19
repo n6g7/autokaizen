@@ -10,6 +10,8 @@ import {
   types
 } from '@actions/auth'
 
+import Trello from '@services/trello'
+
 function * loginSaga () {
   try {
     yield call(rsf.auth.signInWithPopup, authProvider)
@@ -34,8 +36,12 @@ function * syncUserSaga () {
   while (true) {
     const { user } = yield take(channel)
 
-    if (user) yield put(syncUser(user))
-    else yield put(syncUser(null))
+    if (user) {
+      yield call(Trello.authorize)
+      yield put(syncUser(user))
+    } else {
+      yield put(syncUser(null))
+    }
   }
 }
 
