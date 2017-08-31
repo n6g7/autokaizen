@@ -1,12 +1,15 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import { login, logout } from '@actions/auth'
 
-import List from './List'
-import Project from './Project'
+import {
+  AddProject,
+  Header,
+  Project
+} from '@organisms'
 
 class App extends PureComponent {
   static propTypes = {
@@ -19,18 +22,24 @@ class App extends PureComponent {
     const { login, loggedIn, logout } = this.props
 
     return <BrowserRouter>
-      <main>
-        <h1>Auto Kaizen</h1>
+      <div>
+        <Switch>
+          <Route path='/projects/:projectId' component={Header} />
+          <Route path='/' component={Header} />
+        </Switch>
 
         { loggedIn
             ? <button onClick={logout}>Log Out</button>
             : <button onClick={login}>Log In</button>
         }
 
-        <List />
-
-        <Route path={`/projects/:projectId`} component={Project} />
-      </main>
+        <main>
+          <Switch>
+            <Route path='/projects/add' component={AddProject} />
+            <Route path='/projects/:projectId' component={Project} />
+          </Switch>
+        </main>
+      </div>
     </BrowserRouter>
   }
 }

@@ -7,6 +7,10 @@ module.exports = {
   resolve: {
     alias: {
       '@actions': path.resolve(__dirname, 'src/redux/actions'),
+      '@atoms': path.resolve(__dirname, 'src/components/atoms'),
+      '@molecules': path.resolve(__dirname, 'src/components/molecules'),
+      '@organisms': path.resolve(__dirname, 'src/components/organisms'),
+      '@selectors': path.resolve(__dirname, 'src/redux/selectors'),
       '@services': path.resolve(__dirname, 'src/services')
     }
   },
@@ -22,6 +26,20 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           'babel-loader'
+        ]
+      },
+      {
+        test: /\.styl$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'stylus-loader'
+        ]
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          'url-loader'
         ]
       }
     ]

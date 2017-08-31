@@ -18,14 +18,14 @@ class Score extends PureComponent {
   }
 
   static defaultProps = {
-    height: 300,
+    height: 416,
     margin: {
-      bottom: 35,
+      bottom: 40,
       left: 50,
       right: 10,
       top: 10
     },
-    width: 900
+    width: 1024
   }
 
   getDefects () {
@@ -56,7 +56,7 @@ class Score extends PureComponent {
       .padding(0.05)
 
     const y = d3.scaleLinear()
-      .domain([0, 5])
+      .domain([0, 6])
       .rangeRound([height - margin.bottom, margin.top])
 
     const svg = d3.select('svg')
@@ -65,7 +65,8 @@ class Score extends PureComponent {
     xAxis.attr('transform', 'translate(0,' + y(0) + ')')
 
     svg.append('text')
-      .text('Sprints')
+      .text('SPRINTS')
+      .attr('fill', 'rgba(255, 255, 255, 0.8)')
       .attr('x', margin.left + (width - margin.left - margin.right) / 2)
       .attr('y', height - 5)
       .attr('text-anchor', 'middle')
@@ -74,14 +75,15 @@ class Score extends PureComponent {
     yAxis.attr('transform', 'translate(' + margin.left + ',0)')
 
     svg.append('text')
-        .text('Defects')
+        .text('DEFECTS')
+        .attr('fill', 'rgba(255, 255, 255, 0.8)')
         .attr('x', -margin.top - (height - margin.top - margin.bottom) / 2)
         .attr('y', 15)
         .attr('text-anchor', 'middle')
         .attr('transform', 'rotate(-90)')
 
     const groupEnter = svg.append('g')
-      .attr('font-family', 'sans-serif')
+      .attr('font-family', 'Source Sans Pro')
       .selectAll('g')
       .data(defects)
       .enter().append('g')
@@ -99,6 +101,8 @@ class Score extends PureComponent {
       .attr('height', y(0) - y(1))
       .attr('x', d => x(d.sprint))
       .attr('y', d => y(getYIndex(d)))
+      .attr('rx', 2)
+      .attr('ry', 2)
       .attr('fill', d => d.label.colour)
     groupEnter.append('text')
       .text(d => `#${d.number}`)
