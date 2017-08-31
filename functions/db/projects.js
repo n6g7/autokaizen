@@ -42,6 +42,7 @@ function addDefect (boardId, cardId, cardNumber, labelId, userStory) {
         analysed: false,
         cardId,
         cardNumber,
+        creation: Date.now()
         labelId,
         sprint: currentSprint,
         userStory
