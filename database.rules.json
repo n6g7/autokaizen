@@ -11,6 +11,7 @@
 
         "defects": {
           "$did": {
+            "analysed": { ".validate": "newData.isBoolean()" },
             "cardId": { ".validate": "newData.isString()" },
             "cardNumber": { ".validate": "newData.isNumber()" },
             "labelId": { ".validate": "newData.isString()" },

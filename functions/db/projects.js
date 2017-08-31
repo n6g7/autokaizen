@@ -39,6 +39,7 @@ function addDefect (boardId, cardId, cardNumber, labelId, userStory) {
       const { currentSprint } = snap.val()
 
       return snap.ref.child('defects').push({
+        analysed: false,
         cardId,
         cardNumber,
         labelId,
