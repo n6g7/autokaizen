@@ -42,6 +42,14 @@ class Score extends PureComponent {
   }
 
   componentDidMount () {
+    this.renderD3()
+  }
+
+  componentDidUpdate () {
+    this.renderD3()
+  }
+
+  renderD3 () {
     const {
       height,
       margin,
@@ -60,6 +68,8 @@ class Score extends PureComponent {
       .rangeRound([height - margin.bottom, margin.top])
 
     const svg = d3.select('svg')
+
+    svg.html('')
 
     const xAxis = buildAxis(svg, d3.axisBottom(x))
     xAxis.attr('transform', 'translate(0,' + y(0) + ')')
