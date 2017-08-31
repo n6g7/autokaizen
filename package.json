@@ -6,7 +6,8 @@
   "author": "Nathan Gaberel <nathang@theodo.co.uk>",
   "license": "MIT",
   "scripts": {
-    "deploy": "firebase deploy",
+    "build": "webpack -p",
+    "deploy": "yarn build && firebase deploy",
     "dev": "webpack-dashboard -- webpack-dev-server",
     "pretest": "standard"
   },
