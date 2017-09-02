@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
+import { ConnectedRouter } from 'react-router-redux'
+import { history } from '@redux/enhancers/middlewares'
 
 import { login, logout } from '@actions/auth'
 
@@ -21,7 +23,7 @@ class App extends PureComponent {
   render () {
     const { login, loggedIn, logout } = this.props
 
-    return <BrowserRouter>
+    return <ConnectedRouter history={history}>
       <div>
         <Switch>
           <Route path='/projects/:projectId' component={Header} />
@@ -40,7 +42,7 @@ class App extends PureComponent {
           </Switch>
         </main>
       </div>
-    </BrowserRouter>
+    </ConnectedRouter>
   }
 }
 
