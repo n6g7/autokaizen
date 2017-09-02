@@ -5,11 +5,15 @@ import { connect } from 'react-redux'
 import { Label } from '@atoms'
 import { Defect, ScoreFigure } from '@molecules'
 
+import { addLabel, removeLabel } from '@actions/labels'
+
 class Project extends PureComponent {
   static propTypes = {
     labels: PropTypes.array.isRequired,
     match: PropTypes.object.isRequired,
-    projects: PropTypes.object.isRequired
+    projects: PropTypes.object.isRequired,
+    addLabel: PropTypes.func.isRequired,
+    removeLabel: PropTypes.func.isRequired
   }
 
   getProject () {
@@ -28,7 +32,9 @@ class Project extends PureComponent {
   render () {
     const {
       labels,
-      match: { params: { projectId } }
+      match: { params: { projectId } },
+      addLabel,
+      removeLabel
     } = this.props
     const project = this.getProject()
 
@@ -69,18 +75,25 @@ class Project extends PureComponent {
       { labels &&
         <section className='labels'>
           <ul>
-            {labels.map(label =>
-              <li key={label.id}>
+            {labels.map(label => {
+              const id = `label-${label.id}`
+              const checked = project.labels.hasOwnProperty(label.id)
+
+              return <li key={label.id}>
                 <input
                   type='checkbox'
-                  id={`label-${label.id}`}
-                  checked={project.labels.hasOwnProperty(label.id)}
-                />
-                <label htmlFor={`label-${label.id}`}>
+                  id={id}
+                  checked={checked}
+                  onChange={checked
+                    ? () => removeLabel(projectId, label.id)
+                    : () => addLabel(projectId, label)
+                  }
+                  />
+                <label htmlFor={id}>
                   <Label colour={label.color}>{label.name}</Label>
                 </label>
               </li>
-            )}
+            })}
           </ul>
         </section>
       }
@@ -93,4 +106,9 @@ const mapStateToProps = state => ({
   projects: state.projects.list
 })
 
-export default connect(mapStateToProps)(Project)
+const mapDispatchToProps = {
+  addLabel,
+  removeLabel
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Project)
