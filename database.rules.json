@@ -14,7 +14,7 @@
             "analysed": { ".validate": "newData.isBoolean()" },
             "cardId": { ".validate": "newData.isString()" },
             "cardNumber": { ".validate": "newData.isNumber()" },
-            "creation": { ".validate": "!data && newData.isNumber()" },
+            "creation": { ".validate": "!data.exists() && newData.isNumber()" },
             "labelId": { ".validate": "newData.isString()" },
             "sprint": { ".validate": "newData.isNumber()" },
             "userStory": { ".validate": "newData.isString()" }
