@@ -52,11 +52,13 @@ class Score extends PureComponent {
   renderD3 () {
     const {
       height,
-      margin,
-      width
+      margin
     } = this.props
 
     const defects = this.getDefects()
+
+    const svg = d3.select('svg')
+    const width = svg.node().clientWidth
 
     const x = d3.scaleBand()
       .domain(d3.range(1, d3.max(defects, d => d.sprint) + 2))
@@ -66,8 +68,6 @@ class Score extends PureComponent {
     const y = d3.scaleLinear()
       .domain([0, 6])
       .rangeRound([height - margin.bottom, margin.top])
-
-    const svg = d3.select('svg')
 
     svg.html('')
 
@@ -108,7 +108,7 @@ class Score extends PureComponent {
 
     groupEnter.append('rect')
       .attr('width', x.bandwidth)
-      .attr('height', y(0) - y(1))
+      .attr('height', y(0) - y(1) - 2)
       .attr('x', d => x(d.sprint))
       .attr('y', d => y(getYIndex(d)))
       .attr('rx', 2)
@@ -128,9 +128,9 @@ class Score extends PureComponent {
   }
 
   render () {
-    const { height, width } = this.props
+    const { height } = this.props
 
-    return <svg height={height} width={width} />
+    return <svg height={height} />
   }
 }
 
