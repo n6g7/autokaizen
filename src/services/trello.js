@@ -31,5 +31,17 @@ export default {
         reject
       )
     })
+  },
+  getBoardLabels (boardId) {
+    return new Promise((resolve, reject) => {
+      window.Trello.get(
+        `/boards/${boardId}/labels`,
+        {
+          fields: 'color,id,name'
+        },
+        resolve,
+        reject
+      )
+    })
   }
 }
