@@ -5,6 +5,11 @@
   "main": "index.js",
   "author": "Nathan Gaberel <nathang@theodo.co.uk>",
   "license": "MIT",
+  "homepage": "https://kaizen.gnab.fr",
+  "repository": {
+    "type" : "git",
+    "url": "git+https://github.com/n6g7/autokaizen.git"
+  },
   "scripts": {
     "build": "webpack -p",
     "deploy": "yarn build && firebase deploy",

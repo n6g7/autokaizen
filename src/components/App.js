@@ -5,6 +5,7 @@ import { history } from '@redux/enhancers/middlewares'
 
 import {
   AddProject,
+  Footer,
   Header,
   Project
 } from '@organisms'
@@ -23,6 +24,8 @@ class App extends PureComponent {
             <Route path='/projects/add' component={AddProject} />
             <Route path='/projects/:projectId' component={Project} />
           </Switch>
+
+          <Footer />
         </main>
       </div>
     </ConnectedRouter>
