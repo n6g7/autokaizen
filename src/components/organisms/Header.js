@@ -5,9 +5,14 @@ import { Link } from 'react-router-dom'
 
 import { Select } from '@atoms'
 
+import { login, logout } from '@actions/auth'
+
 class Header extends PureComponent {
   static propTypes = {
     history: PropTypes.object.isRequired,
+    login: PropTypes.func.isRequired,
+    loggedIn: PropTypes.bool.isRequired,
+    logout: PropTypes.func.isRequired,
     match: PropTypes.object.isRequired,
     projects: PropTypes.object.isRequired
   }
@@ -27,7 +32,13 @@ class Header extends PureComponent {
   }
 
   render () {
-    const { match, projects } = this.props
+    const {
+      login,
+      loggedIn,
+      logout,
+      match,
+      projects
+    } = this.props
 
     const options = Object.keys(projects).map(projectId => ({
       label: projects[projectId].name,
@@ -48,6 +59,12 @@ class Header extends PureComponent {
           <li>
             <Link to='/projects/add'>Add a project</Link>
           </li>
+          <li>
+            { loggedIn
+              ? <button onClick={logout}>Log Out</button>
+              : <button onClick={login}>Log In</button>
+            }
+          </li>
         </ul>
       </nav>
     </header>
@@ -55,7 +72,13 @@ class Header extends PureComponent {
 }
 
 const mapStateToProps = state => ({
+  loggedIn: state.auth.loggedIn,
   projects: state.projects.list
 })
 
-export default connect(mapStateToProps)(Header)
+const mapDispatchToProps = {
+  login,
+  logout
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)
