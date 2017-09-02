@@ -4,11 +4,13 @@ spacing = 8px
 
 bgColor = #171b32
 bgColorLight = #252c48
+bgColorLighter = #3C4460
 
 darker = #8f90a4
 lighter = #ede7ed
 
 resetList(margin = 2*spacing)
+  align-items: center
   display: flex
   flex-flow: row nowrap
   list-style: none
@@ -49,6 +51,17 @@ resetList(margin = 2*spacing)
     font-weight: 200
     margin: spacing 0 2*spacing
 
+button, .btn
+  background: bgColorLighter
+  border: 0
+  color: lighter
+  cursor: pointer
+  font-family: inherit
+  font-size: inherit
+  font-weight: 600
+  padding: spacing 2*spacing
+  text-decoration: none
+
 body
   background: bgColor
   box-sizing: border-box
@@ -78,8 +91,14 @@ header
     margin: 0 2*spacing 0 0
     text-transform: uppercase
 
-  nav ul
-    resetList()
+  nav
+    display: flex
+    flex-flow: row nowrap
+    flex-grow: 1
+    justify-content: space-between
+
+    ul
+      resetList()
 
 main
   padding: 6 * spacing

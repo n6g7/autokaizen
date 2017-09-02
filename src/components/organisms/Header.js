@@ -56,8 +56,10 @@ class Header extends PureComponent {
               value={match.params.projectId || ''}
             />
           </li>
+        </ul>
+        <ul>
           <li>
-            <Link to='/projects/add'>Add a project</Link>
+            <Link to='/projects/add' className='btn'>Add a project</Link>
           </li>
           <li>
             { loggedIn
