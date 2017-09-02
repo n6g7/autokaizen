@@ -2,8 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { Category, Score } from '@atoms'
-import { Defect } from '@molecules'
+import { Defect, ScoreFigure } from '@molecules'
 
 class Project extends PureComponent {
   static propTypes = {
@@ -31,22 +30,11 @@ class Project extends PureComponent {
 
       <h2>Legend</h2>
 
-      <figure>
-        <figcaption>
-          <ul>
-            {Object.keys(project.labels).map(labelId =>
-              <li key={labelId}>
-                <Category projectId={projectId} labelId={labelId} />
-              </li>
-            )}
-          </ul>
-        </figcaption>
-
-        <Score
-          defects={project.defects}
-          labels={project.labels}
-        />
-      </figure>
+      <ScoreFigure
+        defects={project.defects}
+        labels={project.labels}
+        projectId={projectId}
+      />
 
       <section className='defects'>
         <ol>
