@@ -18,14 +18,17 @@ class Category extends PureComponent {
   getLabel () {
     const { labelId, labels, projectId } = this.props
 
-    return labels[projectId][labelId]
+    return labels[projectId] && labels[projectId][labelId]
   }
 
   render () {
     const {
       colour,
       name
-    } = this.getLabel()
+    } = this.getLabel() || {
+      colour: 'black',
+      name: 'Unknown label'
+    }
 
     const classes = `category ${this.props.dark ? 'dark' : ''}`
 

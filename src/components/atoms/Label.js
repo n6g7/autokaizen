@@ -4,7 +4,11 @@ import PropTypes from 'prop-types'
 class Label extends PureComponent {
   static propTypes = {
     children: PropTypes.string.isRequired,
-    colour: PropTypes.string.isRequired
+    colour: PropTypes.string
+  }
+
+  static defaultProps = {
+    colour: 'black'
   }
 
   render () {

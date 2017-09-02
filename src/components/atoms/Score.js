@@ -113,7 +113,7 @@ class Score extends PureComponent {
       .attr('y', d => y(getYIndex(d)))
       .attr('rx', 2)
       .attr('ry', 2)
-      .attr('fill', d => d.label.colour)
+      .attr('fill', d => d.label ? d.label.colour : '')
     groupEnter.append('text')
       .text(d => `#${d.number}`)
       .attr('text-anchor', 'middle')

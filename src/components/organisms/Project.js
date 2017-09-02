@@ -77,7 +77,7 @@ class Project extends PureComponent {
           <ul>
             {labels.map(label => {
               const id = `label-${label.id}`
-              const checked = project.labels.hasOwnProperty(label.id)
+              const checked = project.labels && project.labels.hasOwnProperty(label.id)
 
               return <li key={label.id}>
                 <input
