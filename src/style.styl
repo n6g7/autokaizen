@@ -44,7 +44,6 @@ resetList(margin = 2*spacing)
 .defect
   background: bgColorLight
   padding: 2*spacing
-  width: 36*spacing
 
   p
     font-weight: 200
@@ -52,6 +51,7 @@ resetList(margin = 2*spacing)
 
 body
   background: bgColor
+  box-sizing: border-box
   color: ede7ed
   font-family: 'Source Sans Pro', sans-serif
   font-size: 2 * spacing
@@ -102,7 +102,7 @@ main
     margin: 0 0 spacing 0
 
   figure
-    align-items: center
+    align-items: flex-start
     display: flex
     flex-flow: column nowrap
     margin: 2*spacing 0
@@ -125,4 +125,7 @@ main
       flex-flow: row wrap
 
       li
+        flex-grow: 1
         margin-bottom: 2*spacing
+        max-width: 'calc(25% - %s)' % (2 * spacing)
+        width: 20%
