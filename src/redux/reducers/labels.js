@@ -10,6 +10,7 @@ export default function labels (state = initialState, action = {}) {
     case types.LOAD_BOARD_LABELS.REQUEST:
       return {
         ...state,
+        list: initialState.list,
         loading: true
       }
     case types.LOAD_BOARD_LABELS.SUCCESS:
