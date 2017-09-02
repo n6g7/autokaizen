@@ -116,6 +116,10 @@ class Score extends PureComponent {
       .attr('fill', d => d.label ? d.label.colour : '')
     groupEnter.append('text')
       .text(d => `#${d.number}`)
+      .attr('fill', '#EDE7ED')
+      .attr('font-family', 'Source Sans Pro')
+      .attr('font-size', '20px')
+      .attr('font-weight', '600')
       .attr('text-anchor', 'middle')
       .attr('x', d => x(d.sprint) + x.bandwidth() / 2)
       .attr('y', d => {
