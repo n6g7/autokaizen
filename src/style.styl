@@ -20,7 +20,7 @@ resetList(margin = 2*spacing)
   li:not(:last-child)
     margin-right: margin
 
-.category, .sprint
+.category, .sprint, .label
   align-items: center
   display: flex
   flex-flow: row nowrap
@@ -38,6 +38,16 @@ resetList(margin = 2*spacing)
     margin-right: spacing
     height: 2*spacing
     width: 2*spacing
+
+.label
+  span
+    border: 1px solid alpha(white, 0.8)
+    border-radius: 50%
+    content: ''
+    display: inline-block
+    margin-left: spacing
+    height: spacing
+    width: spacing
 
 .sprint::before
   content: url(./assets/sprint.svg)
@@ -141,6 +151,7 @@ main
   .defects
     ol
       resetList()
+      align-items: flex-start
       flex-flow: row wrap
 
       li
@@ -148,3 +159,21 @@ main
         margin-bottom: 2*spacing
         max-width: 'calc(25% - %s)' % (2 * spacing)
         width: 20%
+
+  .labels
+    ul
+      resetList()
+      flex-flow: row wrap
+
+      li
+        align-items: center
+        display: flex
+        flex-flow: row nowrap
+        flex-grow: 1
+        width: 20%
+
+        &:nth-child(4n)
+          margin-right: 0
+
+        input
+          margin-right: spacing
