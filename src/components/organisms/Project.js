@@ -19,35 +19,43 @@ class Project extends PureComponent {
     return projects[projectId]
   }
 
+  renderMissingProject () {
+    return <p>This project does not exist.</p>
+  }
+
   render () {
     const { match: { params: { projectId } } } = this.props
     const project = this.getProject()
 
-    if (!project) return <p>Meh</p>
+    if (!project) return this.renderMissingProject()
 
     return <article>
       <h1>{project.name}</h1>
 
       <h2>Legend</h2>
 
-      <ScoreFigure
-        defects={project.defects}
-        labels={project.labels}
-        projectId={projectId}
-      />
+      { project.defects && project.labels &&
+        <ScoreFigure
+          defects={project.defects}
+          labels={project.labels}
+          projectId={projectId}
+        />
+      }
 
-      <section className='defects'>
-        <ol>
-          {Object.keys(project.defects).map(defectId =>
-            <li key={defectId}>
-              <Defect
-                projectId={projectId}
-                defect={project.defects[defectId]}
-              />
-            </li>
-          )}
-        </ol>
-      </section>
+      { project.defects &&
+        <section className='defects'>
+          <ol>
+            {Object.keys(project.defects).map(defectId =>
+              <li key={defectId}>
+                <Defect
+                  projectId={projectId}
+                  defect={project.defects[defectId]}
+                />
+              </li>
+            )}
+          </ol>
+        </section>
+      }
     </article>
   }
 }
