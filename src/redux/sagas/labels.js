@@ -18,6 +18,12 @@ import Trello from '@services/trello'
 
 const projectPathRegex = /^\/projects\/([0-9a-f]{10,})$/
 
+const labelColours = [
+  '#5368ff',
+  '#e95d83',
+  '#ac0ef5'
+]
+
 function * loadBoardLabelsSaga ({ boardId }) {
   const loggedIn = yield select(state => state.auth.loggedIn)
 
@@ -35,11 +41,19 @@ function * loadBoardLabelsSaga ({ boardId }) {
 
 function * addLabelSaga ({ projectId, label }) {
   try {
+    const labels = yield call(
+      rsf.database.read,
+      `projects/${projectId}/labels`
+    )
+    const count = labels
+      ? Object.keys(labels).length
+      : 0
+
     yield call(
       rsf.database.update,
       `projects/${projectId}/labels/${label.id}`,
       {
-        colour: label.color,
+        colour: labelColours[count % labelColours.length],
         name: label.name
       }
     )
