@@ -21,7 +21,12 @@ const projectPathRegex = /^\/projects\/([0-9a-f]{10,})$/
 const labelColours = [
   '#5368ff',
   '#e95d83',
-  '#ac0ef5'
+  '#ac0ef5',
+  '#42b4dd',
+  '#c5b960',
+  '#98c560',
+  '#e95dcf',
+  '#29bd96'
 ]
 
 function * loadBoardLabelsSaga ({ boardId }) {
