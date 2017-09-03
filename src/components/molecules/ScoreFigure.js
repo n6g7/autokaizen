@@ -11,7 +11,7 @@ class ScoreFigure extends PureComponent {
   }
 
   render () {
-    const { defects, labels, projectId } = this.props
+    const { defects, labels, projectId, ...props } = this.props
 
     return <figure>
       <figcaption>
@@ -24,7 +24,7 @@ class ScoreFigure extends PureComponent {
         </ul>
       </figcaption>
 
-      <Score defects={defects} labels={labels} />
+      <Score defects={defects} labels={labels} {...props} />
     </figure>
   }
 }

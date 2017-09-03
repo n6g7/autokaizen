@@ -5,6 +5,7 @@ import { buildAxis } from '@services/d3help'
 
 class Score extends PureComponent {
   static propTypes = {
+    currentSprint: PropTypes.number,
     defects: PropTypes.object.isRequired,
     height: PropTypes.number.isRequired,
     labels: PropTypes.object.isRequired,
@@ -51,6 +52,7 @@ class Score extends PureComponent {
 
   renderD3 () {
     const {
+      currentSprint,
       height,
       margin
     } = this.props
@@ -70,6 +72,15 @@ class Score extends PureComponent {
       .rangeRound([height - margin.bottom, margin.top])
 
     svg.html('')
+
+    if (currentSprint) {
+      svg.append('rect')
+        .attr('width', x.bandwidth)
+        .attr('height', y(0) - margin.top)
+        .attr('x', x(currentSprint))
+        .attr('y', margin.top)
+        .attr('fill', '#252c48')
+    }
 
     const xAxis = buildAxis(svg, d3.axisBottom(x))
     xAxis.attr('transform', 'translate(0,' + y(0) + ')')

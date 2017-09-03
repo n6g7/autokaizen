@@ -47,6 +47,7 @@ class Project extends PureComponent {
 
       { project.defects && project.labels &&
         <ScoreFigure
+          currentSprint={project.currentSprint}
           defects={project.defects}
           labels={project.labels}
           projectId={projectId}
