@@ -5,7 +5,7 @@
       ".write": "auth != null && root.child('users/'+auth.uid+'/access').val() == true",
 
       "$pid": {
-        "currentSprint": { ".validate": "newData.isNumber()" },
+        "currentSprint": { ".validate": "newData.isNumber() && (!data.exists() || data.val() < newData.val())" },
         "name": { ".validate": "newData.isString()" },
         "hookId": { ".validate": "!data.exists() && newData.isString()" },
 

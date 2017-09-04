@@ -27,6 +27,7 @@ function processAction (action, res) {
             : null
           )
       case 'createList':
+      case 'updateList':
         const result = /done.+#(\d+)/i.exec(list.name)
 
         return result
