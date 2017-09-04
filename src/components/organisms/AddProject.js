@@ -68,24 +68,43 @@ class AddProject extends PureComponent {
     return <div>
       <h2>Add Project</h2>
 
-      <Select
-        name='board'
-        onChange={this.onChange}
-        options={options}
-        value={boardId}
-      />
-      <input
-        name='name'
-        onChange={this.onChange}
-        type='text'
-        value={name}
-      />
-      <input
-        name='sprint'
-        onChange={this.onChange}
-        type='number'
-        value={sprint}
-      />
+      <p>
+        <label htmlFor='board'>Trello board</label>
+        <Select
+          id='board'
+          name='board'
+          onChange={this.onChange}
+          options={options}
+          value={boardId}
+          required
+        />
+      </p>
+
+      <p>
+        <label htmlFor='name'>Project name</label>
+        <input
+          id='name'
+          name='name'
+          onChange={this.onChange}
+          type='text'
+          value={name}
+          placeholder='Awesome project'
+          required
+        />
+      </p>
+
+      <p>
+        <label htmlFor='sprint'>Current sprint</label>
+        <input
+          id='sprint'
+          name='sprint'
+          onChange={this.onChange}
+          type='number'
+          value={sprint}
+          placeholder='1'
+          required
+        />
+      </p>
 
       <button onClick={this.createProject}>Create</button>
     </div>
