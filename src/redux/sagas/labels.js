@@ -48,7 +48,7 @@ function * addLabelSaga ({ projectId, label }) {
   try {
     const labels = yield call(
       rsf.database.read,
-      `projects/${projectId}/labels`
+      `labels/${projectId}`
     )
     const count = labels
       ? Object.keys(labels).length
@@ -56,7 +56,7 @@ function * addLabelSaga ({ projectId, label }) {
 
     yield call(
       rsf.database.update,
-      `projects/${projectId}/labels/${label.id}`,
+      `labels/${projectId}/${label.id}`,
       {
         colour: labelColours[count % labelColours.length],
         name: label.name
@@ -72,7 +72,7 @@ function * removeLabelSaga ({ projectId, labelId }) {
   try {
     yield call(
       rsf.database.delete,
-      `projects/${projectId}/labels/${labelId}`
+      `labels/${projectId}/${labelId}`
     )
     yield put(removeLabelSuccess())
   } catch (error) {
@@ -80,7 +80,7 @@ function * removeLabelSaga ({ projectId, labelId }) {
   }
 }
 
-export default function * boardsSaga () {
+export default function * labelsSaga () {
   yield takeLatest(types.LOAD_BOARD_LABELS.REQUEST, loadBoardLabelsSaga)
   yield takeLatest(
     ({ type, payload }) => type === LOCATION_CHANGE && projectPathRegex.test(payload.pathname),

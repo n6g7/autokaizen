@@ -25,7 +25,7 @@ function setCurrentSprint (boardId, sprintNumber) {
 function isRedBucketLabel (boardId, labelId) {
   return admin
     .database()
-    .ref(`projects/${boardId}/labels/${labelId}`)
+    .ref(`labels/${boardId}/${labelId}`)
     .once('value')
     .then(snap => snap.exists())
 }
@@ -33,27 +33,30 @@ function isRedBucketLabel (boardId, labelId) {
 function addDefect (boardId, cardId, cardNumber, labelId, userStory) {
   return admin
     .database()
-    .ref(`projects/${boardId}`)
+    .ref(`projects/${boardId}/currentSprint`)
     .once('value')
     .then(snap => {
-      const { currentSprint } = snap.val()
+      const currentSprint = snap.val()
 
-      return snap.ref.child('defects').push({
-        analysed: false,
-        cardId,
-        cardNumber,
-        creation: Date.now(),
-        labelId,
-        sprint: currentSprint,
-        userStory
-      })
+      return admin
+        .database()
+        .ref(`defects/${boardId}`)
+        .push({
+          analysed: false,
+          cardId,
+          cardNumber,
+          creation: Date.now(),
+          labelId,
+          sprint: currentSprint,
+          userStory
+        })
     })
 }
 
 function removeDefect (boardId, cardId, labelId) {
   return admin
     .database()
-    .ref(`projects/${boardId}/defects`)
+    .ref(`defects/${boardId}`)
     .once('value')
     .then(snapshot => {
       const defects = snapshot.val()
