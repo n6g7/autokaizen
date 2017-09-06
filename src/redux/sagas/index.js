@@ -3,6 +3,7 @@ import { selectProject } from '@actions/projects'
 
 import auth from './auth'
 import boards from './boards'
+import defects from './defects'
 import labels from './labels'
 import projects from './projects'
 
@@ -12,6 +13,7 @@ export default function * rootSaga () {
   yield [
     fork(auth),
     fork(boards),
+    fork(defects),
     fork(labels),
     fork(projects)
   ]
