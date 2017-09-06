@@ -7,7 +7,7 @@
   "license": "MIT",
   "homepage": "https://kaizen.gnab.fr",
   "repository": {
-    "type" : "git",
+    "type": "git",
     "url": "git+https://github.com/n6g7/autokaizen.git"
   },
   "scripts": {
@@ -29,7 +29,7 @@
     "react-router-redux": "next",
     "redux": "^3.7.2",
     "redux-saga": "^0.15.6",
-    "redux-saga-firebase": "^0.3.0"
+    "redux-saga-firebase": "^0.4.2"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
