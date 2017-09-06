@@ -1,4 +1,4 @@
-import { call, put, select, take, takeEvery, takeLatest } from 'redux-saga/effects'
+import { call, fork, put, select, take, takeEvery, takeLatest } from 'redux-saga/effects'
 
 import { types as authTypes } from '@actions/auth'
 import {
@@ -9,6 +9,7 @@ import {
   addLabelFailure,
   removeLabelSuccess,
   removeLabelFailure,
+  syncLabels,
   types
 } from '@actions/labels'
 import { types as projectTypes } from '@actions/projects'
@@ -78,6 +79,15 @@ function * removeLabelSaga ({ projectId, labelId }) {
   }
 }
 
+function * syncLabelsSaga ({ projectId }) {
+  yield fork(
+    rsf.database.sync,
+    `labels/${projectId}`,
+    syncLabels,
+    x => x
+  )
+}
+
 export default function * labelsSaga () {
   yield takeLatest(types.LOAD_BOARD_LABELS.REQUEST, loadBoardLabelsSaga)
   yield takeLatest(
@@ -89,4 +99,5 @@ export default function * labelsSaga () {
 
   yield takeEvery(types.ADD_LABEL.REQUEST, addLabelSaga)
   yield takeEvery(types.REMOVE_LABEL.REQUEST, removeLabelSaga)
+  yield takeLatest(projectTypes.SELECT_PROJECT, syncLabelsSaga)
 }

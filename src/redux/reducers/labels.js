@@ -1,8 +1,9 @@
 import { types } from '@actions/labels'
 
 const initialState = {
-  list: [],
-  loading: false
+  list: {},
+  loading: false,
+  trello: []
 }
 
 export default function labels (state = initialState, action = {}) {
@@ -10,19 +11,24 @@ export default function labels (state = initialState, action = {}) {
     case types.LOAD_BOARD_LABELS.REQUEST:
       return {
         ...state,
-        list: initialState.list,
+        trello: initialState.trello,
         loading: true
       }
     case types.LOAD_BOARD_LABELS.SUCCESS:
       return {
         ...state,
-        list: action.labels,
+        trello: action.labels,
         loading: false
       }
     case types.LOAD_BOARD_LABELS.FAILURE:
       return {
         ...state,
         loading: false
+      }
+    case types.SYNC_LABELS:
+      return {
+        ...state,
+        list: action.labels
       }
     default:
       return state
