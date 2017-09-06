@@ -5,18 +5,17 @@ import { Category, Sprint } from '@atoms'
 
 class Defect extends PureComponent {
   static propTypes = {
-    defect: PropTypes.object.isRequired,
-    projectId: PropTypes.string.isRequired
+    defect: PropTypes.object.isRequired
   }
 
   render () {
-    const { defect, projectId } = this.props
+    const { defect } = this.props
 
     return <article className='defect'>
       <h3>#{defect.cardNumber}</h3>
       <p>{defect.userStory}</p>
       <Sprint number={defect.sprint} dark />
-      <Category projectId={projectId} labelId={defect.labelId} dark />
+      <Category labelId={defect.labelId} dark />
     </article>
   }
 }

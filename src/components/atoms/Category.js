@@ -7,8 +7,7 @@ class Category extends PureComponent {
   static propTypes = {
     dark: PropTypes.bool.isRequired,
     labelId: PropTypes.string.isRequired,
-    labels: PropTypes.object.isRequired,
-    projectId: PropTypes.string.isRequired
+    labels: PropTypes.object.isRequired
   }
 
   static defaultProps = {
@@ -16,9 +15,9 @@ class Category extends PureComponent {
   }
 
   getLabel () {
-    const { labelId, labels, projectId } = this.props
+    const { labelId, labels } = this.props
 
-    return labels[projectId] && labels[projectId][labelId]
+    return labels[labelId]
   }
 
   render () {
