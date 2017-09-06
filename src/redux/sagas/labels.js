@@ -1,5 +1,4 @@
 import { call, put, select, take, takeEvery, takeLatest } from 'redux-saga/effects'
-import { LOCATION_CHANGE } from 'react-router-redux'
 
 import { types as authTypes } from '@actions/auth'
 import {
@@ -12,11 +11,10 @@ import {
   removeLabelFailure,
   types
 } from '@actions/labels'
+import { types as projectTypes } from '@actions/projects'
 
 import rsf from '@redux/rsf'
 import Trello from '@services/trello'
-
-const projectPathRegex = /^\/projects\/([0-9a-f]{10,})$/
 
 const labelColours = [
   '#5368ff',
@@ -83,11 +81,9 @@ function * removeLabelSaga ({ projectId, labelId }) {
 export default function * labelsSaga () {
   yield takeLatest(types.LOAD_BOARD_LABELS.REQUEST, loadBoardLabelsSaga)
   yield takeLatest(
-    ({ type, payload }) => type === LOCATION_CHANGE && projectPathRegex.test(payload.pathname),
-    function * (action) {
-      const { payload: { pathname } } = action
-      const boardId = projectPathRegex.exec(pathname)[1]
-      yield put(loadBoardLabels(boardId))
+    projectTypes.SELECT_PROJECT,
+    function * ({ projectId }) {
+      yield put(loadBoardLabels(projectId))
     }
   )
 

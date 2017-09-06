@@ -4,6 +4,7 @@ export const types = {
     SUCCESS: 'CREATE_PROJECT.SUCCESS',
     FAILURE: 'CREATE_PROJECT.FAILURE'
   },
+  SELECT_PROJECT: 'SELECT_PROJECT',
   SYNC_PROJECTS: 'SYNC_PROJECTS'
 }
 
@@ -21,6 +22,11 @@ export const createProjectSuccess = () => ({
 export const createProjectFailure = error => ({
   type: types.CREATE_PROJECT.FAILURE,
   error
+})
+
+export const selectProject = projectId => ({
+  type: types.SELECT_PROJECT,
+  projectId
 })
 
 export const syncProjects = projects => ({
