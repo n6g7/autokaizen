@@ -54,8 +54,27 @@ resetList(margin = 2*spacing)
   margin-right: spacing
 
 .defect
+  padding = 2*spacing
+
   background: bgColorLight
-  padding: 2*spacing
+  padding: padding
+  position: relative
+
+  .external
+    position: absolute
+    opacity: 0.5
+    top: padding
+    transition: 0.5s
+    right: padding
+
+    &:hover
+      opacity: 0.8
+
+    img
+      size = 2*spacing
+
+      height: size
+      width: size
 
   p
     font-weight: 200

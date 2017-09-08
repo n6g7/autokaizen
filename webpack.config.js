@@ -7,6 +7,7 @@ module.exports = {
   resolve: {
     alias: {
       '@actions': path.resolve(__dirname, 'src/redux/actions'),
+      '@assets': path.resolve(__dirname, 'src/assets'),
       '@atoms': path.resolve(__dirname, 'src/components/atoms'),
       '@molecules': path.resolve(__dirname, 'src/components/molecules'),
       '@organisms': path.resolve(__dirname, 'src/components/organisms'),
