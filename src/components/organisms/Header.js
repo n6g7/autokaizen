@@ -1,12 +1,36 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 
-import { Select } from '@atoms'
+import { Button, List, Select } from '@atoms'
+import { LinkButton } from '@atoms/Button'
 
 import { login, logout } from '@actions/auth'
 import { selectProject } from '@actions/projects'
+
+const Container = styled.header`
+  align-items: center;
+  background: ${p => p.theme.background.light};
+  display: flex;
+  flex-flow: row nowrap;
+  height: ${p => 7 * p.theme.spacing};
+  padding: 0 ${p => 3 * p.theme.spacing};
+`
+
+const Title = styled.p`
+  font-weight: 600;
+  font-size: 1.25em;
+  margin: 0 ${p => 2 * p.theme.spacing} 0 0;
+  text-transform: uppercase;
+`
+
+const Nav = styled.nav`
+  display: flex;
+  flex-flow: row nowrap;
+  flex-grow: 1;
+  justify-content: space-between;
+`
 
 class Header extends PureComponent {
   static propTypes = {
@@ -46,10 +70,11 @@ class Header extends PureComponent {
       value: projectId
     }))
 
-    return <header>
-      <p>Auto Kaizen</p>
-      <nav>
-        <ul>
+    return <Container>
+      <Title>Auto Kaizen</Title>
+
+      <Nav>
+        <List>
           <li>
             <Select
               onChange={this.onChangeProject}
@@ -57,20 +82,21 @@ class Header extends PureComponent {
               value={match.params.projectId || ''}
             />
           </li>
-        </ul>
-        <ul>
+        </List>
+
+        <List>
           <li>
-            <Link to='/projects/add' className='btn'>Add a project</Link>
+            <LinkButton to='/projects/add'>Add a project</LinkButton>
           </li>
           <li>
             { loggedIn
-              ? <button onClick={logout}>Log Out</button>
-              : <button onClick={login}>Log In</button>
+              ? <Button onClick={logout}>Log Out</Button>
+              : <Button onClick={login}>Log In</Button>
             }
           </li>
-        </ul>
-      </nav>
-    </header>
+        </List>
+      </Nav>
+    </Container>
   }
 }
 

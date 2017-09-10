@@ -2,8 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { Label } from '@atoms'
-import { Defect, ScoreFigure } from '@molecules'
+import { Defect, Label, ScoreFigure } from '@molecules'
 
 import { addLabel, removeLabel } from '@actions/labels'
 

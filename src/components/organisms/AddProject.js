@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { Select } from '@atoms'
+import { Button, Select } from '@atoms'
 
 import { createProject } from '@actions/projects'
 
@@ -106,7 +106,7 @@ class AddProject extends PureComponent {
         />
       </p>
 
-      <button onClick={this.createProject}>Create</button>
+      <Button onClick={this.createProject}>Create</Button>
     </div>
   }
 }

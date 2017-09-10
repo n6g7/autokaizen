@@ -1,6 +1,18 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import styled from 'styled-components'
+
+import { LabelContainer } from '@atoms'
+
+const ColourSquare = styled.span`
+  background: ${p => p.colour};
+  border-radius: 2px;
+  display: inline-block;
+  margin-right: ${p => p.theme.spacing};
+  height: ${p => 2 * p.theme.spacing};
+  width: ${p => 2 * p.theme.spacing};
+`
 
 class Category extends PureComponent {
   static propTypes = {
@@ -28,12 +40,10 @@ class Category extends PureComponent {
       name: 'Unknown label'
     }
 
-    const classes = `category ${this.props.dark ? 'dark' : ''}`
-
-    return <span className={classes}>
-      <span style={{ background: colour }} />
+    return <LabelContainer dark={this.props.dark}>
+      <ColourSquare colour={colour} />
       { name }
-    </span>
+    </LabelContainer>
   }
 }
 

@@ -1,7 +1,25 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-import { Category, Sprint, TrelloLink } from '@atoms'
+import { TrelloLink } from '@atoms'
+import Category from './Category'
+import Sprint from './Sprint'
+
+const Container = styled.article`
+  background: ${p => p.theme.background.light};
+  padding: ${p => 2 * p.theme.spacing};
+  position: relative;
+
+  p {
+    font-weight: 200;
+    margin: ${p => p.theme.spacing} 0 ${p => 2 * p.theme.spacing};
+  }
+`
+
+const Trello = styled(TrelloLink)`
+  margin-left: ${p => p.theme.spacing};
+`
 
 class Defect extends PureComponent {
   static propTypes = {
@@ -11,13 +29,17 @@ class Defect extends PureComponent {
   render () {
     const { defect } = this.props
 
-    return <article className='defect'>
-      <TrelloLink cardId={defect.cardId} />
-      <h3>#{defect.cardNumber}</h3>
+    return <Container>
+      <h3>
+        #{defect.cardNumber}
+        <Trello cardId={defect.cardId} />
+      </h3>
+
       <p>{defect.userStory}</p>
+
       <Sprint number={defect.sprint} dark />
       <Category labelId={defect.labelId} dark />
-    </article>
+    </Container>
   }
 }
 

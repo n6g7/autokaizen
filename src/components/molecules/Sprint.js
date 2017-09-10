@@ -1,6 +1,15 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
+import { LabelContainer } from '@atoms'
+
+const Container = LabelContainer.extend`
+  &::before {
+    content: url(${require('@assets/sprint.svg')});
+    margin-right: ${p => p.theme.spacing};
+  }
+`
+
 class Sprint extends PureComponent {
   static propTypes = {
     dark: PropTypes.bool.isRequired,
@@ -17,11 +26,9 @@ class Sprint extends PureComponent {
       number
     } = this.props
 
-    const classes = `sprint ${dark ? 'dark' : ''}`
-
-    return <span className={classes}>
+    return <Container dark={dark}>
       Sprint { number }
-    </span>
+    </Container>
   }
 }
 

@@ -143,9 +143,9 @@ class Score extends PureComponent {
   }
 
   render () {
-    const { height } = this.props
+    const { className, height } = this.props
 
-    return <svg height={height} />
+    return <svg height={height} className={className} />
   }
 }
 

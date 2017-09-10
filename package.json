@@ -29,7 +29,8 @@
     "react-router-redux": "next",
     "redux": "^3.7.2",
     "redux-saga": "^0.15.6",
-    "redux-saga-firebase": "^0.4.2"
+    "redux-saga-firebase": "^0.4.2",
+    "styled-components": "^2.1.2"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",

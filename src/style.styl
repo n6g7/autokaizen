@@ -3,7 +3,6 @@
 spacing = 8px
 
 bgColor = #171b32
-bgColorLight = #252c48
 bgColorLighter = #3C4460
 
 darker = #8f90a4
@@ -20,81 +19,10 @@ resetList(margin = 2*spacing)
   li:not(:last-child)
     margin-right: margin
 
-.category, .sprint, .label
-  align-items: center
-  display: flex
-  flex-flow: row nowrap
-  font-weight: 600
-  margin: spacing 0
-
-  &.dark
-    color: darker
-
-.category
-  span
-    border-radius: 2px
-    content: ''
-    display: inline-block
-    margin-right: spacing
-    height: 2*spacing
-    width: 2*spacing
-
-.label
-  span
-    border: 1px solid alpha(white, 0.8)
-    border-radius: 50%
-    content: ''
-    display: inline-block
-    margin-left: spacing
-    height: spacing
-    width: spacing
-
-.sprint::before
-  content: url(./assets/sprint.svg)
-  margin-right: spacing
-
-.defect
-  padding = 2*spacing
-
-  background: bgColorLight
-  padding: padding
-  position: relative
-
-  .external
-    position: absolute
-    opacity: 0.5
-    top: padding
-    transition: 0.5s
-    right: padding
-
-    &:hover
-      opacity: 0.8
-
-    img
-      size = 2*spacing
-
-      height: size
-      width: size
-
-  p
-    font-weight: 200
-    margin: spacing 0 2*spacing
-
-button, .btn
-  background: bgColorLighter
-  border: 0
-  color: lighter
-  cursor: pointer
-  font-family: inherit
-  font-size: inherit
-  font-weight: 600
-  padding: spacing 2*spacing
-  text-decoration: none
-
 body
   background: bgColor
   box-sizing: border-box
-  color: ede7ed
+  color: lighter
   font-family: 'Source Sans Pro', sans-serif
   font-size: 2 * spacing
   font-weight: 400
@@ -106,77 +34,11 @@ body
 a
   color: lighter
 
-header
-  align-items: center
-  background: bgColorLight
-  display: flex
-  flex-flow: row nowrap
-  height: 7 * spacing
-  padding: 0 3 * spacing
-
-  p
-    font-weight: 600
-    font-size: 1.25em
-    margin: 0 2*spacing 0 0
-    text-transform: uppercase
-
-  nav
-    display: flex
-    flex-flow: row nowrap
-    flex-grow: 1
-    justify-content: space-between
-
-    ul
-      resetList()
-
-footer
-  margin-top: 6*spacing
-  opacity: 0.8
-  text-align: center
-
 main
-  padding: 6 * spacing
-
-  h1
-    color: lighter
-    font-size: 6*spacing
-    font-weight: 600
-    margin: 0 0 3*spacing
-
-  h2
-    color: darker
-    font-size: 1em
-    margin: 2*spacing 0
-    text-transform: uppercase
-
-  h3
-    color: lighter
-    font-size: 1.5em
-    margin: 0 0 spacing 0
-
   label
     display: inline-block
     margin-right: spacing
     min-width: 15 * spacing
-
-  figure
-    align-items: flex-start
-    display: flex
-    flex-flow: column nowrap
-    margin: 2*spacing 0
-
-    figcaption
-      width: 100%
-
-      ul
-        resetList()
-
-        li
-          font-weight: 600
-
-    svg
-      margin: 8*spacing 0
-      width: 100%
 
   .defects
     ol

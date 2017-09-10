@@ -1,7 +1,29 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-import { Category, Score } from '@atoms'
+import { List, Score } from '@atoms'
+import Category from './Category'
+
+const Figure = styled.figure`
+  align-items: flex-start;
+  display: flex;
+  flex-flow: column nowrap;
+  margin: ${p => 2 * p.theme.spacing} 0;
+
+  svg
+    margin: 8*spacing 0
+    width: 100%
+`
+
+const Caption = styled.figcaption`
+  width: 100%;
+`
+
+const StyledScore = styled(Score)`
+  margin: ${p => 8 * p.theme.spacing} 0;
+  width: 100%;
+`
 
 class ScoreFigure extends PureComponent {
   static propTypes = {
@@ -12,19 +34,19 @@ class ScoreFigure extends PureComponent {
   render () {
     const { defects, labels, ...props } = this.props
 
-    return <figure>
-      <figcaption>
-        <ul>
+    return <Figure>
+      <Caption>
+        <List>
           {Object.keys(labels).map(labelId =>
             <li key={labelId}>
               <Category labelId={labelId} />
             </li>
           )}
-        </ul>
-      </figcaption>
+        </List>
+      </Caption>
 
-      <Score defects={defects} labels={labels} {...props} />
-    </figure>
+      <StyledScore defects={defects} labels={labels} {...props} />
+    </Figure>
   }
 }
 
