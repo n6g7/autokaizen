@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-import trello from '@assets/trello.svg'
-import { Category, Sprint } from '@atoms'
+import { Category, Sprint, TrelloLink } from '@atoms'
 
 class Defect extends PureComponent {
   static propTypes = {
@@ -13,15 +12,7 @@ class Defect extends PureComponent {
     const { defect } = this.props
 
     return <article className='defect'>
-      <a
-        className='external'
-        href={`https://trello.com/c/${defect.cardId}`}
-        target='blank'
-        title='Go to Trello card'
-      >
-        <img src={trello} alt='Trello' />
-      </a>
-
+      <TrelloLink cardId={defect.cardId} />
       <h3>#{defect.cardNumber}</h3>
       <p>{defect.userStory}</p>
       <Sprint number={defect.sprint} dark />
