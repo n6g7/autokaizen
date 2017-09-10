@@ -1,5 +1,4 @@
-import { call, put, select, take, takeEvery, takeLatest } from 'redux-saga/effects'
-import { LOCATION_CHANGE } from 'react-router-redux'
+import { call, fork, put, select, take, takeEvery, takeLatest } from 'redux-saga/effects'
 
 import { types as authTypes } from '@actions/auth'
 import {
@@ -10,13 +9,13 @@ import {
   addLabelFailure,
   removeLabelSuccess,
   removeLabelFailure,
+  syncLabels,
   types
 } from '@actions/labels'
+import { types as projectTypes } from '@actions/projects'
 
 import rsf from '@redux/rsf'
 import Trello from '@services/trello'
-
-const projectPathRegex = /^\/projects\/([0-9a-f]{10,})$/
 
 const labelColours = [
   '#5368ff',
@@ -48,7 +47,7 @@ function * addLabelSaga ({ projectId, label }) {
   try {
     const labels = yield call(
       rsf.database.read,
-      `projects/${projectId}/labels`
+      `labels/${projectId}`
     )
     const count = labels
       ? Object.keys(labels).length
@@ -56,7 +55,7 @@ function * addLabelSaga ({ projectId, label }) {
 
     yield call(
       rsf.database.update,
-      `projects/${projectId}/labels/${label.id}`,
+      `labels/${projectId}/${label.id}`,
       {
         colour: labelColours[count % labelColours.length],
         name: label.name
@@ -72,7 +71,7 @@ function * removeLabelSaga ({ projectId, labelId }) {
   try {
     yield call(
       rsf.database.delete,
-      `projects/${projectId}/labels/${labelId}`
+      `labels/${projectId}/${labelId}`
     )
     yield put(removeLabelSuccess())
   } catch (error) {
@@ -80,17 +79,25 @@ function * removeLabelSaga ({ projectId, labelId }) {
   }
 }
 
-export default function * boardsSaga () {
+function * syncLabelsSaga ({ projectId }) {
+  yield fork(
+    rsf.database.sync,
+    `labels/${projectId}`,
+    syncLabels,
+    x => x
+  )
+}
+
+export default function * labelsSaga () {
   yield takeLatest(types.LOAD_BOARD_LABELS.REQUEST, loadBoardLabelsSaga)
   yield takeLatest(
-    ({ type, payload }) => type === LOCATION_CHANGE && projectPathRegex.test(payload.pathname),
-    function * (action) {
-      const { payload: { pathname } } = action
-      const boardId = projectPathRegex.exec(pathname)[1]
-      yield put(loadBoardLabels(boardId))
+    projectTypes.SELECT_PROJECT,
+    function * ({ projectId }) {
+      yield put(loadBoardLabels(projectId))
     }
   )
 
   yield takeEvery(types.ADD_LABEL.REQUEST, addLabelSaga)
   yield takeEvery(types.REMOVE_LABEL.REQUEST, removeLabelSaga)
+  yield takeLatest(projectTypes.SELECT_PROJECT, syncLabelsSaga)
 }

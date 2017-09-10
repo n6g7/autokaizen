@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { Select } from '@atoms'
 
 import { login, logout } from '@actions/auth'
+import { selectProject } from '@actions/projects'
 
 class Header extends PureComponent {
   static propTypes = {
@@ -14,7 +15,8 @@ class Header extends PureComponent {
     loggedIn: PropTypes.bool.isRequired,
     logout: PropTypes.func.isRequired,
     match: PropTypes.object.isRequired,
-    projects: PropTypes.object.isRequired
+    projects: PropTypes.object.isRequired,
+    selectProject: PropTypes.func.isRequired
   }
 
   constructor (props) {
@@ -25,10 +27,9 @@ class Header extends PureComponent {
 
   onChangeProject (event) {
     const { value } = event.target
-    const destination = value
-      ? `/projects/${value}`
-      : ''
-    this.props.history.push(destination)
+
+    if (value) this.props.selectProject(value)
+    else this.props.history.push('/')
   }
 
   render () {
@@ -80,7 +81,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   login,
-  logout
+  logout,
+  selectProject
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)

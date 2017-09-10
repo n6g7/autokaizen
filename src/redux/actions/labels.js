@@ -13,7 +13,8 @@ export const types = {
     REQUEST: 'REMOVE_LABEL.REQUEST',
     SUCCESS: 'REMOVE_LABEL.SUCCESS',
     FAILURE: 'REMOVE_LABEL.FAILURE'
-  }
+  },
+  SYNC_LABELS: 'SYNC_LABELS'
 }
 
 export const loadBoardLabels = boardId => ({
@@ -59,4 +60,9 @@ export const removeLabelSuccess = () => ({
 export const removeLabelFailure = error => ({
   type: types.REMOVE_LABEL.FAILURE,
   error
+})
+
+export const syncLabels = labels => ({
+  type: types.SYNC_LABELS,
+  labels
 })

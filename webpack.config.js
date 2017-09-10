@@ -12,7 +12,6 @@ module.exports = {
       '@molecules': path.resolve(__dirname, 'src/components/molecules'),
       '@organisms': path.resolve(__dirname, 'src/components/organisms'),
       '@redux': path.resolve(__dirname, 'src/redux'),
-      '@selectors': path.resolve(__dirname, 'src/redux/selectors'),
       '@services': path.resolve(__dirname, 'src/services')
     }
   },

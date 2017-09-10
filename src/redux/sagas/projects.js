@@ -1,4 +1,5 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
+import { push } from 'react-router-redux'
 import rsf from '../rsf'
 
 import { types as authTypes } from '@actions/auth'
@@ -33,6 +34,11 @@ function * createProjectSaga ({ boardId, name, currentSprint }) {
   }
 }
 
+function * selectProjectSaga ({ projectId }) {
+  const destination = `/projects/${projectId}`
+  yield put(push(destination))
+}
+
 export default function * projectsSaga () {
   yield takeLatest(
     authTypes.SYNC_USER,
@@ -42,4 +48,5 @@ export default function * projectsSaga () {
     x => x
   )
   yield takeEvery(types.CREATE_PROJECT.REQUEST, createProjectSaga)
+  yield takeEvery(types.SELECT_PROJECT, selectProjectSaga)
 }

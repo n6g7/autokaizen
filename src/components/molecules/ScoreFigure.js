@@ -6,19 +6,18 @@ import { Category, Score } from '@atoms'
 class ScoreFigure extends PureComponent {
   static propTypes = {
     defects: PropTypes.object.isRequired,
-    labels: PropTypes.object.isRequired,
-    projectId: PropTypes.string.isRequired
+    labels: PropTypes.object.isRequired
   }
 
   render () {
-    const { defects, labels, projectId, ...props } = this.props
+    const { defects, labels, ...props } = this.props
 
     return <figure>
       <figcaption>
         <ul>
           {Object.keys(labels).map(labelId =>
             <li key={labelId}>
-              <Category projectId={projectId} labelId={labelId} />
+              <Category labelId={labelId} />
             </li>
           )}
         </ul>

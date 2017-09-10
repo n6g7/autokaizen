@@ -9,11 +9,13 @@ import { addLabel, removeLabel } from '@actions/labels'
 
 class Project extends PureComponent {
   static propTypes = {
-    labels: PropTypes.array.isRequired,
+    addLabel: PropTypes.func.isRequired,
+    defects: PropTypes.object,
+    labels: PropTypes.object,
     match: PropTypes.object.isRequired,
     projects: PropTypes.object.isRequired,
-    addLabel: PropTypes.func.isRequired,
-    removeLabel: PropTypes.func.isRequired
+    removeLabel: PropTypes.func.isRequired,
+    trelloLabels: PropTypes.array.isRequired
   }
 
   getProject () {
@@ -31,10 +33,12 @@ class Project extends PureComponent {
 
   render () {
     const {
+      addLabel,
+      defects,
       labels,
       match: { params: { projectId } },
-      addLabel,
-      removeLabel
+      removeLabel,
+      trelloLabels
     } = this.props
     const project = this.getProject()
 
@@ -45,25 +49,23 @@ class Project extends PureComponent {
 
       <h2>Score</h2>
 
-      { project.defects && project.labels &&
+      { defects && labels &&
         <ScoreFigure
           currentSprint={project.currentSprint}
-          defects={project.defects}
-          labels={project.labels}
-          projectId={projectId}
+          defects={defects}
+          labels={labels}
         />
       }
 
       <h2>Defects</h2>
 
-      { project.defects &&
+      { defects &&
         <section className='defects'>
           <ol>
-            {Object.keys(project.defects).map(defectId =>
+            {Object.keys(defects).map(defectId =>
               <li key={defectId}>
                 <Defect
-                  projectId={projectId}
-                  defect={project.defects[defectId]}
+                  defect={defects[defectId]}
                 />
               </li>
             )}
@@ -73,12 +75,12 @@ class Project extends PureComponent {
 
       <h2>Trello labels</h2>
 
-      { labels &&
+      { trelloLabels &&
         <section className='labels'>
           <ul>
-            {labels.map(label => {
+            {trelloLabels.map(label => {
               const id = `label-${label.id}`
-              const checked = project.labels && project.labels.hasOwnProperty(label.id)
+              const checked = labels && labels.hasOwnProperty(label.id)
 
               return <li key={label.id}>
                 <input
@@ -103,8 +105,10 @@ class Project extends PureComponent {
 }
 
 const mapStateToProps = state => ({
+  defects: state.defects.list,
   labels: state.labels.list,
-  projects: state.projects.list
+  projects: state.projects.list,
+  trelloLabels: state.labels.trello
 })
 
 const mapDispatchToProps = {
