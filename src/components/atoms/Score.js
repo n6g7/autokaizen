@@ -68,7 +68,7 @@ class Score extends PureComponent {
       .padding(0.05)
 
     const y = d3.scaleLinear()
-      .domain([0, 6])
+      .domain([0, 8])
       .rangeRound([height - margin.bottom, margin.top])
 
     svg.html('')
