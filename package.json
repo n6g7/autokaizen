@@ -17,6 +17,9 @@
     "pretest": "standard"
   },
   "dependencies": {
+    "@vx/axis": "^0.0.138",
+    "@vx/group": "^0.0.136",
+    "@vx/scale": "^0.0.136",
     "d3": "^4.10.0",
     "firebase": "^4.2.0",
     "history": "^4.7.2",

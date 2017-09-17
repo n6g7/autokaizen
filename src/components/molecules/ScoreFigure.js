@@ -11,9 +11,10 @@ const Figure = styled.figure`
   flex-flow: column nowrap;
   margin: ${p => 2 * p.theme.spacing} 0;
 
-  svg
-    margin: 8*spacing 0
-    width: 100%
+  svg {
+    margin: 8*spacing 0;
+    width: 100%;
+  }
 `
 
 const Caption = styled.figcaption`

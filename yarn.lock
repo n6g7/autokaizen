@@ -2,6 +2,49 @@
 # yarn lockfile v1
 
 
+"@vx/axis@^0.0.138":
+  version "0.0.138"
+  resolved "https://registry.yarnpkg.com/@vx/axis/-/axis-0.0.138.tgz#db665e1afd288d4d815f244e17f7d82e3cf40e8c"
+  dependencies:
+    "@vx/group" "0.0.136"
+    "@vx/point" "0.0.136"
+    "@vx/shape" "0.0.136"
+    classnames "^2.2.5"
+    prop-types "15.5.10"
+
+"@vx/curve@0.0.136":
+  version "0.0.136"
+  resolved "https://registry.yarnpkg.com/@vx/curve/-/curve-0.0.136.tgz#efa922543711f09e07fd259260b53f041d88bab1"
+  dependencies:
+    d3-shape "^1.0.6"
+
+"@vx/group@0.0.136", "@vx/group@^0.0.136":
+  version "0.0.136"
+  resolved "https://registry.yarnpkg.com/@vx/group/-/group-0.0.136.tgz#595211c7b04b7ba52824c07f9204f0c1b7e1da36"
+  dependencies:
+    classnames "^2.2.5"
+
+"@vx/point@0.0.136":
+  version "0.0.136"
+  resolved "https://registry.yarnpkg.com/@vx/point/-/point-0.0.136.tgz#93b325b4b95c9d5b96df740f4204017f57396559"
+
+"@vx/scale@^0.0.136":
+  version "0.0.136"
+  resolved "https://registry.yarnpkg.com/@vx/scale/-/scale-0.0.136.tgz#4cafd944baee38f26d49e6c698985179763da761"
+  dependencies:
+    d3-scale "^1.0.5"
+
+"@vx/shape@0.0.136":
+  version "0.0.136"
+  resolved "https://registry.yarnpkg.com/@vx/shape/-/shape-0.0.136.tgz#af8553683604025d4572ecc4179da73bd193e292"
+  dependencies:
+    "@vx/curve" "0.0.136"
+    "@vx/group" "0.0.136"
+    "@vx/point" "0.0.136"
+    classnames "^2.2.5"
+    d3-shape "^1.2.0"
+    prop-types "^15.5.10"
+
 abbrev@1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.0.tgz#d0554c2256636e2f56e7c2e5ad183f859428d81f"
@@ -1222,6 +1265,10 @@ clap@^1.0.9:
   dependencies:
     chalk "^1.1.3"
 
+classnames@^2.2.5:
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
+
 cli-cursor@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/cli-cursor/-/cli-cursor-1.0.2.tgz#64da3f7d56a54412e59794bd62dc35295e8f2987"
@@ -1702,7 +1749,7 @@ d3-request@1.0.5:
     d3-dsv "1"
     xmlhttprequest "1"
 
-d3-scale@1.0.6:
+d3-scale@1.0.6, d3-scale@^1.0.5:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/d3-scale/-/d3-scale-1.0.6.tgz#bce19da80d3a0cf422c9543ae3322086220b34ed"
   dependencies:
@@ -1718,7 +1765,7 @@ d3-selection@1, d3-selection@1.1.0, d3-selection@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/d3-selection/-/d3-selection-1.1.0.tgz#1998684896488f839ca0372123da34f1d318809c"
 
-d3-shape@1.2.0:
+d3-shape@1.2.0, d3-shape@^1.0.6, d3-shape@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/d3-shape/-/d3-shape-1.2.0.tgz#45d01538f064bafd05ea3d6d2cb748fd8c41f777"
   dependencies:
@@ -4409,7 +4456,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.5.4:
+prop-types@15.5.10, prop-types@^15.5.10, prop-types@^15.5.4:
   version "15.5.10"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.10.tgz#2797dfc3126182e3a95e3dfbb2e893ddd7456154"
   dependencies:
