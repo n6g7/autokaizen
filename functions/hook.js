@@ -39,7 +39,11 @@ function processAction (action, res) {
     }
   })
   .then(() => res.sendStatus(200))
-  .catch(() => res.sendStatus(410)) // Delete hook when board isn't tracked.
+  .catch(() => {
+    // Delete hook when board isn't tracked.
+    res.sendStatus(410)
+    console.log(`Deleted hook because this board isn't tracked: ${board.id}.`)
+  })
 }
 
 module.exports = functions.https.onRequest((req, res) => {
