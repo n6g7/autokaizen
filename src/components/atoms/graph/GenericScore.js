@@ -50,8 +50,28 @@ class GenericScore extends PureComponent {
     })
   }
 
+  preparePrint () {
+    this.setState({
+      height: 650,
+      width: 1050,
+      prevState: this.state
+    })
+  }
+
+  clearPrint () {
+    this.setState(this.state.prevState)
+  }
+
+  componentWillMount () {
+    this.setState({
+      height: this.props.height
+    })
+  }
+
   componentDidMount () {
     window.addEventListener('resize', this.updateDimensions.bind(this))
+    window.onbeforeprint = this.preparePrint.bind(this)
+    window.onafterprint = this.clearPrint.bind(this)
     this.updateDimensions()
   }
 
@@ -66,7 +86,6 @@ class GenericScore extends PureComponent {
       currentX,
       data,
       datumProps,
-      height,
       lastX,
       margin,
       x,
@@ -75,7 +94,7 @@ class GenericScore extends PureComponent {
       yLabel,
       ...props
     } = this.props
-    const { width } = this.state
+    const { height, width } = this.state
 
     const xMax = width - margin.left - margin.right
     const yMax = height - margin.top - margin.bottom

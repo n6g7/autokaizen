@@ -1,0 +1,35 @@
+@page
+  size: landscape
+
+@media print
+  button,
+  footer,
+  h1,
+  h2,
+  header,
+  header *,
+  section
+    display: none !important
+
+  figure,
+  main,
+  svg
+    margin: 0 !important
+    padding: 0 !important
+
+  figcaption
+    span
+      color: black !important
+
+      span
+        -webkit-print-color-adjust: exact
+
+  svg
+    -webkit-print-color-adjust: exact
+    height: 95%
+
+    .vx-axis text
+      fill: black
+
+    & > rect
+      display: none
