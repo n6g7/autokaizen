@@ -14,6 +14,9 @@ import Trello from '@services/trello'
 
 function * createProjectSaga ({ boardId, name, currentSprint }) {
   try {
+    const existingProject = yield call(rsf.database.read, `projects/${boardId}`)
+    if (existingProject) throw Error('This project is already tracked.')
+
     const { id: hookId } = yield call(
       Trello.createWebhook,
       boardId,
