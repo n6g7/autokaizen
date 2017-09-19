@@ -10,7 +10,7 @@ function processAction (action, res) {
 
   return projects.isTracked(board.id)
   .then(tracked => {
-    if (!tracked) return
+    if (!tracked) throw Error(`This board isn't tracked: ${board.id}.`)
 
     switch (type) {
       case 'addLabelToCard':
@@ -38,7 +38,8 @@ function processAction (action, res) {
         console.log(`Unknown type: "${type}".`)
     }
   })
-  .then(() => res.send('Done'))
+  .then(() => res.sendStatus(200))
+  .catch(() => res.sendStatus(410)) // Delete hook when board isn't tracked.
 }
 
 module.exports = functions.https.onRequest((req, res) => {
