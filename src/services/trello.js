@@ -5,6 +5,7 @@ export default {
         name: 'Auto Kaizen',
         persist: true,
         type: 'popup',
+        expiration: 'never',
         success: resolve,
         error: reject
       })
