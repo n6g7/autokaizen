@@ -1,5 +1,6 @@
 const functions = require('firebase-functions')
 const { projects } = require('./db')
+const { verifyRequest } = require('./services')
 
 function processAction (action, res) {
   const {
@@ -41,12 +42,17 @@ function processAction (action, res) {
 }
 
 module.exports = functions.https.onRequest((req, res) => {
+  if (!verifyRequest(req)) {
+    console.log('Invalid request signature.')
+    return res.sendStatus(400)
+  }
+
   switch (req.method) {
     case 'POST':
       processAction(req.body.action, res)
       break
     default:
       // Don't send any data in case it's a HEAD request
-      res.status(200).end()
+      res.sendStatus(200)
   }
 })
