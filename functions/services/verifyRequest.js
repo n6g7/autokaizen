@@ -15,7 +15,7 @@ function verifyTrelloWebhookRequest(request) {
 
   const digest = base64Digest(trello_secret)
 
-  const content = request.body + hook_url
+  const content = `${JSON.stringify(request.body)}${hook_url}`
   const doubleHash = digest(digest(content))
   const headerHash = digest(header)
 

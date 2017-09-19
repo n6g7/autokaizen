@@ -44,7 +44,7 @@ function processAction (action, res) {
 
 module.exports = functions.https.onRequest((req, res) => {
   if (!verifyRequest(req)) {
-    console.log('Invalid request signature.')
+    console.log(`Invalid request signature: ${req.headers['x-trello-webhook']}.`)
     return res.sendStatus(400)
   }
 
