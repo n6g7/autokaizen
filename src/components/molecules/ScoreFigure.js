@@ -9,7 +9,7 @@ const Figure = styled.figure`
   align-items: flex-start;
   display: flex;
   flex-flow: column nowrap;
-  margin: ${p => 2 * p.theme.spacing} 0;
+  margin: 0 0 ${p => 2 * p.theme.spacing} 0;
 
   svg {
     margin: 8*spacing 0;
