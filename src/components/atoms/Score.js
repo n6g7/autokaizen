@@ -6,7 +6,7 @@ import { GenericScore } from './graph'
 class Score extends PureComponent {
   static propTypes = {
     currentSprint: PropTypes.number,
-    defects: PropTypes.object.isRequired,
+    defects: PropTypes.array.isRequired,
     labels: PropTypes.object.isRequired
   }
 
@@ -18,17 +18,17 @@ class Score extends PureComponent {
 
     const sprintCount = {}
 
-    return Object.keys(defects).map(defectId => {
+    return defects.reverse().map(defect => {
       const {
         cardNumber,
         labelId,
         sprint
-      } = defects[defectId]
+      } = defect
 
       if (!sprintCount.hasOwnProperty(sprint)) sprintCount[sprint] = 0
 
       return {
-        key: defectId,
+        key: defect.id,
         label: labels[labelId],
         number: cardNumber,
         sprint,

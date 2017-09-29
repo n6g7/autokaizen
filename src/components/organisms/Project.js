@@ -3,13 +3,14 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { Defect, Label, ScoreFigure } from '@molecules'
+import { defectsSelector } from '@selectors'
 
 import { addLabel, removeLabel } from '@actions/labels'
 
 class Project extends PureComponent {
   static propTypes = {
     addLabel: PropTypes.func.isRequired,
-    defects: PropTypes.object,
+    defects: PropTypes.array,
     labels: PropTypes.object,
     match: PropTypes.object.isRequired,
     projects: PropTypes.object.isRequired,
@@ -61,11 +62,9 @@ class Project extends PureComponent {
       { defects &&
         <section className='defects'>
           <ol>
-            {Object.keys(defects).map(defectId =>
-              <li key={defectId}>
-                <Defect
-                  defect={defects[defectId]}
-                />
+            {defects.map(defect =>
+              <li key={defect.id}>
+                <Defect defect={defect} />
               </li>
             )}
           </ol>
@@ -104,7 +103,7 @@ class Project extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  defects: state.defects.list,
+  defects: defectsSelector(state),
   labels: state.labels.list,
   projects: state.projects.list,
   trelloLabels: state.labels.trello

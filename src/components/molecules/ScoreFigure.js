@@ -28,7 +28,7 @@ const StyledScore = styled(Score)`
 
 class ScoreFigure extends PureComponent {
   static propTypes = {
-    defects: PropTypes.object.isRequired,
+    defects: PropTypes.array.isRequired,
     labels: PropTypes.object.isRequired
   }
 
