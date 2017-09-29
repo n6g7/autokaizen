@@ -31,7 +31,7 @@ class GenericScore extends PureComponent {
   static defaultProps = {
     axisColour: 'rgba(255, 255, 255, 0.5)',
     cellPadding: 2,
-    height: 416,
+    height: 480,
     margin: {
       bottom: 55,
       left: 55,
