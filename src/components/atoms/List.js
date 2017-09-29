@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export default styled.ul`
+const List = styled.ul`
   align-items: center;
   display: flex;
   flex-flow: row nowrap;
@@ -12,3 +12,7 @@ export default styled.ul`
     margin-right: ${p => 2 * p.theme.spacing}
   }
 `
+
+List.ordered = List.withComponent('ol')
+
+export default List
