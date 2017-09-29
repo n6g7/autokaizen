@@ -9,6 +9,13 @@ import { defectsSelector } from '@selectors'
 
 import { addLabel, removeLabel } from '@actions/labels'
 
+const Title = styled.h1`
+  color: ${p => p.theme.text.lighter};
+  font-size: ${p => 6 * p.theme.spacing}px;
+  font-weight: 600;
+  margin: 0 0 ${p => 3 * p.theme.spacing}px;
+`
+
 const DefectList = styled(List.ordered)`
   align-items: flex-start;
   flex-flow: row wrap;
@@ -79,7 +86,7 @@ class Project extends PureComponent {
     if (!project) return this.renderMissingProject()
 
     return <article>
-      <h1>{project.name}</h1>
+      <Title>{project.name}</Title>
 
       { defects && labels &&
         <Section title='Score'>

@@ -18,6 +18,12 @@ const Container = styled.article`
   }
 `
 
+const Title = styled.h3`
+  color: ${p => p.theme.text.lighter};
+  font-size: 1.5em;
+  margin: 0 0 ${p => p.theme.spacing}px 0;
+`
+
 const Trello = styled(TrelloLink)`
   margin-left: ${p => p.theme.spacing};
 `
@@ -31,10 +37,10 @@ class Defect extends PureComponent {
     const { defect } = this.props
 
     return <Container>
-      <h3>
+      <Title>
         #{defect.cardNumber}
         <Trello cardId={defect.cardId} />
-      </h3>
+      </Title>
 
       <p>{defect.userStory}</p>
 

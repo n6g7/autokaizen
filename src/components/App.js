@@ -13,26 +13,6 @@ import {
 
 const Main = styled.main`
   padding: ${p => 6 * p.theme.spacing};
-
-  h1 {
-    color: ${p => p.theme.text.lighter};
-    font-size: ${p => 6 * p.theme.spacing};
-    font-weight: 600;
-    margin: 0 0 ${p => 3 * p.theme.spacing};
-  }
-
-  h2 {
-    color: ${p => p.theme.text.darker};
-    font-size: 1em;
-    margin: ${p => 2 * p.theme.spacing} 0;
-    text-transform: uppercase;
-  }
-
-  h3 {
-    color: ${p => p.theme.text.lighter};
-    font-size: 1.5em;
-    margin: 0 0 ${p => p.theme.spacing} 0;
-  }
 `
 
 class App extends PureComponent {

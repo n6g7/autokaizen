@@ -9,12 +9,22 @@ const Container = styled.footer`
   text-align: center;
 `
 
+const Link = styled.a`
+  color: ${p => p.theme.text.lighter};
+  opacity: 0.7;
+  transition: .5s;
+
+  &:hover {
+    opacity: 1;
+  }
+`
+
 class Footer extends PureComponent {
   render () {
     return <Container>
-      <a href='https://github.com/n6g7/autokaizen'>
+      <Link href='https://github.com/n6g7/autokaizen'>
         { config.name } v{ config.version }
-      </a>
+      </Link>
     </Container>
   }
 }

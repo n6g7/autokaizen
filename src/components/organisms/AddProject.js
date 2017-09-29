@@ -1,10 +1,17 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import styled from 'styled-components'
 
-import { Button, Select } from '@atoms'
+import { Button, Section, Select } from '@atoms'
 
 import { createProject } from '@actions/projects'
+
+const Label = styled.label`
+  display: inline-block;
+  margin-right: ${p => p.theme.spacing}px;
+  min-width: ${p => 15 * p.theme.spacing}px;
+`
 
 class AddProject extends PureComponent {
   static propTypes = {
@@ -65,11 +72,9 @@ class AddProject extends PureComponent {
       label: board.name
     }))
 
-    return <div>
-      <h2>Add Project</h2>
-
+    return <Section title='Add Project'>
       <p>
-        <label htmlFor='board'>Trello board</label>
+        <Label htmlFor='board'>Trello board</Label>
         <Select
           id='board'
           name='board'
@@ -81,7 +86,7 @@ class AddProject extends PureComponent {
       </p>
 
       <p>
-        <label htmlFor='name'>Project name</label>
+        <Label htmlFor='name'>Project name</Label>
         <input
           id='name'
           name='name'
@@ -94,7 +99,7 @@ class AddProject extends PureComponent {
       </p>
 
       <p>
-        <label htmlFor='sprint'>Current sprint</label>
+        <Label htmlFor='sprint'>Current sprint</Label>
         <input
           id='sprint'
           name='sprint'
@@ -107,7 +112,7 @@ class AddProject extends PureComponent {
       </p>
 
       <Button onClick={this.createProject}>Create</Button>
-    </div>
+    </Section>
   }
 }
 
