@@ -4,7 +4,7 @@ const functions = require('firebase-functions')
 const base64Digest = secret => data =>
   crypto.createHmac('sha1', secret).update(data).digest('base64')
 
-function verifyTrelloWebhookRequest(request) {
+function verifyTrelloWebhookRequest (request) {
   const header = request.headers['x-trello-webhook']
   if (!header) return false
 
@@ -19,7 +19,7 @@ function verifyTrelloWebhookRequest(request) {
   const doubleHash = digest(digest(content))
   const headerHash = digest(header)
 
-  return doubleHash == headerHash
+  return doubleHash === headerHash
 }
 
 module.exports = verifyTrelloWebhookRequest
