@@ -39,33 +39,3 @@ main
     display: inline-block
     margin-right: spacing
     min-width: 15 * spacing
-
-  .defects
-    ol
-      resetList()
-      align-items: flex-start
-      flex-flow: row wrap
-
-      li
-        flex-grow: 1
-        margin-bottom: 2*spacing
-        max-width: 'calc(25% - %s)' % (2 * spacing)
-        width: 20%
-
-  .labels
-    ul
-      resetList()
-      flex-flow: row wrap
-
-      li
-        align-items: center
-        display: flex
-        flex-flow: row nowrap
-        flex-grow: 1
-        width: 20%
-
-        &:nth-child(4n)
-          margin-right: 0
-
-        input
-          margin-right: spacing

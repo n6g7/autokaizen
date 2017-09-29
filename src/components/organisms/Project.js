@@ -1,11 +1,45 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import styled from 'styled-components'
 
+import { List, Section } from '@atoms'
 import { Defect, Label, ScoreFigure } from '@molecules'
 import { defectsSelector } from '@selectors'
 
 import { addLabel, removeLabel } from '@actions/labels'
+
+const DefectList = styled(List.ordered)`
+  align-items: flex-start;
+  flex-flow: row wrap;
+
+  li {
+    flex-grow: 1;
+    margin-bottom: ${p => 2 * p.theme.spacing}px;
+    max-width: calc(25% - ${p => 2 * p.theme.spacing}px);
+    width: 20%;
+  }
+`
+
+const LabelList = styled(List)`
+  flex-flow: row wrap;
+
+  li {
+    align-items: center;
+    display: flex;
+    flex-flow: row nowrap;
+    flex-grow: 1;
+    width: 20%;
+
+    &:nth-child(4n) {
+      margin-right: 0;
+    }
+
+    input {
+      margin-right: ${p => p.theme.spacing}px;
+    }
+  }
+`
 
 class Project extends PureComponent {
   static propTypes = {
@@ -47,35 +81,31 @@ class Project extends PureComponent {
     return <article>
       <h1>{project.name}</h1>
 
-      <h2>Score</h2>
-
       { defects && labels &&
-        <ScoreFigure
-          currentSprint={project.currentSprint}
-          defects={defects}
-          labels={labels}
-        />
+        <Section title='Score'>
+          <ScoreFigure
+            currentSprint={project.currentSprint}
+            defects={defects}
+            labels={labels}
+          />
+        </Section>
       }
 
-      <h2>Defects</h2>
-
       { defects &&
-        <section className='defects'>
-          <ol>
+        <Section title='Defects'>
+          <DefectList>
             {defects.map(defect =>
               <li key={defect.id}>
                 <Defect defect={defect} />
               </li>
             )}
-          </ol>
-        </section>
+          </DefectList>
+        </Section>
       }
 
-      <h2>Trello labels</h2>
-
       { trelloLabels &&
-        <section className='labels'>
-          <ul>
+        <Section title='Trello labels' collapsible>
+          <LabelList>
             {trelloLabels.map(label => {
               const id = `label-${label.id}`
               const checked = labels && labels.hasOwnProperty(label.id)
@@ -95,8 +125,8 @@ class Project extends PureComponent {
                 </label>
               </li>
             })}
-          </ul>
-        </section>
+          </LabelList>
+        </Section>
       }
     </article>
   }
