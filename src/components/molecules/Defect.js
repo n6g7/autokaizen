@@ -8,6 +8,7 @@ import Sprint from './Sprint'
 
 const Container = styled.article`
   background: ${p => p.theme.background.light};
+  border-radius: ${p => p.theme.spacing / 4}px;
   padding: ${p => 2 * p.theme.spacing};
   position: relative;
 
