@@ -22,6 +22,7 @@ class GenericScore extends PureComponent {
       right: PropTypes.number,
       top: PropTypes.number
     }).isRequired,
+    maxColumns: PropTypes.number.isRequired,
     x: PropTypes.func.isRequired,
     xLabel: PropTypes.string.isRequired,
     y: PropTypes.func.isRequired,
@@ -37,7 +38,8 @@ class GenericScore extends PureComponent {
       left: 55,
       right: 10,
       top: 10
-    }
+    },
+    maxColumns: 20
   }
 
   state = {
@@ -96,6 +98,7 @@ class GenericScore extends PureComponent {
       datumProps,
       lastX,
       margin,
+      maxColumns,
       x,
       xLabel,
       y,
@@ -107,11 +110,13 @@ class GenericScore extends PureComponent {
     const xMax = width - margin.left - margin.right
     const yMax = height - margin.top - margin.bottom
 
+    const xDomainMax = this.getMaxX()
+    const xDomainMin = Math.max(xDomainMax - maxColumns, 1)
     const xScale = scaleBand({
       rangeRound: [0, xMax],
       domain: d3.range(
-        1,
-        this.getMaxX()
+        xDomainMin,
+        xDomainMax
       )
     })
 
@@ -155,7 +160,7 @@ class GenericScore extends PureComponent {
       }
 
       <Group>
-        {data.map(datum =>
+        {data.filter(datum => datum.sprint >= xDomainMin).map(datum =>
           <Item
             key={datum.key}
             x={margin.left + xScale(x(datum)) + cellPadding || 0}
