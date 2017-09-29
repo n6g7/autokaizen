@@ -41,6 +41,7 @@ class GenericScore extends PureComponent {
   }
 
   state = {
+    maxX: null,
     width: 800
   }
 
@@ -53,6 +54,7 @@ class GenericScore extends PureComponent {
   preparePrint () {
     this.setState({
       height: 650,
+      maxX: this.getMaxX() + 3,
       width: 1050,
       prevState: this.state
     })
@@ -79,6 +81,12 @@ class GenericScore extends PureComponent {
     window.removeEventListener('resize', this.updateDimensions.bind(this))
   }
 
+  getMaxX () {
+    const { data, lastX, x } = this.props
+    const { maxX } = this.state
+    return maxX || ((lastX || d3.max(data, x)) + 1)
+  }
+
   render () {
     const {
       axisColour,
@@ -103,7 +111,7 @@ class GenericScore extends PureComponent {
       rangeRound: [0, xMax],
       domain: d3.range(
         1,
-        (lastX || d3.max(data, x)) + 1
+        this.getMaxX()
       )
     })
 
