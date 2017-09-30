@@ -1,5 +1,7 @@
 # Auto Kaizen
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/n6g7/autokaizen.svg)](https://greenkeeper.io/)
+
 Kaizen and defect tracking on **your** Trello board!
 
 ## Setup
