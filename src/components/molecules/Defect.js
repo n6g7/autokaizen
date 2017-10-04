@@ -13,7 +13,6 @@ const Container = styled.article`
   position: relative;
 
   p {
-    font-weight: 200;
     margin: ${p => p.theme.spacing} 0 ${p => 2 * p.theme.spacing};
   }
 `
@@ -35,6 +34,16 @@ const Trello = styled(TrelloLink)`
   margin-left: ${p => p.theme.spacing};
 `
 
+const Points = styled.span`
+  background: white;
+  border-radius: ${p => p.theme.spacing / 4}px;
+  color: ${p => p.theme.background.base};
+  font-weight: bolder;
+  margin-right: ${p => p.theme.spacing / 2}px;
+  opacity: 0.3;
+  padding: 0 ${p => p.theme.spacing / 2}px;
+`
+
 class Defect extends PureComponent {
   static propTypes = {
     defect: PropTypes.object.isRequired
@@ -43,13 +52,20 @@ class Defect extends PureComponent {
   render () {
     const { defect } = this.props
 
+    const match = /^\s*\((\d+)\)\s*(.+)$/.exec(defect.userStory)
+    const userStory = match ? match[2] : defect.userStory
+    const points = match ? match[1] : null
+
     return <Container>
       <Title>
         {defect.cardNumber}
         <Trello cardId={defect.cardId} />
       </Title>
 
-      <p>{defect.userStory}</p>
+      <p>
+        { points && <Points>{ points }</Points> }
+        {userStory}
+      </p>
 
       <Sprint number={defect.sprint} dark />
       <Category labelId={defect.labelId} dark />
