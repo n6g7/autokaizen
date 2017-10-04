@@ -22,6 +22,13 @@ const Title = styled.h3`
   color: ${p => p.theme.text.lighter};
   font-size: 1.5em;
   margin: 0 0 ${p => p.theme.spacing}px 0;
+
+  &::before {
+    content: '#';
+    font-size: 0.9em;
+    margin-right: 1px;
+    opacity: 0.7;
+  }
 `
 
 const Trello = styled(TrelloLink)`
@@ -38,7 +45,7 @@ class Defect extends PureComponent {
 
     return <Container>
       <Title>
-        #{defect.cardNumber}
+        {defect.cardNumber}
         <Trello cardId={defect.cardId} />
       </Title>
 
