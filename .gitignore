@@ -1,6 +1,9 @@
 .env
 .firebaserc
 dist/*
+!dist/android-*
+!dist/favicon*
 !dist/index.html
+!dist/manifest.json
 functions/node_modules
 node_modules
