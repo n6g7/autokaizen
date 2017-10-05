@@ -6,6 +6,7 @@ import boards from './boards'
 import defects from './defects'
 import labels from './labels'
 import projects from './projects'
+import tracker from './tracker'
 
 export default combineReducers({
   auth,
@@ -13,5 +14,6 @@ export default combineReducers({
   defects,
   labels,
   projects,
-  router: routerReducer
+  router: routerReducer,
+  tracker
 })
