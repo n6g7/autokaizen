@@ -8,4 +8,6 @@ export default styled.span`
   flex-flow: row nowrap;
   font-weight: 600;
   margin: ${p => p.theme.spacing} 0;
+  opacity: ${p => p.faded ? 0.4 : 1};
+  transition: .2s;
 `
