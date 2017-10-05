@@ -56,6 +56,12 @@ class Section extends PureComponent {
     collapsed: false
   }
 
+  componentDidMount () {
+    this.setState({
+      collapsed: this.props.collapsible
+    })
+  }
+
   toggle = () => this.setState(state => ({ collapsed: !state.collapsed }))
 
   render () {
