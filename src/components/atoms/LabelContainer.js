@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export default styled.span`
   align-items: center;
   color: ${p => p.dark ? p.theme.text.darker : 'inherit'};
+  cursor: ${p => p.onClick ? 'pointer' : 'normal'};
   display: flex;
   flex-flow: row nowrap;
   font-weight: 600;

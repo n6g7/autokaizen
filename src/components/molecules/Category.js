@@ -25,22 +25,14 @@ class Category extends PureComponent {
     dark: false
   }
 
-  getLabel () {
-    const { labelId, labels } = this.props
-
-    return labels[labelId]
-  }
-
   render () {
-    const {
-      colour,
-      name
-    } = this.getLabel() || {
+    const { labelId, labels, ...props } = this.props
+    const { colour, name } = labels[labelId] || {
       colour: 'black',
       name: 'Unknown label'
     }
 
-    return <LabelContainer dark={this.props.dark}>
+    return <LabelContainer {...props}>
       <ColourSquare colour={colour} />
       { name }
     </LabelContainer>
