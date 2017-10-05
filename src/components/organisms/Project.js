@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 import { List, Section } from '@atoms'
 import { Defect, Label, ScoreFigure } from '@molecules'
-import { defectsSelector } from '@selectors'
+import { filteredDefectsSelector } from '@selectors'
 
 import { addLabel, removeLabel } from '@actions/labels'
 
@@ -140,7 +140,7 @@ class Project extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  defects: defectsSelector(state),
+  defects: filteredDefectsSelector(state),
   labels: state.labels.list,
   projects: state.projects.list,
   trelloLabels: state.labels.trello

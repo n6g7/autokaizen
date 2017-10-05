@@ -1,1 +1,2 @@
-export { defectsSelector } from './defects'
+export { defectsSelector, filteredDefectsSelector } from './defects'
+export { labelsSelector } from './labels'
