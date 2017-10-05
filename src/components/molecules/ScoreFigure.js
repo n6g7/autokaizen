@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
 
+import { toggleLabelFilter } from '@actions/tracker'
 import { List, Score } from '@atoms'
 import Category from './Category'
 
@@ -29,7 +31,8 @@ const StyledScore = styled(Score)`
 class ScoreFigure extends PureComponent {
   static propTypes = {
     defects: PropTypes.array.isRequired,
-    labels: PropTypes.object.isRequired
+    labels: PropTypes.object.isRequired,
+    toggleLabelFilter: PropTypes.func.isRequired
   }
 
   render () {
@@ -40,7 +43,10 @@ class ScoreFigure extends PureComponent {
         <List>
           {Object.keys(labels).map(labelId =>
             <li key={labelId}>
-              <Category labelId={labelId} />
+              <Category
+                labelId={labelId}
+                onClick={() => this.props.toggleLabelFilter(labelId)}
+              />
             </li>
           )}
         </List>
@@ -51,4 +57,8 @@ class ScoreFigure extends PureComponent {
   }
 }
 
-export default ScoreFigure
+const mapDispatchToProps = {
+  toggleLabelFilter
+}
+
+export default connect(null, mapDispatchToProps)(ScoreFigure)
