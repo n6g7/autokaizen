@@ -17,6 +17,7 @@ const ColourSquare = styled.span`
 class Category extends PureComponent {
   static propTypes = {
     dark: PropTypes.bool.isRequired,
+    filters: PropTypes.array.isRequired,
     labelId: PropTypes.string.isRequired,
     labels: PropTypes.object.isRequired
   }
@@ -26,13 +27,15 @@ class Category extends PureComponent {
   }
 
   render () {
-    const { labelId, labels, ...props } = this.props
+    const { filters, labelId, labels, ...props } = this.props
     const { colour, name } = labels[labelId] || {
       colour: 'black',
       name: 'Unknown label'
     }
 
-    return <LabelContainer {...props}>
+    const faded = filters.length !== 0 && !filters.includes(labelId)
+
+    return <LabelContainer faded={faded} {...props}>
       <ColourSquare colour={colour} />
       { name }
     </LabelContainer>
@@ -40,6 +43,7 @@ class Category extends PureComponent {
 }
 
 const mapStateToProps = state => ({
+  filters: state.tracker.filters.labels,
   labels: state.labels.list
 })
 
