@@ -1,5 +1,6 @@
 const functions = require('firebase-functions')
 const { projects } = require('./db')
+const message = require('./messaging')
 const { verifyRequest } = require('./services')
 
 function processAction (action, res) {
@@ -20,10 +21,16 @@ function processAction (action, res) {
       case 'addLabelToCard':
         return projects
           .isRedBucketLabel(board.id, label.id)
-          .then(redBucket => redBucket
-            ? projects.addDefect(board.id, card.id, card.idShort, label.id, card.name)
-            : null
-          )
+          .then(redBucket => {
+            if (redBucket) {
+              return projects.addDefect(board.id, card.id, card.idShort, label.id, card.name)
+              .then(() => message.defect.newDefect(
+                board.id, board.name,
+                label.id, label.name,
+                card.idShort
+              ))
+            }
+          })
       case 'removeLabelFromCard':
         return projects
           .isRedBucketLabel(board.id, label.id)
