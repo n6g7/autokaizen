@@ -1,6 +1,7 @@
 .env
 .firebaserc
 dist/*
+!dist/ak.png
 !dist/android-*
 !dist/favicon*
 !dist/index.html

@@ -13,4 +13,5 @@ Kaizen and defect tracking on **your** Trello board!
   firebase functions:config:set app.allowed_domains="domain1.com,domain2.com"
   firebase functions:config:set app.trello_secret="trellosecret"
   firebase functions:config:set app.hook_url="https://us-central1-project.cloudfunctions.net/trelloHook"
+  firebase functions:config:set app.base_url="https://domain.app/path"
   ```
