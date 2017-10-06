@@ -4,6 +4,7 @@ dist/*
 !dist/ak.png
 !dist/android-*
 !dist/favicon*
+!dist/firebase-messaging-sw.js
 !dist/index.html
 !dist/manifest.json
 functions/node_modules
