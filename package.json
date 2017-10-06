@@ -32,7 +32,7 @@
     "react-router-redux": "next",
     "redux": "^3.7.2",
     "redux-saga": "^0.15.6",
-    "redux-saga-firebase": "^0.4.2",
+    "redux-saga-firebase": "^0.6.0",
     "reselect": "^3.0.1",
     "styled-components": "^2.1.2"
   },

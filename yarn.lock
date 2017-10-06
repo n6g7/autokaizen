@@ -4704,9 +4704,9 @@ reduce-function-call@^1.0.1:
   dependencies:
     balanced-match "^0.4.2"
 
-redux-saga-firebase@^0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/redux-saga-firebase/-/redux-saga-firebase-0.4.2.tgz#56e168cf7f948cd66ea943b01bdbaec3e72f007e"
+redux-saga-firebase@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/redux-saga-firebase/-/redux-saga-firebase-0.6.0.tgz#33f25061bab900f81ee7235af737a02c22a3ee35"
   dependencies:
     redux-saga "^0.15.4"
 

@@ -1,8 +1,10 @@
 import { types } from '@actions/auth'
+import { types as notifTypes } from '@actions/notifications'
 
 const initialState = {
   loading: false,
   loggedIn: false,
+  messagingToken: null,
   user: null
 }
 
@@ -27,6 +29,11 @@ export default function auth (state = initialState, action = {}) {
         ...state,
         loggedIn: !!action.user,
         user: action.user
+      }
+    case notifTypes.SET_REGISTRATION_TOKEN:
+      return {
+        ...state,
+        messagingToken: action.token
       }
     default:
       return state
