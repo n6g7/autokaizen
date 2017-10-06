@@ -7,9 +7,13 @@ const Button = styled.button`
   color: ${p => p.theme.text.lighter};
   cursor: pointer;
   font-family: inherit;
-  font-size: inherit;
+  font-size: ${p => p.small ? '14px' : 'inherit'};
   font-weight: 600;
-  padding: ${p => p.theme.spacing} ${p => 2 * p.theme.spacing};
+  outline: none;
+  padding: ${p => p.small
+    ? `${p.theme.spacing / 2}px ${p.theme.spacing}px`
+    : `${p.theme.spacing}px ${2 * p.theme.spacing}px`
+  };
   text-decoration: none;
 `
 

@@ -3,17 +3,25 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 
-import { List, Section } from '@atoms'
+import { Button, List, Section } from '@atoms'
 import { Defect, Label, ScoreFigure } from '@molecules'
 import { filteredDefectsSelector } from '@selectors'
 
 import { addLabel, removeLabel } from '@actions/labels'
+import { followBoard } from '@actions/notifications'
 
 const Title = styled.h1`
+  align-items: center;
   color: ${p => p.theme.text.lighter};
+  display: flex;
+  flex-flow: row nowrap;
   font-size: ${p => 6 * p.theme.spacing}px;
   font-weight: 600;
   margin: 0 0 ${p => 3 * p.theme.spacing}px;
+
+  ${Button} {
+    margin-left: ${p => 2 * p.theme.spacing}px;
+  }
 `
 
 const DefectList = styled(List.ordered)`
@@ -52,6 +60,7 @@ class Project extends PureComponent {
   static propTypes = {
     addLabel: PropTypes.func.isRequired,
     defects: PropTypes.array,
+    followBoard: PropTypes.func.isRequired,
     labels: PropTypes.object,
     match: PropTypes.object.isRequired,
     projects: PropTypes.object.isRequired,
@@ -76,6 +85,7 @@ class Project extends PureComponent {
     const {
       addLabel,
       defects,
+      followBoard,
       labels,
       match: { params: { projectId } },
       removeLabel,
@@ -86,7 +96,10 @@ class Project extends PureComponent {
     if (!project) return this.renderMissingProject()
 
     return <article>
-      <Title>{project.name}</Title>
+      <Title>
+        {project.name}
+        <Button onClick={() => followBoard(projectId)} small>Follow</Button>
+      </Title>
 
       { defects && labels &&
         <Section title='Score'>
@@ -148,6 +161,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   addLabel,
+  followBoard,
   removeLabel
 }
 
