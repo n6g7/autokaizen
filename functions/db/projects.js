@@ -1,5 +1,7 @@
 const admin = require('firebase-admin')
 
+const sprints = require('./sprints')
+
 function isTracked (boardId) {
   return admin
     .database()
@@ -15,13 +17,6 @@ function createOrUpdate (boardId, data) {
     .set(data)
 }
 
-function setCurrentSprint (boardId, sprintNumber) {
-  return admin
-    .database()
-    .ref(`projects/${boardId}/currentSprint`)
-    .set(sprintNumber)
-}
-
 function isRedBucketLabel (boardId, labelId) {
   return admin
     .database()
@@ -31,26 +26,20 @@ function isRedBucketLabel (boardId, labelId) {
 }
 
 function addDefect (boardId, cardId, cardNumber, labelId, userStory) {
-  return admin
-    .database()
-    .ref(`projects/${boardId}/currentSprint`)
-    .once('value')
-    .then(snap => {
-      const currentSprint = snap.val()
-
-      return admin
-        .database()
-        .ref(`defects/${boardId}`)
-        .push({
-          analysed: false,
-          cardId,
-          cardNumber,
-          creation: Date.now(),
-          labelId,
-          sprint: currentSprint,
-          userStory
-        })
-    })
+  return sprints.getCurrent(boardId)
+    .then(sprint => admin
+      .database()
+      .ref(`defects/${boardId}`)
+      .push({
+        analysed: false,
+        cardId,
+        cardNumber,
+        creation: Date.now(),
+        labelId,
+        sprint,
+        userStory
+      })
+    )
 }
 
 function removeDefect (boardId, cardId, labelId) {
@@ -77,6 +66,5 @@ module.exports = {
   createOrUpdate,
   isRedBucketLabel,
   isTracked,
-  removeDefect,
-  setCurrentSprint
+  removeDefect
 }

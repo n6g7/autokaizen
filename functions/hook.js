@@ -1,5 +1,5 @@
 const functions = require('firebase-functions')
-const { projects } = require('./db')
+const { projects, sprints } = require('./db')
 const message = require('./messaging')
 const { verifyRequest } = require('./services')
 
@@ -43,7 +43,7 @@ function processAction (action, res) {
         const result = /done.+#(\d+)/i.exec(list.name)
 
         return result
-          ? projects.setCurrentSprint(board.id, parseInt(result[1]))
+          ? sprints.start(board.id, parseInt(result[1]))
           : null
       default:
         console.log(`Unknown type: "${type}".`)
