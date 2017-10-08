@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import * as d3 from 'd3'
 import { Group } from '@vx/group'
 import { scaleBand, scaleLinear } from '@vx/scale'
+import moment from 'moment'
 
 import Item from './Item'
 import { AxisBottom, AxisLeft } from './axis'
@@ -23,6 +24,7 @@ class GenericScore extends PureComponent {
       top: PropTypes.number
     }).isRequired,
     maxColumns: PropTypes.number.isRequired,
+    sprints: PropTypes.object.isRequired,
     x: PropTypes.func.isRequired,
     xLabel: PropTypes.string.isRequired,
     y: PropTypes.func.isRequired,
@@ -34,7 +36,7 @@ class GenericScore extends PureComponent {
     cellPadding: 2,
     height: 480,
     margin: {
-      bottom: 55,
+      bottom: 60,
       left: 55,
       right: 10,
       top: 10
@@ -99,6 +101,7 @@ class GenericScore extends PureComponent {
       lastX,
       margin,
       maxColumns,
+      sprints,
       x,
       xLabel,
       y,
@@ -169,6 +172,25 @@ class GenericScore extends PureComponent {
             height={yScale(1) - yScale(2) - cellPadding}
             {...datumProps(datum)}
           />
+        )}
+      </Group>
+
+      <Group>
+        {d3.range(xDomainMin, xDomainMax).map(n =>
+          <text
+            key={n}
+            fill='rgba(255, 255, 255, 0.5)'
+            fontFamily='Source Sans Pro'
+            fontSize='11'
+            textAnchor='middle'
+            x={margin.left + xScale(n) + xScale.bandwidth() / 2}
+            y={margin.top + yScale(0) + 32}
+          >
+            {sprints[n]
+              ? moment.unix(sprints[n].start).format('DD/MM')
+              : ''
+            }
+          </text>
         )}
       </Group>
     </svg>

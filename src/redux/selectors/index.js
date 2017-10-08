@@ -1,2 +1,2 @@
 export { defectsSelector, filteredDefectsSelector } from './defects'
-export { currentSprintSelector } from './sprints'
+export { sprintsSelector, currentSprintSelector } from './sprints'

@@ -69,6 +69,7 @@ class Project extends PureComponent {
     match: PropTypes.object.isRequired,
     projects: PropTypes.object.isRequired,
     removeLabel: PropTypes.func.isRequired,
+    sprints: PropTypes.object.isRequired,
     trelloLabels: PropTypes.array.isRequired
   }
 
@@ -94,6 +95,7 @@ class Project extends PureComponent {
       labels,
       match: { params: { projectId } },
       removeLabel,
+      sprints,
       trelloLabels
     } = this.props
     const project = this.getProject()
@@ -112,6 +114,7 @@ class Project extends PureComponent {
             currentSprint={currentSprint}
             defects={defects}
             labels={labels}
+            sprints={sprints}
           />
         </Section>
       }
@@ -162,6 +165,7 @@ const mapStateToProps = state => ({
   defects: filteredDefectsSelector(state),
   labels: state.labels.list,
   projects: state.projects.list,
+  sprints: state.sprints.list,
   trelloLabels: state.labels.trello
 })
 

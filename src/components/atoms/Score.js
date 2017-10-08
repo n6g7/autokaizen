@@ -7,7 +7,8 @@ class Score extends PureComponent {
   static propTypes = {
     currentSprint: PropTypes.number,
     defects: PropTypes.array.isRequired,
-    labels: PropTypes.object.isRequired
+    labels: PropTypes.object.isRequired,
+    sprints: PropTypes.object.isRequired
   }
 
   getDefects () {
@@ -38,7 +39,7 @@ class Score extends PureComponent {
   }
 
   render () {
-    const { className, currentSprint } = this.props
+    const { className, currentSprint, sprints } = this.props
     const data = this.getDefects()
 
     const x = defect => defect.sprint
@@ -57,6 +58,7 @@ class Score extends PureComponent {
         children: `#${defect.number}`,
         fill: defect.label ? defect.label.colour : ''
       })}
+      sprints={sprints}
     />
   }
 }

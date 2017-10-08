@@ -11,7 +11,7 @@ const customAxis = (AxisComponent, baseTickLabelProps) =>
       const { color, ...props } = this.props
 
       const labelProps = {
-        dy: '0.25em',
+        dy: '0.5em',
         fill: 'rgba(255, 255, 255, 0.8)',
         fontFamily: 'Source Sans Pro',
         fontSize: 16,
