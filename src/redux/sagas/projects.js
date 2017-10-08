@@ -26,10 +26,14 @@ function * createProjectSaga ({ boardId, name, currentSprint }) {
       rsf.database.update,
       `projects/${boardId}`,
       {
-        currentSprint,
         hookId,
         name
       }
+    )
+    yield call(
+      rsf.database.update,
+      `sprints/${boardId}/${currentSprint}`,
+      { start: new Date() }
     )
     yield put(createProjectSuccess())
   } catch (error) {
