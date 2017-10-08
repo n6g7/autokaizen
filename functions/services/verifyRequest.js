@@ -9,13 +9,13 @@ function verifyTrelloWebhookRequest (request) {
   if (!header) return false
 
   const {
-    hook_url,
+    hook_url: hookUrl,
     trello_secret
   } = functions.config().app
 
   const digest = base64Digest(trello_secret)
 
-  const content = `${JSON.stringify(request.body)}${hook_url}`
+  const content = `${JSON.stringify(request.body)}${hookUrl}`
   const doubleHash = digest(digest(content))
   const headerHash = digest(header)
 

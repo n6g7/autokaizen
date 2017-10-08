@@ -57,6 +57,9 @@
     "webpack-dev-server": "^2.7.1"
   },
   "standard": {
+    "ignore": [
+      "dist"
+    ],
     "parser": "babel-eslint"
   }
 }

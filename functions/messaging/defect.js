@@ -18,7 +18,7 @@ function unfollowBoard (token, boardId) {
 }
 
 function newDefect (boardId, boardName, labelId, labelName, cardNumber) {
-  const { base_url } = functions.config().app
+  const { base_url: baseUrl } = functions.config().app
 
   return admin.messaging().sendToTopic(
     boardTopic(boardId),
@@ -26,12 +26,12 @@ function newDefect (boardId, boardName, labelId, labelName, cardNumber) {
       notification: {
         title: `New ${labelName} on ${boardName}`,
         body: `Ticket #${cardNumber}`,
-        click_action : `${base_url}/projects/${boardId}`,
-        icon: `${base_url}/ak.png`
+        click_action: `${baseUrl}/projects/${boardId}`,
+        icon: `${baseUrl}/ak.png`
       },
       data: {
         boardId,
-        cardNumber: ''+cardNumber,
+        cardNumber: '' + cardNumber,
         labelId,
         type: 'newDefect'
       }
