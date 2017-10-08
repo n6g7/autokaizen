@@ -5,7 +5,10 @@ import styled from 'styled-components'
 
 import { Button, List, Section } from '@atoms'
 import { Defect, Label, ScoreFigure } from '@molecules'
-import { filteredDefectsSelector } from '@selectors'
+import {
+  currentSprintSelector,
+  filteredDefectsSelector
+} from '@selectors'
 
 import { addLabel, removeLabel } from '@actions/labels'
 import { followBoard } from '@actions/notifications'
@@ -59,6 +62,7 @@ const LabelList = styled(List)`
 class Project extends PureComponent {
   static propTypes = {
     addLabel: PropTypes.func.isRequired,
+    currentSprint: PropTypes.number.isRequired,
     defects: PropTypes.array,
     followBoard: PropTypes.func.isRequired,
     labels: PropTypes.object,
@@ -84,6 +88,7 @@ class Project extends PureComponent {
   render () {
     const {
       addLabel,
+      currentSprint,
       defects,
       followBoard,
       labels,
@@ -104,7 +109,7 @@ class Project extends PureComponent {
       { defects && labels &&
         <Section title='Score'>
           <ScoreFigure
-            currentSprint={project.currentSprint}
+            currentSprint={currentSprint}
             defects={defects}
             labels={labels}
           />
@@ -153,6 +158,7 @@ class Project extends PureComponent {
 }
 
 const mapStateToProps = state => ({
+  currentSprint: currentSprintSelector(state),
   defects: filteredDefectsSelector(state),
   labels: state.labels.list,
   projects: state.projects.list,
