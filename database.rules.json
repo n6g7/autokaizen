@@ -40,6 +40,19 @@
       }
     },
 
+    "sprints": {
+      ".read": "auth != null && root.child('users/'+auth.uid+'/access').val() == true",
+      ".write": "auth != null && root.child('users/'+auth.uid+'/access').val() == true",
+
+      "$pid": {
+        ".indexOn": ["start"],
+
+        "$sid": {
+          "start": { ".validate": "newData.isNumber()" }
+        }
+      }
+    },
+
     "users": {
       ".read": false,
       ".write": false,
