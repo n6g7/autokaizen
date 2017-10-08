@@ -1,0 +1,32 @@
+version: 2
+
+jobs:
+  build:
+    working_directory: ~/ak
+
+    docker:
+      - image: node:8
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - ak-{{ .Branch }}-{{ checksum "package.json" }}
+            - ak-{{ .Branch }}
+            - ak-master-{{ checksum "package.json" }}
+            - ak-master
+
+      - run:
+          name: Install dependencies
+          command: yarn
+
+      - run:
+          name: Running tests
+          command: yarn test
+
+      - save_cache:
+          key: ak-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            - ~/.yarn
+            - ~/ak/node_modules

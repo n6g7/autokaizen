@@ -14,7 +14,7 @@
     "build": "webpack -p",
     "deploy": "yarn build && firebase deploy",
     "dev": "webpack-dashboard -- webpack-dev-server",
-    "pretest": "standard"
+    "test": "standard"
   },
   "dependencies": {
     "@vx/axis": "^0.0.138",
