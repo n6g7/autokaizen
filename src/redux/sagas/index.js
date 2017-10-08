@@ -7,6 +7,7 @@ import defects from './defects'
 import labels from './labels'
 import notifications from './notifications'
 import projects from './projects'
+import sprints from './sprints'
 
 const projectPathRegex = /^\/projects\/([0-9a-f]{10,})$/
 
@@ -17,7 +18,8 @@ export default function * rootSaga () {
     fork(defects),
     fork(labels),
     fork(notifications),
-    fork(projects)
+    fork(projects),
+    fork(sprints)
   ]
 
   const match = projectPathRegex.exec(window.location.pathname)
