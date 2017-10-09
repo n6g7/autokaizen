@@ -7,7 +7,8 @@ import { Button, Label, List, Section } from '@atoms'
 import { Defect, ScoreFigure } from '@molecules'
 import {
   currentSprintSelector,
-  filteredDefectsSelector
+  filteredDefectsSelector,
+  trelloLabelsSelector
 } from '@selectors'
 
 import { addLabel, removeLabel } from '@actions/labels'
@@ -167,7 +168,7 @@ const mapStateToProps = state => ({
   labels: state.labels.list,
   projects: state.projects.list,
   sprints: state.sprints.list,
-  trelloLabels: state.labels.trello
+  trelloLabels: trelloLabelsSelector(state)
 })
 
 const mapDispatchToProps = {
