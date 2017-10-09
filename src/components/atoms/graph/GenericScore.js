@@ -187,7 +187,7 @@ class GenericScore extends PureComponent {
             y={margin.top + yScale(0) + 32}
           >
             {sprints[n]
-              ? moment.unix(sprints[n].start).format('DD/MM')
+              ? moment(sprints[n].start).format('DD/MM')
               : ''
             }
           </text>
