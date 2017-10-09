@@ -1,4 +1,5 @@
 export { default as Button } from './Button'
+export { default as Label } from './Label'
 export { default as LabelContainer } from './LabelContainer'
 export { default as List } from './List'
 export { default as Score } from './Score'

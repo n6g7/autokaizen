@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 
-import { Button, List, Section } from '@atoms'
-import { Defect, Label, ScoreFigure } from '@molecules'
+import { Button, Label, List, Section } from '@atoms'
+import { Defect, ScoreFigure } from '@molecules'
 import {
   currentSprintSelector,
   filteredDefectsSelector
@@ -47,6 +47,7 @@ const LabelList = styled(List)`
     display: flex;
     flex-flow: row nowrap;
     flex-grow: 1;
+    margin: ${p => p.theme.spacing / 4}px 0;
     width: 20%;
 
     &:nth-child(4n) {
