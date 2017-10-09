@@ -1,8 +1,16 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import caret from '@assets/caret.svg'
+
+const Caret = styled.img.attrs({
+  alt: 'caret',
+  src: caret
+})`
+  transition: .5s;
+  transform: rotate(${p => p.up ? 0 : 180}deg);
+`
 
 const Title = styled.h2`
   align-items: center;
@@ -14,25 +22,21 @@ const Title = styled.h2`
   margin: ${p => 2 * p.theme.spacing} 0;
   text-transform: uppercase;
 
-  img {
+  ${p => p.onClick && css`
+    cursor: pointer;
+
+    &:hover ${Caret} {
+      opacity: 0.5;
+    }
+  `}
+
+  ${Caret} {
     cursor: pointer;
     height: ${p => 2 * p.theme.spacing}px;
     margin: 0 ${p => p.theme.spacing}px;
     opacity: 0.3;
     width: ${p => 2 * p.theme.spacing}px;
-
-    &:hover {
-      opacity: 0.5;
-    }
   }
-`
-
-const Caret = styled.img.attrs({
-  alt: 'caret',
-  src: caret
-})`
-  transition: .5s;
-  transform: rotate(${p => p.up ? 0 : 180}deg);
 `
 
 const Content = styled.div`
@@ -74,11 +78,10 @@ class Section extends PureComponent {
     const { collapsed } = this.state
 
     return <section {...props}>
-      <Title>
+      <Title onClick={collapsible ? this.toggle : null}>
         {title}
         { collapsible &&
           <Caret
-            onClick={this.toggle}
             title={collapsed ? 'Expand' : 'Collapse'}
             up={collapsed}
           />
