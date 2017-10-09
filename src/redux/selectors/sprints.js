@@ -6,7 +6,7 @@ const rawSprintsSelector = state => state.sprints.list
 export const sprintsSelector = createSelector(
   rawSprintsSelector,
   sprints => objectToArray(sprints, 'number')
-    .sort(keyComparator('start'))
+    .sort(keyComparator(['start']))
     .map(sprint => ({
       ...sprint,
       number: parseInt(sprint.number)

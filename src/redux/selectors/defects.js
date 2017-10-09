@@ -6,7 +6,7 @@ const labelFiltersSelector = state => state.tracker.filters.labels
 
 export const defectsSelector = createSelector(
   rawDefectsSelector,
-  defects => objectToArray(defects).sort(keyComparator('creation'))
+  defects => objectToArray(defects).sort(keyComparator(['creation']))
 )
 
 export const filteredDefectsSelector = createSelector(
