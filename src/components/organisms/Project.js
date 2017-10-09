@@ -122,7 +122,7 @@ class Project extends PureComponent {
       { defects &&
         <Section title='Defects'>
           <DefectList>
-            {defects.map(defect =>
+            {[...defects].reverse().map(defect =>
               <li key={defect.id}>
                 <Defect defect={defect} />
               </li>

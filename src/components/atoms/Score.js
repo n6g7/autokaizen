@@ -19,7 +19,7 @@ class Score extends PureComponent {
 
     const sprintCount = {}
 
-    return defects.reverse().map(defect => {
+    return defects.map(defect => {
       const {
         cardNumber,
         labelId,
