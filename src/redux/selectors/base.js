@@ -1,8 +1,10 @@
 export const objectToArray = (obj, idKey = 'id') =>
-  Object.keys(obj).map(id => ({
-    [idKey]: id,
-    ...obj[id]
-  }))
+  obj
+    ? Object.keys(obj).map(id => ({
+      [idKey]: id,
+      ...obj[id]
+    }))
+    : []
 
 export const keyComparator = (keys, revert = false) => {
   const aIsBigger = revert ? -1 : 1

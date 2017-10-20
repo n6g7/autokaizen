@@ -71,7 +71,7 @@ class Project extends PureComponent {
     match: PropTypes.object.isRequired,
     projects: PropTypes.object.isRequired,
     removeLabel: PropTypes.func.isRequired,
-    sprints: PropTypes.object.isRequired,
+    sprints: PropTypes.object,
     trelloLabels: PropTypes.array.isRequired
   }
 
