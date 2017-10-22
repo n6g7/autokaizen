@@ -2,12 +2,15 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
+import { push } from 'react-router-redux'
 
 import { Button, List, Select } from '@atoms'
 import { LinkButton } from '@atoms/Button'
 
 import { login, logout } from '@actions/auth'
 import { selectProject } from '@actions/projects'
+
+import { projectSelector, projectsSelector } from '@selectors'
 
 const Container = styled.header`
   align-items: center;
@@ -34,40 +37,34 @@ const Nav = styled.nav`
 
 class Header extends PureComponent {
   static propTypes = {
-    history: PropTypes.object.isRequired,
+    currentProject: PropTypes.object,
     login: PropTypes.func.isRequired,
     loggedIn: PropTypes.bool.isRequired,
     logout: PropTypes.func.isRequired,
-    match: PropTypes.object.isRequired,
-    projects: PropTypes.object.isRequired,
+    projects: PropTypes.array.isRequired,
+    push: PropTypes.func.isRequired,
     selectProject: PropTypes.func.isRequired
   }
 
-  constructor (props) {
-    super(props)
-
-    this.onChangeProject = this.onChangeProject.bind(this)
-  }
-
-  onChangeProject (event) {
+  onChangeProject = event => {
     const { value } = event.target
 
     if (value) this.props.selectProject(value)
-    else this.props.history.push('/')
+    else this.props.push('/')
   }
 
   render () {
     const {
+      currentProject,
       login,
       loggedIn,
       logout,
-      match,
       projects
     } = this.props
 
-    const options = Object.keys(projects).map(projectId => ({
-      label: projects[projectId].name,
-      value: projectId
+    const options = projects.map(project => ({
+      label: project.name,
+      value: project.id
     }))
 
     return <Container>
@@ -79,7 +76,7 @@ class Header extends PureComponent {
             <Select
               onChange={this.onChangeProject}
               options={options}
-              value={match.params.projectId || ''}
+              value={currentProject ? currentProject.id : ''}
             />
           </li>
         </List>
@@ -101,13 +98,15 @@ class Header extends PureComponent {
 }
 
 const mapStateToProps = state => ({
+  currentProject: projectSelector(state),
   loggedIn: state.auth.loggedIn,
-  projects: state.projects.list
+  projects: projectsSelector(state)
 })
 
 const mapDispatchToProps = {
   login,
   logout,
+  push,
   selectProject
 }
 
