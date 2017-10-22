@@ -33,7 +33,7 @@ function * createProjectSaga ({ boardId, name, currentSprint }) {
     yield call(
       rsf.database.update,
       `sprints/${boardId}/${currentSprint}`,
-      { start: new Date() }
+      { start: Date.now() }
     )
     yield put(createProjectSuccess())
   } catch (error) {
