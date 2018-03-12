@@ -52,8 +52,8 @@ class Defect extends PureComponent {
   render () {
     const { defect } = this.props
 
-    const match = /^\s*\((\d+)\)\s*(.+)$/.exec(defect.userStory)
-    const userStory = match ? match[2] : defect.userStory
+    const match = /^\s*\((\d+(\.\d+)?)\)\s*(.+)$/.exec(defect.userStory)
+    const userStory = match ? match[3] : defect.userStory
     const points = match ? match[1] : null
 
     return <Container>
