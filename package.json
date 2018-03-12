@@ -13,6 +13,7 @@
   "scripts": {
     "build": "webpack -p",
     "deploy": "yarn build && firebase deploy",
+    "deploy:ci": "yarn deploy --token $FIREBASE_TOKEN --project $FIREBASE_PROJECT",
     "dev": "webpack-dashboard -- webpack-dev-server",
     "test": "standard"
   },

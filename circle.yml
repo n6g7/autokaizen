@@ -1,7 +1,7 @@
 version: 2
 
 jobs:
-  build:
+  test:
     working_directory: ~/ak
 
     docker:
@@ -30,3 +30,52 @@ jobs:
           paths:
             - ~/.yarn
             - ~/ak/node_modules
+
+  deploy:
+    working_directory: ~/ak
+
+    docker:
+      - image: node:8
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - ak-{{ .Branch }}-{{ checksum "package.json" }}
+            - ak-{{ .Branch }}
+            - ak-master-{{ checksum "package.json" }}
+            - ak-master
+
+      - run:
+          name: Install global dependencies
+          command: yarn global add firebase-tools
+
+      - run:
+          name: Install dependencies
+          command: yarn
+
+      - run:
+          name: Install functions dependencies
+          command: cd functions && yarn
+
+      - run:
+          name: Setup env file
+          command: echo "FOLLOW_URL=$FOLLOW_URL\nHOOK_URL=$nHOOK_URL" > .env
+
+      - run:
+          name: Deploy
+          command: yarn deploy:ci
+
+workflows:
+  version: 2
+  stack:
+    jobs:
+      - test
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - master
