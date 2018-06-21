@@ -3,7 +3,7 @@ const Dotenv = require('dotenv-webpack')
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
-  entry: ['babel-polyfill', './index.js'],
+  entry: ['@babel/polyfill', './index.js'],
   resolve: {
     alias: {
       '@actions': path.resolve(__dirname, 'src/redux/actions'),
