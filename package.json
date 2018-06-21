@@ -48,7 +48,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "css-loader": "^0.28.11",
     "dotenv-webpack": "^1.5.7",
-    "standard": "^10.0.3",
+    "standard": "^11.0.1",
     "style-loader": "^0.21.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
