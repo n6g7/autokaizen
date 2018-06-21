@@ -2,10 +2,11 @@
   "name": "functions",
   "description": "Cloud Functions for Firebase",
   "dependencies": {
+    "@firebase/app-types": "^0.3.2",
     "cors": "^2.8.4",
     "firebase-admin": "^5.11.0",
     "firebase-backup": "^0.0.3-d",
-    "firebase-functions": "^0.8.2"
+    "firebase-functions": "^1.1.0"
   },
   "private": true
 }
