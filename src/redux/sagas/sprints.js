@@ -8,8 +8,10 @@ function * syncSprintsSaga ({ projectId }) {
   yield fork(
     rsf.database.sync,
     `sprints/${projectId}`,
-    syncSprints,
-    x => x
+    {
+      successActionCreator: syncSprints
+    },
+    'value'
   )
 }
 

@@ -51,8 +51,10 @@ export default function * projectsSaga () {
     authTypes.SYNC_USER,
     rsf.database.sync,
     'projects',
-    syncProjects,
-    x => x
+    {
+      successActionCreator: syncProjects
+    },
+    'value'
   )
   yield takeEvery(types.CREATE_PROJECT.REQUEST, createProjectSaga)
   yield takeEvery(types.SELECT_PROJECT, selectProjectSaga)

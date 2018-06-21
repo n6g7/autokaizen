@@ -1,4 +1,4 @@
-import { fork, put } from 'redux-saga/effects'
+import { all, fork, put } from 'redux-saga/effects'
 import { selectProject } from '@actions/projects'
 
 import auth from './auth'
@@ -12,7 +12,7 @@ import sprints from './sprints'
 const projectPathRegex = /^\/projects\/([0-9a-f]{10,})/
 
 export default function * rootSaga () {
-  yield [
+  yield all([
     fork(auth),
     fork(boards),
     fork(defects),
@@ -20,7 +20,7 @@ export default function * rootSaga () {
     fork(notifications),
     fork(projects),
     fork(sprints)
-  ]
+  ])
 
   const match = projectPathRegex.exec(window.location.pathname)
   if (match) yield put(selectProject(match[1]))

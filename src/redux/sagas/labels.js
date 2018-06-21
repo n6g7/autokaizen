@@ -83,8 +83,10 @@ function * syncLabelsSaga ({ projectId }) {
   yield fork(
     rsf.database.sync,
     `labels/${projectId}`,
-    syncLabels,
-    x => x
+    {
+      successActionCreator: syncLabels
+    },
+    'value'
   )
 }
 

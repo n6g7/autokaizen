@@ -36,7 +36,7 @@ function * followBoardSaga ({ boardId }) {
 }
 
 export default function * () {
-  yield requestPermissionSaga()
+  yield call(requestPermissionSaga)
   yield fork(rsf.messaging.syncToken, setRegistrationToken)
 
   yield takeEvery(types.FOLLOW_BOARD.REQUEST, followBoardSaga)
