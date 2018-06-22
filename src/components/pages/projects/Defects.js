@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { DefectList, Section } from '@atoms'
 import { Defect } from '@molecules'
-import { defectsSelector, selectProject } from '@selectors'
+import { defectsSelector, projectSelector } from '@selectors'
 
 import Template from './Template'
 
@@ -33,7 +33,7 @@ class ProjectDefects extends PureComponent {
 
 const mapStateToProps = (state, ownProps) => ({
   defects: defectsSelector(state),
-  project: selectProject(state, ownProps)
+  project: projectSelector(state, ownProps)
 })
 
 export default connect(mapStateToProps)(ProjectDefects)

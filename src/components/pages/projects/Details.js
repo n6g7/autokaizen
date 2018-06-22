@@ -10,7 +10,7 @@ import {
   currentSprintSelector,
   filteredDefectsSelector,
   trelloLabelsSelector,
-  selectProject
+  projectSelector
 } from '@selectors'
 
 import Template from './Template'
@@ -134,7 +134,7 @@ const mapStateToProps = (state, ownProps) => ({
   currentSprint: currentSprintSelector(state),
   defects: filteredDefectsSelector(state),
   labels: state.labels.list,
-  project: selectProject(state, ownProps),
+  project: projectSelector(state, ownProps),
   sprints: state.sprints.list,
   trelloLabels: trelloLabelsSelector(state)
 })
