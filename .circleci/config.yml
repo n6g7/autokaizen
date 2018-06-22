@@ -5,7 +5,7 @@ jobs:
     working_directory: ~/ak
 
     docker:
-      - image: node:8
+      - image: node:latest
 
     steps:
       - checkout
@@ -35,7 +35,7 @@ jobs:
     working_directory: ~/ak
 
     docker:
-      - image: node:8
+      - image: node:latest
 
     steps:
       - checkout
@@ -61,7 +61,7 @@ jobs:
 
       - run:
           name: Setup env file
-          command: echo "FOLLOW_URL=$FOLLOW_URL" >> .env && echo "HOOK_URL=$HOOK_URL" >> .env
+          command: echo "FOLLOW_URL=$FOLLOW_URL\nHOOK_URL=$HOOK_URL" >> .env
 
       - run:
           name: Deploy

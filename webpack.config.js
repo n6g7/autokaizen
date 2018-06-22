@@ -51,6 +51,8 @@ module.exports = {
     historyApiFallback: true
   },
   plugins: [
-    new Dotenv()
+    new Dotenv({
+      systemvars: true
+    })
   ]
 }
