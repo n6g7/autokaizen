@@ -117,6 +117,7 @@ class Project extends PureComponent {
             defects={defects}
             labels={labels}
             sprints={sprints}
+            style={project.perfStyle}
           />
         </Section>
       }

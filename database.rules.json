@@ -36,7 +36,8 @@
 
       "$pid": {
         "name": { ".validate": "newData.isString()" },
-        "hookId": { ".validate": "!data.exists() && newData.isString()" }
+        "hookId": { ".validate": "!data.exists() && newData.isString()" },
+        "perfStyle": { ".validate": "newData.isString() && (newData.val() == 'count' || newData.val() == 'pct')" }
       }
     },
 
@@ -48,6 +49,7 @@
         ".indexOn": ["start"],
 
         "$sid": {
+          "points": { ".validate": "newData.isNumber()" },
           "start": { ".validate": "newData.isNumber()" }
         }
       }

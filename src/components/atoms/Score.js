@@ -8,13 +8,16 @@ class Score extends PureComponent {
     currentSprint: PropTypes.number,
     defects: PropTypes.array.isRequired,
     labels: PropTypes.object.isRequired,
-    sprints: PropTypes.object.isRequired
+    sprints: PropTypes.object.isRequired,
+    style: PropTypes.oneOf(['count', 'pct']).isRequired
   }
 
   getDefects () {
     const {
       defects,
-      labels
+      labels,
+      sprints,
+      style
     } = this.props
 
     const sprintCount = {}
@@ -23,27 +26,34 @@ class Score extends PureComponent {
       const {
         cardNumber,
         labelId,
+        points,
         sprint
       } = defect
 
       if (!sprintCount.hasOwnProperty(sprint)) sprintCount[sprint] = 0
+      const y = sprintCount[sprint]
+      const value = style === 'count'
+        ? 1
+        : points / sprints[sprint].points
+      sprintCount[sprint] += value
 
       return {
         key: defect.id,
         label: labels[labelId],
         number: cardNumber,
         sprint,
-        y: ++sprintCount[sprint]
+        value,
+        y
       }
     })
   }
 
   render () {
-    const { className, currentSprint, sprints } = this.props
+    const { className, currentSprint, sprints, style } = this.props
     const data = this.getDefects()
 
     const x = defect => defect.sprint
-    const y = defect => defect.y
+    const y = defect => defect.y + defect.value
 
     return <GenericScore
       className={className}
@@ -59,6 +69,7 @@ class Score extends PureComponent {
         fill: defect.label ? defect.label.colour : ''
       })}
       sprints={sprints}
+      style={style}
     />
   }
 }

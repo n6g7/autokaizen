@@ -25,6 +25,7 @@ class GenericScore extends PureComponent {
     }).isRequired,
     maxColumns: PropTypes.number.isRequired,
     sprints: PropTypes.object.isRequired,
+    style: PropTypes.oneOf(['count', 'pct']).isRequired,
     x: PropTypes.func.isRequired,
     xLabel: PropTypes.string.isRequired,
     y: PropTypes.func.isRequired,
@@ -102,6 +103,7 @@ class GenericScore extends PureComponent {
       margin,
       maxColumns,
       sprints,
+      style,
       x,
       xLabel,
       y,
@@ -123,7 +125,7 @@ class GenericScore extends PureComponent {
       )
     })
 
-    const maxYDomain = d3.max(data, y) + 1
+    const maxYDomain = d3.max(data, y) + (style === 'count' ? 1 : 0.1)
     const yScale = scaleLinear({
       range: [yMax, 0],
       domain: [0, maxYDomain]
@@ -148,8 +150,8 @@ class GenericScore extends PureComponent {
         top={margin.top}
         left={margin.left}
         label={yLabel}
-        numTicks={maxYDomain}
-        tickFormat={d3.format('d')}
+        numTicks={style === 'count' ? maxYDomain : Math.floor(maxYDomain / 0.1)}
+        tickFormat={d3.format(style === 'count' ? 'd' : '.0%')}
       />
 
       { currentX &&
@@ -169,7 +171,7 @@ class GenericScore extends PureComponent {
             x={margin.left + xScale(x(datum)) + cellPadding || 0}
             y={margin.top + yScale(y(datum))}
             width={xScale.bandwidth() - 2 * cellPadding}
-            height={yScale(1) - yScale(2) - cellPadding}
+            height={yScale(0) - yScale(datum.value) - cellPadding}
             {...datumProps(datum)}
           />
         )}
