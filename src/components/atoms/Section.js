@@ -41,8 +41,11 @@ const Title = styled.h2`
 
 const Content = styled.div`
   transition: 0.5s ease;
-  max-height: ${p => p.collapsed ? 0 : 4000}px;
-  overflow: hidden;
+
+  ${p => p.collapsible && css`
+    max-height: ${p => p.collapsed ? 0 : 4000}px;
+    overflow: hidden;
+  `}
 `
 
 class Section extends PureComponent {

@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 const Container = styled.h1`
   color: ${p => p.theme.text.lighter};
@@ -8,6 +10,16 @@ const Container = styled.h1`
   font-size: ${p => 6 * p.theme.spacing}px;
   font-weight: 600;
   margin: 0;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    transition: .2s;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
 `
 
 const Pre = styled.span`
@@ -23,12 +35,21 @@ const Pre = styled.span`
 `
 
 class Title extends PureComponent {
+  static propTypes = {
+    children: PropTypes.any.isRequired,
+    pre: PropTypes.string,
+    to: PropTypes.string
+  }
+
   render () {
-    const { children, pre, ...props } = this.props
+    const { children, pre, to, ...props } = this.props
 
     return <Container {...props}>
       {pre && <Pre>{pre}</Pre>}
-      { children }
+      { to
+        ? <Link to={to}>{children}</Link>
+        : children
+      }
     </Container>
   }
 }
