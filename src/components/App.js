@@ -18,7 +18,7 @@ class App extends PureComponent {
   render () {
     return <ConnectedRouter history={history}>
       <div>
-        <Header />
+        <Route component={Header} />
 
         <Main>
           <Switch>

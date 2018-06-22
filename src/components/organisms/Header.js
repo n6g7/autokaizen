@@ -97,8 +97,8 @@ class Header extends PureComponent {
   }
 }
 
-const mapStateToProps = state => ({
-  currentProject: projectSelector(state),
+const mapStateToProps = (state, ownProps) => ({
+  currentProject: projectSelector(state, ownProps),
   loggedIn: state.auth.loggedIn,
   projects: projectsSelector(state)
 })

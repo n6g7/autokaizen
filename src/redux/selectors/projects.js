@@ -1,8 +1,15 @@
 import { createSelector } from 'reselect'
 import { objectToArray } from './base'
+import { routerProjectIdSelector } from './router'
 
 const rawProjectsSelector = state => state.projects.list
-const projectIdSelector = (state, props) => props.match.params.id
+const propsProjectIdSelector = (state, props) => props.match.params.id
+
+const projectIdSelector = createSelector(
+  propsProjectIdSelector,
+  routerProjectIdSelector,
+  (propsId, routerId) => propsId || routerId
+)
 
 export const projectsSelector = createSelector(
   rawProjectsSelector,
