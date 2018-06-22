@@ -12,6 +12,10 @@ class Score extends PureComponent {
     style: PropTypes.oneOf(['count', 'pct']).isRequired
   }
 
+  static defaultProps = {
+    style: 'count'
+  }
+
   getDefects () {
     const {
       defects,
