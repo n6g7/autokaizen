@@ -1,5 +1,6 @@
 # Auto Kaizen
 
+[![CircleCI](https://circleci.com/gh/n6g7/autokaizen.svg?style=svg)](https://circleci.com/gh/n6g7/autokaizen)
 [![Greenkeeper badge](https://badges.greenkeeper.io/n6g7/autokaizen.svg)](https://greenkeeper.io/)
 
 Kaizen and defect tracking on **your** Trello board!
