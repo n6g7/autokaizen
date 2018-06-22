@@ -8,7 +8,10 @@ class Score extends PureComponent {
     currentSprint: PropTypes.number,
     defects: PropTypes.array.isRequired,
     labels: PropTypes.object.isRequired,
-    sprints: PropTypes.object.isRequired,
+    sprints: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.object
+    ]).isRequired,
     style: PropTypes.oneOf(['count', 'pct']).isRequired
   }
 

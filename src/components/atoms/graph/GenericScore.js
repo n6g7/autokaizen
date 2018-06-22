@@ -24,7 +24,10 @@ class GenericScore extends PureComponent {
       top: PropTypes.number
     }).isRequired,
     maxColumns: PropTypes.number.isRequired,
-    sprints: PropTypes.object.isRequired,
+    sprints: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.object
+    ]).isRequired,
     style: PropTypes.oneOf(['count', 'pct']).isRequired,
     x: PropTypes.func.isRequired,
     xLabel: PropTypes.string.isRequired,
