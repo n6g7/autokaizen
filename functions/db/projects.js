@@ -25,7 +25,7 @@ function isRedBucketLabel (boardId, labelId) {
     .then(snap => snap.exists())
 }
 
-function addDefect (boardId, cardId, cardNumber, labelId, userStory) {
+function addDefect (boardId, cardId, cardNumber, labelId, points, userStory) {
   return sprints.getCurrent(boardId)
     .then(sprint => admin
       .database()
@@ -36,6 +36,7 @@ function addDefect (boardId, cardId, cardNumber, labelId, userStory) {
         cardNumber,
         creation: Date.now(),
         labelId,
+        points,
         sprint,
         userStory
       })

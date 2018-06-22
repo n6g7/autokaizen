@@ -11,6 +11,7 @@
           "cardNumber": { ".validate": "newData.isNumber()" },
           "creation": { ".validate": "!data.exists() && newData.isNumber()" },
           "labelId": { ".validate": "newData.isString()" },
+          "points": { ".validate": "newData.isNumber()" },
           "sprint": { ".validate": "newData.isNumber()" },
           "userStory": { ".validate": "newData.isString()" }
         }

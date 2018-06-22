@@ -23,7 +23,11 @@ function processAction (action, res) {
             .isRedBucketLabel(board.id, label.id)
             .then(redBucket => {
               if (redBucket) {
-                return projects.addDefect(board.id, card.id, card.idShort, label.id, card.name)
+                const match = /^\s*\((\d+(\.\d+)?)\)\s*(.+)$/.exec(card.name)
+                const userStory = match ? match[3] : card.name
+                const points = match ? parseFloat(match[1]) : 0
+
+                return projects.addDefect(board.id, card.id, card.idShort, label.id, points, userStory)
                   .then(() => message.defect.newDefect(
                     board.id, board.name,
                     label.id, label.name,
