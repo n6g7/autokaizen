@@ -52,10 +52,6 @@ class Defect extends PureComponent {
   render () {
     const { defect } = this.props
 
-    const match = /^\s*\((\d+(\.\d+)?)\)\s*(.+)$/.exec(defect.userStory)
-    const userStory = match ? match[3] : defect.userStory
-    const points = match ? match[1] : null
-
     return <Container>
       <Title>
         {defect.cardNumber}
@@ -63,8 +59,8 @@ class Defect extends PureComponent {
       </Title>
 
       <p>
-        { points && <Points>{ points }</Points> }
-        {userStory}
+        { defect.points && <Points>{ defect.points }</Points> }
+        { defect.userStory }
       </p>
 
       <Sprint number={defect.sprint} dark />
