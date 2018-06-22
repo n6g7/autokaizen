@@ -3,9 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 
-import { Button, Section, Select } from '@atoms'
-
 import { createProject } from '@actions/projects'
+import { Button, Section, Select } from '@atoms'
 
 const Label = styled.label`
   display: inline-block;

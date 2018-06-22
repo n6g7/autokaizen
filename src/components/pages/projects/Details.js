@@ -3,28 +3,17 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 
-import { Button, Label, List, PageHeader, Section, Title } from '@atoms'
+import { addLabel, removeLabel } from '@actions/labels'
+import { DefectList, Label, List, Section } from '@atoms'
 import { Defect, ScoreFigure } from '@molecules'
 import {
   currentSprintSelector,
   filteredDefectsSelector,
-  trelloLabelsSelector
+  trelloLabelsSelector,
+  selectProject
 } from '@selectors'
 
-import { addLabel, removeLabel } from '@actions/labels'
-import { followBoard } from '@actions/notifications'
-
-const DefectList = styled(List.ordered)`
-  align-items: flex-start;
-  flex-flow: row wrap;
-
-  li {
-    flex-grow: 1;
-    margin-bottom: ${p => 2 * p.theme.spacing}px;
-    max-width: calc(25% - ${p => 2 * p.theme.spacing}px);
-    width: 20%;
-  }
-`
+import Template from './Template'
 
 const LabelList = styled(List)`
   flex-flow: row wrap;
@@ -47,31 +36,29 @@ const LabelList = styled(List)`
   }
 `
 
-class Project extends PureComponent {
+class ProjectDetails extends PureComponent {
   static propTypes = {
     addLabel: PropTypes.func.isRequired,
     currentSprint: PropTypes.number.isRequired,
     defects: PropTypes.array,
-    followBoard: PropTypes.func.isRequired,
     labels: PropTypes.object,
-    match: PropTypes.object.isRequired,
-    projects: PropTypes.object.isRequired,
+    project: PropTypes.object.isRequired,
     removeLabel: PropTypes.func.isRequired,
-    sprints: PropTypes.object,
+    sprints: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.object
+    ]).isRequired,
     trelloLabels: PropTypes.array.isRequired
   }
 
-  getProject () {
-    const {
-      match: { params: { projectId } },
-      projects
-    } = this.props
-
-    return projects[projectId]
+  state = {
+    loading: false
   }
 
-  renderMissingProject () {
-    return <p>This project does not exist.</p>
+  componentDidCatch () {
+    return {
+      loading: true
+    }
   }
 
   render () {
@@ -79,23 +66,17 @@ class Project extends PureComponent {
       addLabel,
       currentSprint,
       defects,
-      followBoard,
       labels,
-      match: { params: { projectId } },
+      project,
       removeLabel,
       sprints,
       trelloLabels
     } = this.props
-    const project = this.getProject()
+    const { loading } = this.state
 
-    if (!project) return this.renderMissingProject()
+    if (!project || loading) return null
 
-    return <article>
-      <PageHeader>
-        <Title pre={project.client}>{project.name}</Title>
-        <Button onClick={() => followBoard(projectId)} small>Follow</Button>
-      </PageHeader>
-
+    return <Template project={project}>
       { defects && labels &&
         <Section title='Score'>
           <ScoreFigure
@@ -109,9 +90,9 @@ class Project extends PureComponent {
       }
 
       { defects &&
-        <Section title='Defects'>
+        <Section title='Latest defects'>
           <DefectList>
-            {[...defects].reverse().map(defect =>
+            {[...defects].slice(-8).reverse().map(defect =>
               <li key={defect.id}>
                 <Defect defect={defect} />
               </li>
@@ -133,8 +114,8 @@ class Project extends PureComponent {
                   id={id}
                   checked={checked}
                   onChange={checked
-                    ? () => removeLabel(projectId, label.id)
-                    : () => addLabel(projectId, label)
+                    ? () => removeLabel(project.id, label.id)
+                    : () => addLabel(project.id, label)
                   }
                 />
                 <label htmlFor={id}>
@@ -145,23 +126,22 @@ class Project extends PureComponent {
           </LabelList>
         </Section>
       }
-    </article>
+    </Template>
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
   currentSprint: currentSprintSelector(state),
   defects: filteredDefectsSelector(state),
   labels: state.labels.list,
-  projects: state.projects.list,
+  project: selectProject(state, ownProps),
   sprints: state.sprints.list,
   trelloLabels: trelloLabelsSelector(state)
 })
 
 const mapDispatchToProps = {
   addLabel,
-  followBoard,
   removeLabel
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Project)
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectDetails)

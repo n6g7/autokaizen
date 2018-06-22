@@ -5,11 +5,10 @@ import { history } from '@redux/enhancers/middlewares'
 import styled from 'styled-components'
 
 import {
-  AddProject,
   Footer,
-  Header,
-  Project
+  Header
 } from '@organisms'
+import { Projects } from '@pages'
 
 const Main = styled.main`
   padding: ${p => 6 * p.theme.spacing};
@@ -23,8 +22,7 @@ class App extends PureComponent {
 
         <Main>
           <Switch>
-            <Route path='/projects/add' component={AddProject} />
-            <Route path='/projects/:projectId' component={Project} />
+            <Route path='/projects' component={Projects} />
           </Switch>
 
           <Footer />
