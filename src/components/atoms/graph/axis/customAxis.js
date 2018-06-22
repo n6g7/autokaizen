@@ -30,6 +30,6 @@ const customAxis = (AxisComponent, baseTickLabelProps) =>
         {...props}
       />
     }
-}
+  }
 
 export default customAxis

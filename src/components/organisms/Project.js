@@ -149,7 +149,7 @@ class Project extends PureComponent {
                     ? () => removeLabel(projectId, label.id)
                     : () => addLabel(projectId, label)
                   }
-                  />
+                />
                 <label htmlFor={id}>
                   <Label colour={label.color}>{label.name}</Label>
                 </label>

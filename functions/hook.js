@@ -10,46 +10,46 @@ function processAction (action, res) {
   } = action
 
   return projects.isTracked(board.id)
-  .then(tracked => {
-    if (!tracked) {
+    .then(tracked => {
+      if (!tracked) {
       // Delete hook when board isn't tracked.
-      console.log(`Deleted hook because this board isn't tracked: ${board.id}.`)
-      return res.sendStatus(410)
-    }
+        console.log(`Deleted hook because this board isn't tracked: ${board.id}.`)
+        return res.sendStatus(410)
+      }
 
-    switch (type) {
-      case 'addLabelToCard':
-        return projects
-          .isRedBucketLabel(board.id, label.id)
-          .then(redBucket => {
-            if (redBucket) {
-              return projects.addDefect(board.id, card.id, card.idShort, label.id, card.name)
-              .then(() => message.defect.newDefect(
-                board.id, board.name,
-                label.id, label.name,
-                card.idShort
-              ))
-            }
-          })
-      case 'removeLabelFromCard':
-        return projects
-          .isRedBucketLabel(board.id, label.id)
-          .then(redBucket => redBucket
-            ? projects.removeDefect(board.id, card.id, label.id)
+      switch (type) {
+        case 'addLabelToCard':
+          return projects
+            .isRedBucketLabel(board.id, label.id)
+            .then(redBucket => {
+              if (redBucket) {
+                return projects.addDefect(board.id, card.id, card.idShort, label.id, card.name)
+                  .then(() => message.defect.newDefect(
+                    board.id, board.name,
+                    label.id, label.name,
+                    card.idShort
+                  ))
+              }
+            })
+        case 'removeLabelFromCard':
+          return projects
+            .isRedBucketLabel(board.id, label.id)
+            .then(redBucket => redBucket
+              ? projects.removeDefect(board.id, card.id, label.id)
+              : null
+            )
+        case 'createList':
+        case 'updateList':
+          const result = /done[a-z ]+#?(\d+)/i.exec(list.name)
+
+          return result
+            ? sprints.start(board.id, parseInt(result[1]))
             : null
-          )
-      case 'createList':
-      case 'updateList':
-        const result = /done[a-z ]+#?(\d+)/i.exec(list.name)
-
-        return result
-          ? sprints.start(board.id, parseInt(result[1]))
-          : null
-      default:
-        console.log(`Unknown type: "${type}".`)
-    }
-  })
-  .then(() => res.sendStatus(200))
+        default:
+          console.log(`Unknown type: "${type}".`)
+      }
+    })
+    .then(() => res.sendStatus(200))
 }
 
 module.exports = functions.https.onRequest((req, res) => {

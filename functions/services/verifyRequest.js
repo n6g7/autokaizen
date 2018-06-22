@@ -10,10 +10,10 @@ function verifyTrelloWebhookRequest (request) {
 
   const {
     hook_url: hookUrl,
-    trello_secret
+    trello_secret: trelloSecret
   } = functions.config().app
 
-  const digest = base64Digest(trello_secret)
+  const digest = base64Digest(trelloSecret)
 
   const content = `${JSON.stringify(request.body)}${hookUrl}`
   const doubleHash = digest(digest(content))

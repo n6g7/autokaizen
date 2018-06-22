@@ -13,7 +13,7 @@ const Button = styled.button`
   padding: ${p => p.small
     ? `${p.theme.spacing / 2}px ${p.theme.spacing}px`
     : `${p.theme.spacing}px ${2 * p.theme.spacing}px`
-  };
+};
   text-decoration: none;
 `
 
