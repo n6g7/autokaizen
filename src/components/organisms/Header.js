@@ -63,9 +63,9 @@ class Header extends PureComponent {
     } = this.props
 
     const options = projects.map(project => ({
-      label: project.name,
+      label: project.client ? `${project.client} / ${project.name}` : project.name,
       value: project.id
-    }))
+    })).sort((a, b) => a.label > b.label ? 1 : a.label < b.label ? -1 : 0)
 
     return <Container>
       <Title>Auto Kaizen</Title>

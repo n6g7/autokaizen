@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 
-import { Button, Label, List, Section } from '@atoms'
+import { Button, Label, List, PageHeader, Section, Title } from '@atoms'
 import { Defect, ScoreFigure } from '@molecules'
 import {
   currentSprintSelector,
@@ -13,20 +13,6 @@ import {
 
 import { addLabel, removeLabel } from '@actions/labels'
 import { followBoard } from '@actions/notifications'
-
-const Title = styled.h1`
-  align-items: center;
-  color: ${p => p.theme.text.lighter};
-  display: flex;
-  flex-flow: row nowrap;
-  font-size: ${p => 6 * p.theme.spacing}px;
-  font-weight: 600;
-  margin: 0 0 ${p => 3 * p.theme.spacing}px;
-
-  ${Button} {
-    margin-left: ${p => 2 * p.theme.spacing}px;
-  }
-`
 
 const DefectList = styled(List.ordered)`
   align-items: flex-start;
@@ -105,10 +91,10 @@ class Project extends PureComponent {
     if (!project) return this.renderMissingProject()
 
     return <article>
-      <Title>
-        {project.name}
+      <PageHeader>
+        <Title pre={project.client}>{project.name}</Title>
         <Button onClick={() => followBoard(projectId)} small>Follow</Button>
-      </Title>
+      </PageHeader>
 
       { defects && labels &&
         <Section title='Score'>

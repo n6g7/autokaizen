@@ -35,6 +35,7 @@
       ".write": "auth != null && root.child('users/'+auth.uid+'/access').val() == true",
 
       "$pid": {
+        "client": { ".validate": "newData.isString()" },
         "name": { ".validate": "newData.isString()" },
         "hookId": { ".validate": "!data.exists() && newData.isString()" },
         "perfStyle": { ".validate": "newData.isString() && (newData.val() == 'count' || newData.val() == 'pct')" }
