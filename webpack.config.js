@@ -14,7 +14,8 @@ module.exports = {
       '@pages': path.resolve(__dirname, 'src/components/pages'),
       '@redux': path.resolve(__dirname, 'src/redux'),
       '@selectors': path.resolve(__dirname, 'src/redux/selectors'),
-      '@services': path.resolve(__dirname, 'src/services')
+      '@services': path.resolve(__dirname, 'src/services'),
+      '@theme': path.resolve(__dirname, 'src/theme')
     }
   },
   output: {
