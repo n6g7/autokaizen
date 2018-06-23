@@ -12,6 +12,7 @@ class Score extends PureComponent {
       PropTypes.array,
       PropTypes.object
     ]).isRequired,
+    standard: PropTypes.number,
     style: PropTypes.oneOf(['count', 'pct']).isRequired
   }
 
@@ -56,7 +57,7 @@ class Score extends PureComponent {
   }
 
   render () {
-    const { className, currentSprint, sprints, style } = this.props
+    const { className, currentSprint, sprints, standard, style } = this.props
     const data = this.getDefects()
 
     const x = defect => defect.sprint
@@ -76,6 +77,7 @@ class Score extends PureComponent {
         fill: defect.label ? defect.label.colour : ''
       })}
       sprints={sprints}
+      standard={standard}
       style={style}
     />
   }

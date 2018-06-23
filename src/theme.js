@@ -4,6 +4,9 @@ export default {
     light: '#252c48',
     lighter: '#3C4460'
   },
+  colours: {
+    standard: '#eb2f06'
+  },
   spacing: 8,
   text: {
     darker: '#8f90a4',

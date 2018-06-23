@@ -38,7 +38,8 @@
         "client": { ".validate": "newData.isString()" },
         "name": { ".validate": "newData.isString()" },
         "hookId": { ".validate": "!data.exists() && newData.isString()" },
-        "perfStyle": { ".validate": "newData.isString() && (newData.val() == 'count' || newData.val() == 'pct')" }
+        "perfStyle": { ".validate": "newData.isString() && (newData.val() == 'count' || newData.val() == 'pct')" },
+        "standard": { ".validate": "newData.isNumber()" }
       }
     },
 

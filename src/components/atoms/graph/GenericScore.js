@@ -2,9 +2,12 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import * as d3 from 'd3'
 import { Group } from '@vx/group'
+import { Point } from '@vx/point'
+import { Line } from '@vx/shape'
 import { scaleBand, scaleLinear } from '@vx/scale'
 import moment from 'moment'
 
+import theme from '@theme'
 import Item from './Item'
 import { AxisBottom, AxisLeft } from './axis'
 
@@ -28,6 +31,7 @@ class GenericScore extends PureComponent {
       PropTypes.array,
       PropTypes.object
     ]).isRequired,
+    standard: PropTypes.number,
     style: PropTypes.oneOf(['count', 'pct']).isRequired,
     x: PropTypes.func.isRequired,
     xLabel: PropTypes.string.isRequired,
@@ -106,6 +110,7 @@ class GenericScore extends PureComponent {
       margin,
       maxColumns,
       sprints,
+      standard,
       style,
       x,
       xLabel,
@@ -201,6 +206,34 @@ class GenericScore extends PureComponent {
             </text>
           )}
         </Group>
+
+        {standard &&
+          <Group>
+            <Line
+              from={new Point({
+                x: xScale(xDomainMin),
+                y: yScale(standard)
+              })}
+              to={new Point({
+                x: xScale(xDomainMax - 1) + xScale.bandwidth(),
+                y: yScale(standard)
+              })}
+              stroke={theme.colours.standard}
+              strokeWidth={2}
+            />
+            <text
+              fill={theme.colours.standard}
+              fontFamily='Source Sans Pro'
+              fontSize='14'
+              textAnchor='end'
+              className='standard'
+              x={xScale(xDomainMin) - 8}
+              y={yScale(standard) + 4}
+            >
+              {tickFormat(standard)}
+            </text>
+          </Group>
+        }
       </Group>
     </svg>
   }
