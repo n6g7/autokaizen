@@ -134,6 +134,8 @@ class GenericScore extends PureComponent {
       domain: [0, maxYDomain]
     })
 
+    const tickFormat = d3.format(style === 'count' ? 'd' : '.0%')
+
     return <svg
       height={height}
       ref='svg'
@@ -154,7 +156,7 @@ class GenericScore extends PureComponent {
         left={margin.left}
         label={yLabel}
         numTicks={style === 'count' ? maxYDomain : Math.floor(maxYDomain / 0.1)}
-        tickFormat={d3.format(style === 'count' ? 'd' : '.0%')}
+        tickFormat={tickFormat}
       />
 
       <Group top={margin.top} left={margin.left}>
