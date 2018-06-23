@@ -157,46 +157,48 @@ class GenericScore extends PureComponent {
         tickFormat={d3.format(style === 'count' ? 'd' : '.0%')}
       />
 
-      { currentX &&
-        <rect
-          height={yScale(0) - 1}
-          width={xScale.bandwidth()}
-          x={margin.left + xScale(currentX)}
-          y={margin.top}
-          fill='#252c48'
-        />
-      }
-
-      <Group>
-        {data.filter(datum => datum.sprint >= xDomainMin).map(datum =>
-          <Item
-            key={datum.key}
-            x={margin.left + xScale(x(datum)) + cellPadding || 0}
-            y={margin.top + yScale(y(datum))}
-            width={xScale.bandwidth() - 2 * cellPadding}
-            height={yScale(0) - yScale(datum.value) - cellPadding}
-            {...datumProps(datum)}
+      <Group top={margin.top} left={margin.left}>
+        { currentX &&
+          <rect
+            height={yScale(0) - 1}
+            width={xScale.bandwidth()}
+            x={xScale(currentX)}
+            fill='#252c48'
+            id='currentSprint'
           />
-        )}
-      </Group>
+        }
 
-      <Group>
-        {d3.range(xDomainMin, xDomainMax).map(n =>
-          <text
-            key={n}
-            fill='rgba(255, 255, 255, 0.5)'
-            fontFamily='Source Sans Pro'
-            fontSize='11'
-            textAnchor='middle'
-            x={margin.left + xScale(n) + xScale.bandwidth() / 2}
-            y={margin.top + yScale(0) + 32}
-          >
-            {sprints[n]
-              ? moment(sprints[n].start).format('DD/MM')
-              : ''
-            }
-          </text>
-        )}
+        <Group>
+          {data.filter(datum => datum.sprint >= xDomainMin).map(datum =>
+            <Item
+              key={datum.key}
+              x={xScale(x(datum)) + cellPadding || 0}
+              y={yScale(y(datum))}
+              width={xScale.bandwidth() - 2 * cellPadding}
+              height={yScale(0) - yScale(datum.value) - cellPadding}
+              {...datumProps(datum)}
+            />
+          )}
+        </Group>
+
+        <Group>
+          {d3.range(xDomainMin, xDomainMax).map(n =>
+            <text
+              key={n}
+              fill='rgba(255, 255, 255, 0.5)'
+              fontFamily='Source Sans Pro'
+              fontSize='11'
+              textAnchor='middle'
+              x={xScale(n) + xScale.bandwidth() / 2}
+              y={yScale(0) + 32}
+            >
+              {sprints[n]
+                ? moment(sprints[n].start).format('DD/MM')
+                : ''
+              }
+            </text>
+          )}
+        </Group>
       </Group>
     </svg>
   }
