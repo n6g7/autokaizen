@@ -30,6 +30,10 @@ const UserStory = styled.p`
 const SubTitle = styled.h4`
   font-size: 1.5em;
   margin: 0 0 ${p => 3 * p.theme.spacing}px;
+
+  @media print {
+    font-size: 1em;
+  }
 `
 
 const Textarea = styled.textarea`
@@ -44,6 +48,10 @@ const Textarea = styled.textarea`
   padding: 0 0 ${p => p.theme.spacing}px;
   resize: vertical;
   width: 100%;
+
+  @media print {
+    border: none;
+  }
 `
 
 class DefectPopup extends PureComponent {

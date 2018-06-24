@@ -16,21 +16,44 @@ const Backdrop = styled.aside`
   position: fixed;
   right: 0;
   top: 0;
+
+  @page {
+    size: A5 portrait;
+  }
+
+  @media print {
+    font-size: 0.9em;
+    padding: 0;
+  }
 `
 
 const Container = styled.section`
   background: ${p => p.theme.background.light};
   border-radius: 2px;
   width: ${p => 73 * p.theme.spacing}px;
+
+  @media print {
+    color: black;
+    width: 100%;
+  }
 `
 
 const Main = styled.main`
   padding: ${p => 6 * p.theme.spacing}px ${p => 6 * p.theme.spacing}px ${p => 5 * p.theme.spacing}px;
+
+  @media print {
+    padding: 0;
+  }
 `
 
 const Footer = styled.footer`
   background: ${p => p.theme.background.base};
   padding: ${p => 5 * p.theme.spacing}px ${p => 6 * p.theme.spacing}px ${p => 6 * p.theme.spacing}px;
+
+  @media print {
+    border-top: 1px dashed black;
+    padding: 0;
+  }
 `
 
 class Popup extends PureComponent {
