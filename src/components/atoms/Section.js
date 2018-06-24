@@ -60,7 +60,7 @@ class Section extends PureComponent {
   }
 
   state = {
-    collapsed: false
+    collapsed: true
   }
 
   componentDidMount () {
