@@ -823,13 +823,13 @@
   version "0.2.8"
   resolved "https://registry.yarnpkg.com/@firebase/webchannel-wrapper/-/webchannel-wrapper-0.2.8.tgz#38a936b60b898a1ad0f3719543ff1a1031f60f8b"
 
-"@vx/axis@^0.0.166":
-  version "0.0.166"
-  resolved "https://registry.yarnpkg.com/@vx/axis/-/axis-0.0.166.tgz#be00bad730b6442becfa5be7c2a790d33eacdaf1"
+"@vx/axis@^0.0.168":
+  version "0.0.168"
+  resolved "https://registry.yarnpkg.com/@vx/axis/-/axis-0.0.168.tgz#fd8c88a2b584b314aaf1ce2023eaebad05304188"
   dependencies:
     "@vx/group" "0.0.165"
     "@vx/point" "0.0.165"
-    "@vx/shape" "0.0.166"
+    "@vx/shape" "0.0.168"
     "@vx/text" "0.0.165"
     classnames "^2.2.5"
     prop-types "^15.6.0"
@@ -856,9 +856,9 @@
   dependencies:
     d3-scale "^2.0.0"
 
-"@vx/shape@0.0.166":
-  version "0.0.166"
-  resolved "https://registry.yarnpkg.com/@vx/shape/-/shape-0.0.166.tgz#3412105c23c7983703c2ded7de788d09ed8d3c02"
+"@vx/shape@0.0.168":
+  version "0.0.168"
+  resolved "https://registry.yarnpkg.com/@vx/shape/-/shape-0.0.168.tgz#172bc1cf4dade47076018efd559e0ecc4e959aec"
   dependencies:
     "@vx/curve" "0.0.165"
     "@vx/group" "0.0.165"
