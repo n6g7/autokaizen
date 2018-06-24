@@ -49,8 +49,10 @@ class Header extends PureComponent {
   onChangeProject = event => {
     const { value } = event.target
 
-    if (value) this.props.selectProject(value)
-    else this.props.push('/')
+    if (value) {
+      this.props.selectProject(value)
+      this.props.push(`/projects/${value}`)
+    } else this.props.push('/')
   }
 
   render () {

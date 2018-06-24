@@ -41,11 +41,6 @@ function * createProjectSaga ({ boardId, name, currentSprint }) {
   }
 }
 
-function * selectProjectSaga ({ projectId }) {
-  const destination = `/projects/${projectId}`
-  yield put(push(destination))
-}
-
 export default function * projectsSaga () {
   yield takeLatest(
     authTypes.SYNC_USER,
@@ -57,5 +52,4 @@ export default function * projectsSaga () {
     'value'
   )
   yield takeEvery(types.CREATE_PROJECT.REQUEST, createProjectSaga)
-  yield takeEvery(types.SELECT_PROJECT, selectProjectSaga)
 }
