@@ -11,8 +11,8 @@ class Projects extends PureComponent {
 
     return <Switch>
       <Route exact path={`${match.url}/add`} component={Add} />
-      <Route exact path={`${match.url}/:id`} component={Details} />
-      <Route exact path={`${match.url}/:id/defects`} component={Defects} />
+      <Route path={`${match.url}/:projectId/defects`} component={Defects} />
+      <Route path={`${match.url}/:projectId`} component={Details} />
     </Switch>
   }
 }

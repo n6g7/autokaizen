@@ -3,7 +3,7 @@ import { objectToArray } from './base'
 import { routerProjectIdSelector } from './router'
 
 const rawProjectsSelector = state => state.projects.list
-const propsProjectIdSelector = (state, props) => props.match.params.id
+const propsProjectIdSelector = (state, props) => props.match.params.projectId
 
 const projectIdSelector = createSelector(
   propsProjectIdSelector,
