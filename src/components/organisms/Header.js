@@ -19,6 +19,10 @@ const Container = styled.header`
   flex-flow: row nowrap;
   height: ${p => 7 * p.theme.spacing};
   padding: 0 ${p => 3 * p.theme.spacing};
+
+  @media print {
+    display: none;
+  }
 `
 
 const Title = styled.p`

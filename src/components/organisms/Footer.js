@@ -7,6 +7,10 @@ const Container = styled.footer`
   margin-top: ${p => 6 * p.theme.spacing};
   opacity: 0.4;
   text-align: center;
+
+  @media print {
+    display: none;
+  }
 `
 
 const Link = styled.a`

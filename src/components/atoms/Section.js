@@ -4,6 +4,14 @@ import styled, { css } from 'styled-components'
 
 import caret from '@assets/caret.svg'
 
+const StyledSection = styled.section`
+  ${p => !p.print && css`
+    @media print {
+      display: none;
+    }
+  `}
+`
+
 const Caret = styled.img.attrs({
   alt: 'caret',
   src: caret
@@ -36,6 +44,10 @@ const Title = styled.h2`
     margin: 0 ${p => p.theme.spacing}px;
     opacity: 0.3;
     width: ${p => 2 * p.theme.spacing}px;
+  }
+
+  @media print {
+    display: none;
   }
 `
 
@@ -80,7 +92,7 @@ class Section extends PureComponent {
     } = this.props
     const { collapsed } = this.state
 
-    return <section {...props}>
+    return <StyledSection {...props}>
       <Title onClick={collapsible ? this.toggle : null}>
         {title}
         { collapsible &&
@@ -94,7 +106,7 @@ class Section extends PureComponent {
       <Content collapsible={collapsible} collapsed={collapsed}>
         { children }
       </Content>
-    </section>
+    </StyledSection>
   }
 }
 

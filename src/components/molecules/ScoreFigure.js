@@ -17,10 +17,19 @@ const Figure = styled.figure`
     margin: 8*spacing 0;
     width: 100%;
   }
+
+  @media print {
+    margin: 0;
+    padding: 0;
+  }
 `
 
 const Caption = styled.figcaption`
   width: 100%;
+
+  @media print {
+    color: black;
+  }
 `
 
 const StyledScore = styled(Score)`

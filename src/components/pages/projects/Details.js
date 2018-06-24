@@ -80,7 +80,7 @@ class ProjectDetails extends PureComponent {
 
     return <Template project={project}>
       { defects && labels &&
-        <Section title='Score'>
+        <Section title='Score' print>
           <ScoreFigure
             currentSprint={currentSprint}
             defects={defects}

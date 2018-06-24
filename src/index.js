@@ -10,7 +10,6 @@ import store from './redux/store'
 import App from './components/App'
 
 import theme from '@theme'
-import './print.styl'
 
 injectGlobal`
   body {

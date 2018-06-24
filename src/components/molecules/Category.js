@@ -12,6 +12,10 @@ const ColourSquare = styled.span`
   margin-right: ${p => p.theme.spacing};
   height: ${p => 2 * p.theme.spacing};
   width: ${p => 2 * p.theme.spacing};
+
+  @media print {
+    -webkit-print-color-adjust: exact;
+  }
 `
 
 class Category extends PureComponent {

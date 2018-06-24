@@ -11,4 +11,8 @@ export default styled.header`
   ${Button} {
     margin-left: ${p => 2 * p.theme.spacing}px;
   }
+
+  @media print {
+    display: none;
+  }
 `

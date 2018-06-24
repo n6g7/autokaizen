@@ -6,10 +6,32 @@ import { Point } from '@vx/point'
 import { Line } from '@vx/shape'
 import { scaleBand, scaleLinear } from '@vx/scale'
 import moment from 'moment'
+import styled from 'styled-components'
 
 import theme from '@theme'
 import Item from './Item'
 import { AxisBottom, AxisLeft } from './axis'
+
+const Svg = styled.svg`
+  @page {
+    size: A4 landscape;
+  }
+
+  @media print {
+    -webkit-print-color-adjust: exact;
+    height: 95%;
+    margin: 0 !important;
+    padding: 0 !important;
+
+    text:not(.standard), .vx-line {
+      fill: black;
+    }
+
+    #currentSprint {
+      display: none
+    }
+  }
+`
 
 class GenericScore extends PureComponent {
   static propTypes = {
@@ -59,7 +81,7 @@ class GenericScore extends PureComponent {
 
   updateDimensions () {
     this.setState({
-      width: this.refs.svg.clientWidth
+      width: this.svg.clientWidth
     })
   }
 
@@ -141,9 +163,9 @@ class GenericScore extends PureComponent {
 
     const tickFormat = d3.format(style === 'count' ? 'd' : '.0%')
 
-    return <svg
+    return <Svg
       height={height}
-      ref='svg'
+      innerRef={ref => { this.svg = ref }}
       {...props}
     >
       <AxisBottom
@@ -235,7 +257,7 @@ class GenericScore extends PureComponent {
           </Group>
         }
       </Group>
-    </svg>
+    </Svg>
   }
 }
 

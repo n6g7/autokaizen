@@ -15,6 +15,10 @@ const Button = styled.button`
     : `${p.theme.spacing}px ${2 * p.theme.spacing}px`
 };
   text-decoration: none;
+
+  @media print {
+    display: none;
+  }
 `
 
 export const LinkButton = styled(Link)`

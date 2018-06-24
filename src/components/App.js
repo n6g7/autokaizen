@@ -12,6 +12,11 @@ import { Projects } from '@pages'
 
 const Main = styled.main`
   padding: ${p => 6 * p.theme.spacing};
+
+  @media print {
+    margin: 0;
+    padding: 0;
+  }
 `
 
 class App extends PureComponent {
