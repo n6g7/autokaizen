@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import styled from 'styled-components'
 
 import { addLabel, removeLabel } from '@actions/labels'
-import { DefectList, Label, List, Section } from '@atoms'
+import { DefectList, Label, List, Section, TransparentLink } from '@atoms'
 import { Defect, ScoreFigure } from '@molecules'
 import {
   currentSprintSelector,
@@ -42,6 +42,7 @@ class ProjectDetails extends PureComponent {
     currentSprint: PropTypes.number.isRequired,
     defects: PropTypes.array,
     labels: PropTypes.object,
+    match: PropTypes.object.isRequired,
     project: PropTypes.object.isRequired,
     removeLabel: PropTypes.func.isRequired,
     sprints: PropTypes.oneOfType([
@@ -67,6 +68,7 @@ class ProjectDetails extends PureComponent {
       currentSprint,
       defects,
       labels,
+      match,
       project,
       removeLabel,
       sprints,
@@ -95,7 +97,9 @@ class ProjectDetails extends PureComponent {
           <DefectList>
             {[...defects].slice(-8).reverse().map(defect =>
               <li key={defect.id}>
-                <Defect defect={defect} />
+                <TransparentLink to={`${match.url}/defects/${defect.id}`}>
+                  <Defect defect={defect} />
+                </TransparentLink>
               </li>
             )}
           </DefectList>
