@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import _isNumber from 'lodash/isNumber'
 
-import { TicketNumber, TrelloLink } from '@atoms'
+import { Points, TicketNumber, TrelloLink } from '@atoms'
 import Category from './Category'
 import Sprint from './Sprint'
 
@@ -21,16 +22,6 @@ const Trello = styled(TrelloLink)`
   margin-left: ${p => p.theme.spacing};
 `
 
-const Points = styled.span`
-  background: white;
-  border-radius: ${p => p.theme.spacing / 4}px;
-  color: ${p => p.theme.background.base};
-  font-weight: bolder;
-  margin-right: ${p => p.theme.spacing / 2}px;
-  opacity: 0.3;
-  padding: 0 ${p => p.theme.spacing / 2}px;
-`
-
 class Defect extends PureComponent {
   static propTypes = {
     defect: PropTypes.object.isRequired
@@ -46,7 +37,7 @@ class Defect extends PureComponent {
       </TicketNumber>
 
       <p>
-        { defect.points && <Points>{ defect.points }</Points> }
+        { _isNumber(defect.points) && <Points>{ defect.points }</Points> }
         { defect.userStory }
       </p>
 

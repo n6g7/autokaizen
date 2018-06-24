@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 import { DateTime } from 'luxon'
 
-import { TicketNumber } from '@atoms'
+import { Points, TicketNumber } from '@atoms'
 import { Category, Date, Sprint } from '@molecules'
 import { defectSelector } from '@selectors/defects'
 import { projectSelector } from '@selectors/projects'
@@ -24,7 +24,6 @@ const Project = styled.p`
 `
 
 const UserStory = styled.p`
-  font-weight: lighter;
   margin: ${p => 3 * p.theme.spacing}px 0 ${p => 2 * p.theme.spacing}px;
 `
 
@@ -64,7 +63,10 @@ class DefectPopup extends PureComponent {
         {project.name}
       </Project>
       <TicketNumber large>{ defect.cardNumber }</TicketNumber>
-      <UserStory>{defect.userStory}</UserStory>
+      <UserStory>
+        <Points>{defect.points}</Points>
+        {defect.userStory}
+      </UserStory>
       <Date date={DateTime.fromMillis(defect.creation)} dark />
       <Sprint number={defect.sprint} dark />
       <Category labelId={defect.labelId} dark />
