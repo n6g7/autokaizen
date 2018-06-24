@@ -11,12 +11,12 @@ class Projects extends PureComponent {
     const { match } = this.props
 
     return [
-      <Switch>
+      <Switch key={1}>
         <Route exact path={`${match.url}/add`} component={Add} />
         <Route path={`${match.url}/:projectId/defects`} component={Defects} />
         <Route path={`${match.url}/:projectId`} component={Details} />
       </Switch>,
-      <Route exact path={`${match.url}/:projectId/defects/:defectId`} component={DefectPopup} />
+      <Route exact path={`${match.url}/:projectId/defects/:defectId`} component={DefectPopup} key={2} />
     ]
   }
 }

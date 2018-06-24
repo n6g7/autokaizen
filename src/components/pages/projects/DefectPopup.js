@@ -56,6 +56,8 @@ class DefectPopup extends PureComponent {
   renderMain () {
     const { defect, project } = this.props
 
+    if (!project) return null
+
     return <Fragment>
       <Project>
         {project.client && <span>{project.client} / </span>}
