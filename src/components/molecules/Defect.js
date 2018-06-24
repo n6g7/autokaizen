@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { TrelloLink } from '@atoms'
+import { TicketNumber, TrelloLink } from '@atoms'
 import Category from './Category'
 import Sprint from './Sprint'
 
@@ -14,19 +14,6 @@ const Container = styled.article`
 
   p {
     margin: ${p => p.theme.spacing} 0 ${p => 2 * p.theme.spacing};
-  }
-`
-
-const Title = styled.h3`
-  color: ${p => p.theme.text.lighter};
-  font-size: 1.5em;
-  margin: 0 0 ${p => p.theme.spacing}px 0;
-
-  &::before {
-    content: '#';
-    font-size: 0.9em;
-    margin-right: 1px;
-    opacity: 0.7;
   }
 `
 
@@ -53,10 +40,10 @@ class Defect extends PureComponent {
     const { defect } = this.props
 
     return <Container>
-      <Title>
+      <TicketNumber>
         {defect.cardNumber}
         <Trello cardId={defect.cardId} />
-      </Title>
+      </TicketNumber>
 
       <p>
         { defect.points && <Points>{ defect.points }</Points> }
