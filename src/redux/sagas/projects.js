@@ -1,5 +1,4 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
-import { push } from 'react-router-redux'
 import rsf from '../rsf'
 
 import { types as authTypes } from '@actions/auth'
