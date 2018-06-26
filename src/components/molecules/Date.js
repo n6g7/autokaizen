@@ -6,7 +6,7 @@ import { LabelContainer } from '@atoms'
 
 const Container = LabelContainer.extend`
   &::before {
-    content: url(${require('@assets/sprint.svg')});
+    content: url(${require('@assets/calendar.svg')});
     margin-right: ${p => p.theme.spacing};
   }
 `.withComponent('date')
