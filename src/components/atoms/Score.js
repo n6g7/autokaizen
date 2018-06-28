@@ -20,7 +20,7 @@ class Score extends PureComponent {
     style: 'count'
   }
 
-  getDefects () {
+  crunch () {
     const {
       defects,
       labels,
@@ -30,7 +30,7 @@ class Score extends PureComponent {
 
     const sprintCount = {}
 
-    return defects.map(defect => {
+    const newDefects = defects.map(defect => {
       const {
         cardNumber,
         labelId,
@@ -54,11 +54,21 @@ class Score extends PureComponent {
         y
       }
     })
+
+    const newSprints = sprints.map((sprint, i) => ({
+      ...sprint,
+      score: sprintCount[i]
+    }))
+
+    return {
+      data: newDefects,
+      sprints: newSprints
+    }
   }
 
   render () {
-    const { className, currentSprint, sprints, standard, style } = this.props
-    const data = this.getDefects()
+    const { className, currentSprint, standard, style } = this.props
+    const { data, sprints } = this.crunch()
 
     const x = defect => defect.sprint
     const y = defect => defect.y + defect.value

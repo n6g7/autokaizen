@@ -234,6 +234,22 @@ class GenericScore extends PureComponent {
           )}
         </Group>
 
+        <Group>
+          {sprints.map((sprint, i) =>
+            <text
+              key={i}
+              fill='rgba(255, 255, 255, 0.7)'
+              fontFamily='Source Sans Pro'
+              fontSize='20'
+              textAnchor='middle'
+              x={xScale(i) + xScale.bandwidth() / 2}
+              y={yScale(sprint.score) - 24}
+            >
+              {tickFormat(sprint.score)}
+            </text>
+          )}
+        </Group>
+
         {standard &&
           <Group>
             <Line
