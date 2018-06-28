@@ -76,6 +76,7 @@ class GenericScore extends PureComponent {
 
   state = {
     maxX: null,
+    printing: false,
     width: 800
   }
 
@@ -86,16 +87,20 @@ class GenericScore extends PureComponent {
   }
 
   preparePrint () {
-    this.setState({
-      height: 650,
-      maxX: this.getMaxX() + 3,
-      width: 1050,
-      prevState: this.state
-    })
+    this.setState(state => state.printing
+      ? state
+      : {
+        height: 650,
+        maxX: this.getMaxX() + 3,
+        printing: true,
+        width: 1050,
+        prevState: state
+      }
+    )
   }
 
   clearPrint () {
-    this.setState(this.state.prevState)
+    this.setState(state => state.prevState)
   }
 
   componentWillMount () {
