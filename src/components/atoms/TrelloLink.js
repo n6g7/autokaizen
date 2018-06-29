@@ -23,6 +23,8 @@ class TrelloLink extends PureComponent {
     cardId: PropTypes.string.isRequired
   }
 
+  onClick = event => event.stopPropagation()
+
   render () {
     const { cardId, ...props } = this.props
 
@@ -30,6 +32,7 @@ class TrelloLink extends PureComponent {
       href={`https://trello.com/c/${cardId}`}
       target='blank'
       title='Go to Trello card'
+      onClick={this.onClick}
       {...props}
     >
       <Image src={trello} alt='Trello' />
