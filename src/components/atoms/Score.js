@@ -75,7 +75,6 @@ class Score extends PureComponent {
 
     return <GenericScore
       className={className}
-      currentX={currentSprint}
       data={data}
       lastX={currentSprint}
       x={x}

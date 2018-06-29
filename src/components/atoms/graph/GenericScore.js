@@ -37,7 +37,6 @@ class GenericScore extends PureComponent {
   static propTypes = {
     axisColour: PropTypes.string.isRequired,
     cellPadding: PropTypes.number.isRequired,
-    currentX: PropTypes.number,
     data: PropTypes.array.isRequired,
     datumProps: PropTypes.func.isRequired,
     height: PropTypes.number.isRequired,
@@ -130,7 +129,6 @@ class GenericScore extends PureComponent {
     const {
       axisColour,
       cellPadding,
-      currentX,
       data,
       datumProps,
       lastX,
@@ -192,16 +190,6 @@ class GenericScore extends PureComponent {
       />
 
       <Group top={margin.top} left={margin.left}>
-        { currentX &&
-          <rect
-            height={yScale(0) - 1}
-            width={xScale.bandwidth()}
-            x={xScale(currentX)}
-            fill='#252c48'
-            id='currentSprint'
-          />
-        }
-
         <Group>
           {data.filter(datum => datum.sprint >= xDomainMin).map(datum =>
             <Item
