@@ -21,7 +21,7 @@ class Score extends PureComponent {
   }
 
   crunch () {
-    const {
+    let {
       defects,
       labels,
       sprints,
@@ -55,6 +55,10 @@ class Score extends PureComponent {
       }
     })
 
+    sprints = Object.keys(sprints).reduce((acc, n) => {
+      acc[n] = sprints[n]
+      return acc
+    }, [])
     const newSprints = sprints.map((sprint, i) => ({
       ...sprint,
       score: sprintCount[i]
