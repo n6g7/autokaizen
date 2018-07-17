@@ -20,7 +20,7 @@
   "dependencies": {
     "@firebase/app-types": "^0.3.2",
     "@vx/axis": "^0.0.168",
-    "@vx/group": "^0.0.165",
+    "@vx/group": "^0.0.170",
     "@vx/scale": "^0.0.165",
     "d3": "^5.5.0",
     "firebase": "^5.2.0",
