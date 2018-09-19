@@ -823,14 +823,14 @@
   version "0.2.8"
   resolved "https://registry.yarnpkg.com/@firebase/webchannel-wrapper/-/webchannel-wrapper-0.2.8.tgz#38a936b60b898a1ad0f3719543ff1a1031f60f8b"
 
-"@vx/axis@^0.0.168":
-  version "0.0.168"
-  resolved "https://registry.yarnpkg.com/@vx/axis/-/axis-0.0.168.tgz#fd8c88a2b584b314aaf1ce2023eaebad05304188"
+"@vx/axis@^0.0.176":
+  version "0.0.176"
+  resolved "https://registry.yarnpkg.com/@vx/axis/-/axis-0.0.176.tgz#5d3c38dbf94545f894b0d11f7772752bba5960e6"
   dependencies:
-    "@vx/group" "0.0.165"
+    "@vx/group" "0.0.170"
     "@vx/point" "0.0.165"
-    "@vx/shape" "0.0.168"
-    "@vx/text" "0.0.165"
+    "@vx/shape" "0.0.176"
+    "@vx/text" "0.0.175"
     classnames "^2.2.5"
     prop-types "^15.6.0"
 
@@ -840,7 +840,13 @@
   dependencies:
     d3-shape "^1.0.6"
 
-"@vx/group@0.0.165", "@vx/group@^0.0.165":
+"@vx/group@0.0.170":
+  version "0.0.170"
+  resolved "https://registry.yarnpkg.com/@vx/group/-/group-0.0.170.tgz#8b30b3ea07c348fe22253812fe7cb6d4200d725d"
+  dependencies:
+    classnames "^2.2.5"
+
+"@vx/group@^0.0.165":
   version "0.0.165"
   resolved "https://registry.yarnpkg.com/@vx/group/-/group-0.0.165.tgz#2342523225de94859b5be49c3072dc6bb6795e78"
   dependencies:
@@ -856,21 +862,21 @@
   dependencies:
     d3-scale "^2.0.0"
 
-"@vx/shape@0.0.168":
-  version "0.0.168"
-  resolved "https://registry.yarnpkg.com/@vx/shape/-/shape-0.0.168.tgz#172bc1cf4dade47076018efd559e0ecc4e959aec"
+"@vx/shape@0.0.176":
+  version "0.0.176"
+  resolved "https://registry.yarnpkg.com/@vx/shape/-/shape-0.0.176.tgz#7dd61518ede1965f720a4532e044f4121c1ca675"
   dependencies:
     "@vx/curve" "0.0.165"
-    "@vx/group" "0.0.165"
+    "@vx/group" "0.0.170"
     "@vx/point" "0.0.165"
     classnames "^2.2.5"
     d3-path "^1.0.5"
     d3-shape "^1.2.0"
     prop-types "^15.5.10"
 
-"@vx/text@0.0.165":
-  version "0.0.165"
-  resolved "https://registry.yarnpkg.com/@vx/text/-/text-0.0.165.tgz#e7f22979a1e744216be1a535414752c2ceb2f97a"
+"@vx/text@0.0.175":
+  version "0.0.175"
+  resolved "https://registry.yarnpkg.com/@vx/text/-/text-0.0.175.tgz#70ff63b01abfc148132d36ca7cdebfb040bb48c5"
   dependencies:
     babel-plugin-lodash "^3.3.2"
     classnames "^2.2.5"
