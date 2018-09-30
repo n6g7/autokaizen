@@ -49,7 +49,7 @@
     "@babel/preset-stage-3": "^7.0.0-beta.51",
     "@babel/runtime": "^7.0.0-beta.51",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^8.2.5",
+    "babel-eslint": "^9.0.0",
     "babel-loader": "^8.0.0-beta.3",
     "dotenv-webpack": "^1.5.7",
     "standard": "^11.0.1",
