@@ -858,9 +858,9 @@
   version "0.0.165"
   resolved "https://registry.yarnpkg.com/@vx/point/-/point-0.0.165.tgz#7ebde5da3d86954fe31a56f923f31550f0b4b867"
 
-"@vx/scale@^0.0.165":
-  version "0.0.165"
-  resolved "https://registry.yarnpkg.com/@vx/scale/-/scale-0.0.165.tgz#8575880c48296a80c0e9459057f826e8f903bc07"
+"@vx/scale@^0.0.178":
+  version "0.0.178"
+  resolved "https://registry.yarnpkg.com/@vx/scale/-/scale-0.0.178.tgz#54eff2a87c3441501b29a35eb4078d4e8f19b8d4"
   dependencies:
     d3-scale "^2.0.0"
 
