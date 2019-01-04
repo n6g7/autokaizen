@@ -50,7 +50,7 @@
     "@babel/runtime": "^7.0.0-beta.51",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
-    "babel-loader": "^8.0.0-beta.3",
+    "babel-loader": "^8.0.5",
     "dotenv-webpack": "^1.5.7",
     "standard": "^11.0.1",
     "url-loader": "^1.0.1",
