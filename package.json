@@ -54,7 +54,7 @@
     "dotenv-webpack": "^1.5.7",
     "standard": "^11.0.1",
     "url-loader": "^1.0.1",
-    "webpack": "^4.14.0",
+    "webpack": "^4.28.4",
     "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.1.4"
   },
