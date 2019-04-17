@@ -4,7 +4,7 @@
   "dependencies": {
     "@firebase/app-types": "^0.3.2",
     "cors": "^2.8.4",
-    "firebase-admin": "^5.11.0",
+    "firebase-admin": "^7.3.0",
     "firebase-backup": "^0.0.3-d",
     "firebase-functions": "^1.1.0"
   },
