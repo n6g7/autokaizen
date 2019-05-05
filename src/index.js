@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { ThemeProvider, injectGlobal } from 'styled-components'
+import { ThemeProvider, createGlobalStyle } from 'styled-components'
 
 import '@services/print'
 
@@ -11,7 +11,7 @@ import App from './components/App'
 
 import theme from '@theme'
 
-injectGlobal`
+const GlobalStyle = createGlobalStyle`
   body {
     background: ${theme.background.base};
     box-sizing: border-box;
@@ -29,7 +29,10 @@ injectGlobal`
 ReactDOM.render(
   <Provider store={store}>
     <ThemeProvider theme={theme}>
-      <App />
+      <>
+        <GlobalStyle />
+        <App />
+      </>
     </ThemeProvider>
   </Provider>,
   document.getElementById('app')

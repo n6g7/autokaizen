@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
-import { push } from 'react-router-redux'
+import { push } from 'connected-react-router'
 
 import { Button, List, Select } from '@atoms'
 import { LinkButton } from '@atoms/Button'

@@ -1,10 +1,11 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 import { DateTime } from 'luxon'
 
 import { LabelContainer } from '@atoms'
 
-const Container = LabelContainer.extend`
+const Container = styled(LabelContainer)`
   &::before {
     content: url(${require('@assets/calendar.svg')});
     margin-right: ${p => p.theme.spacing};

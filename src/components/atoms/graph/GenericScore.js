@@ -10,7 +10,9 @@ import styled from 'styled-components'
 
 import theme from '@theme'
 import Item from './Item'
-import { AxisBottom, AxisLeft } from './axis'
+import axis from './axis'
+
+const { AxisBottom, AxisLeft } = axis
 
 const Svg = styled.svg`
   @page {
@@ -168,7 +170,7 @@ class GenericScore extends PureComponent {
 
     return <Svg
       height={height}
-      innerRef={ref => { this.svg = ref }}
+      ref={ref => { this.svg = ref }}
       {...props}
     >
       <AxisBottom

@@ -61,7 +61,7 @@ class Score extends PureComponent {
     }, [])
     const newSprints = sprints.map((sprint, i) => ({
       ...sprint,
-      score: sprintCount[i]
+      score: sprintCount[i] || 0
     }))
 
     return {

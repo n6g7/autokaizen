@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
-import { goBack } from 'react-router-redux'
+import { goBack } from 'connected-react-router'
 
 const Backdrop = styled.aside`
   align-items: center;

@@ -1,2 +1,7 @@
-export { default as AxisBottom } from './AxisBottom'
-export { default as AxisLeft } from './AxisLeft'
+import AxisBottom from './AxisBottom'
+import AxisLeft from './AxisLeft'
+
+export default {
+  AxisBottom,
+  AxisLeft
+}

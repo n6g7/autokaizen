@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { routerReducer } from 'react-router-redux'
+import { connectRouter } from 'connected-react-router'
 
 import auth from './auth'
 import boards from './boards'
@@ -9,13 +9,13 @@ import projects from './projects'
 import sprints from './sprints'
 import tracker from './tracker'
 
-export default combineReducers({
+export default (history) => combineReducers({
   auth,
   boards,
   defects,
   labels,
   projects,
-  router: routerReducer,
+  router: connectRouter(history),
   sprints,
   tracker
 })

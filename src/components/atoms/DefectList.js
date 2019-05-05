@@ -1,6 +1,7 @@
+import styled from 'styled-components'
 import List from './List'
 
-const DefectList = List.ordered.extend`
+const DefectList = styled(List.ordered)`
   align-items: flex-start;
   flex-flow: row wrap;
 
