@@ -4,17 +4,17 @@ import rsf from '../rsf'
 import { types as projectTypes } from '@actions/projects'
 import { syncDefects } from '@actions/defects'
 
-function * syncDefectsSaga ({ projectId }) {
+function* syncDefectsSaga({ projectId }) {
   yield fork(
     rsf.database.sync,
     `defects/${projectId}`,
     {
-      successActionCreator: syncDefects
+      successActionCreator: syncDefects,
     },
-    'value'
+    'value',
   )
 }
 
-export default function * defectsSaga () {
+export default function* defectsSaga() {
   yield takeLatest(projectTypes.SELECT_PROJECT, syncDefectsSaga)
 }

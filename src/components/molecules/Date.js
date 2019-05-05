@@ -15,22 +15,17 @@ const Container = styled(LabelContainer)`
 class Date extends PureComponent {
   static propTypes = {
     dark: PropTypes.bool.isRequired,
-    date: PropTypes.instanceOf(DateTime).isRequired
+    date: PropTypes.instanceOf(DateTime).isRequired,
   }
 
   static defaultProps = {
-    dark: false
+    dark: false,
   }
 
-  render () {
-    const {
-      dark,
-      date
-    } = this.props
+  render() {
+    const { dark, date } = this.props
 
-    return <Container dark={dark}>
-      { date.toLocaleString() }
-    </Container>
+    return <Container dark={dark}>{date.toLocaleString()}</Container>
   }
 }
 

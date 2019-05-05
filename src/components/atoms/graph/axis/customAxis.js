@@ -4,10 +4,10 @@ import PropTypes from 'prop-types'
 const customAxis = (AxisComponent, baseTickLabelProps) =>
   class CustomAxis extends PureComponent {
     static propTypes = {
-      color: PropTypes.string.isRequired
+      color: PropTypes.string.isRequired,
     }
 
-    render () {
+    render() {
       const { color, ...props } = this.props
 
       const labelProps = {
@@ -15,20 +15,22 @@ const customAxis = (AxisComponent, baseTickLabelProps) =>
         fill: 'rgba(255, 255, 255, 0.8)',
         fontFamily: 'Source Sans Pro',
         fontSize: 16,
-        textAnchor: 'middle'
+        textAnchor: 'middle',
       }
       const tickLabelProps = () => ({
         ...baseTickLabelProps,
-        fill: color
+        fill: color,
       })
 
-      return <AxisComponent
-        labelProps={labelProps}
-        stroke={color}
-        tickLabelProps={tickLabelProps}
-        tickStroke={color}
-        {...props}
-      />
+      return (
+        <AxisComponent
+          labelProps={labelProps}
+          stroke={color}
+          tickLabelProps={tickLabelProps}
+          tickStroke={color}
+          {...props}
+        />
+      )
     }
   }
 

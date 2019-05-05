@@ -15,112 +15,114 @@ const Label = styled.label`
 class AddProject extends PureComponent {
   static propTypes = {
     boards: PropTypes.array.isRequired,
-    create: PropTypes.func.isRequired
+    create: PropTypes.func.isRequired,
   }
 
   state = {
     boardId: '',
     name: '',
-    sprint: 1
+    sprint: 1,
   }
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.createProject = this.createProject.bind(this)
     this.onChange = this.onChange.bind(this)
   }
 
-  onChange (event) {
-    const {
-      name,
-      value
-    } = event.target
+  onChange(event) {
+    const { name, value } = event.target
 
     switch (name) {
       case 'board':
         const board = this.props.boards.find(b => b.id === value)
         this.setState({
           boardId: value,
-          name: board.name
+          name: board.name,
         })
         break
       case 'name':
         this.setState({
-          name: value
+          name: value,
         })
         break
       case 'sprint':
         this.setState({
-          sprint: parseInt(value)
+          sprint: parseInt(value),
         })
         break
     }
   }
 
-  createProject () {
+  createProject() {
     const { boardId, name, sprint } = this.state
     this.props.create(boardId, name, sprint)
   }
 
-  render () {
+  render() {
     const { boards } = this.props
     const { boardId, name, sprint } = this.state
 
     const options = boards.map(board => ({
       value: board.id,
-      label: board.name
+      label: board.name,
     }))
 
-    return <Section title='Add Project'>
-      <p>
-        <Label htmlFor='board'>Trello board</Label>
-        <Select
-          id='board'
-          name='board'
-          onChange={this.onChange}
-          options={options}
-          value={boardId}
-          required
-        />
-      </p>
+    return (
+      <Section title="Add Project">
+        <p>
+          <Label htmlFor="board">Trello board</Label>
+          <Select
+            id="board"
+            name="board"
+            onChange={this.onChange}
+            options={options}
+            value={boardId}
+            required
+          />
+        </p>
 
-      <p>
-        <Label htmlFor='name'>Project name</Label>
-        <input
-          id='name'
-          name='name'
-          onChange={this.onChange}
-          type='text'
-          value={name}
-          placeholder='Awesome project'
-          required
-        />
-      </p>
+        <p>
+          <Label htmlFor="name">Project name</Label>
+          <input
+            id="name"
+            name="name"
+            onChange={this.onChange}
+            type="text"
+            value={name}
+            placeholder="Awesome project"
+            required
+          />
+        </p>
 
-      <p>
-        <Label htmlFor='sprint'>Current sprint</Label>
-        <input
-          id='sprint'
-          name='sprint'
-          onChange={this.onChange}
-          type='number'
-          value={sprint}
-          placeholder='1'
-          required
-        />
-      </p>
+        <p>
+          <Label htmlFor="sprint">Current sprint</Label>
+          <input
+            id="sprint"
+            name="sprint"
+            onChange={this.onChange}
+            type="number"
+            value={sprint}
+            placeholder="1"
+            required
+          />
+        </p>
 
-      <Button onClick={this.createProject}>Create</Button>
-    </Section>
+        <Button onClick={this.createProject}>Create</Button>
+      </Section>
+    )
   }
 }
 
 const mapStateToProps = state => ({
-  boards: state.boards.list
+  boards: state.boards.list,
 })
 
 const mapDispatchToProps = {
-  create: createProject
+  create: createProject,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddProject)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(AddProject)

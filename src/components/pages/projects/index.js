@@ -7,7 +7,7 @@ import Defects from './Defects'
 import Details from './Details'
 
 class Projects extends PureComponent {
-  render () {
+  render() {
     const { match } = this.props
 
     return [
@@ -16,7 +16,12 @@ class Projects extends PureComponent {
         <Route path={`${match.url}/:projectId/defects`} component={Defects} />
         <Route path={`${match.url}/:projectId`} component={Details} />
       </Switch>,
-      <Route exact path={`${match.url}/:projectId/defects/:defectId`} component={DefectPopup} key={2} />
+      <Route
+        exact
+        path={`${match.url}/:projectId/defects/:defectId`}
+        component={DefectPopup}
+        key={2}
+      />,
     ]
   }
 }

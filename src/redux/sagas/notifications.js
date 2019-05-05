@@ -5,13 +5,13 @@ import {
   followBoardSuccess,
   followBoardFailure,
   setRegistrationToken,
-  types
+  types,
 } from '@actions/notifications'
 import followBoard from '@services/follow'
 
 import rsf from '../rsf'
 
-function * requestPermissionSaga () {
+function* requestPermissionSaga() {
   const messaging = firebase.messaging()
 
   try {
@@ -24,7 +24,7 @@ function * requestPermissionSaga () {
   }
 }
 
-function * followBoardSaga ({ boardId }) {
+function* followBoardSaga({ boardId }) {
   const token = yield select(state => state.auth.messagingToken)
 
   try {
@@ -35,7 +35,7 @@ function * followBoardSaga ({ boardId }) {
   }
 }
 
-export default function * () {
+export default function*() {
   yield call(requestPermissionSaga)
   yield fork(rsf.messaging.syncToken, setRegistrationToken)
 

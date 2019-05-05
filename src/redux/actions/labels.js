@@ -2,67 +2,67 @@ export const types = {
   LOAD_BOARD_LABELS: {
     REQUEST: 'LOAD_BOARD_LABELS.REQUEST',
     SUCCESS: 'LOAD_BOARD_LABELS.SUCCESS',
-    FAILURE: 'LOAD_BOARD_LABELS.FAILURE'
+    FAILURE: 'LOAD_BOARD_LABELS.FAILURE',
   },
   ADD_LABEL: {
     REQUEST: 'ADD_LABEL.REQUEST',
     SUCCESS: 'ADD_LABEL.SUCCESS',
-    FAILURE: 'ADD_LABEL.FAILURE'
+    FAILURE: 'ADD_LABEL.FAILURE',
   },
   REMOVE_LABEL: {
     REQUEST: 'REMOVE_LABEL.REQUEST',
     SUCCESS: 'REMOVE_LABEL.SUCCESS',
-    FAILURE: 'REMOVE_LABEL.FAILURE'
+    FAILURE: 'REMOVE_LABEL.FAILURE',
   },
-  SYNC_LABELS: 'SYNC_LABELS'
+  SYNC_LABELS: 'SYNC_LABELS',
 }
 
 export const loadBoardLabels = boardId => ({
   type: types.LOAD_BOARD_LABELS.REQUEST,
-  boardId
+  boardId,
 })
 
 export const loadBoardLabelsSuccess = labels => ({
   type: types.LOAD_BOARD_LABELS.SUCCESS,
-  labels
+  labels,
 })
 
 export const loadBoardLabelsFailure = error => ({
   type: types.LOAD_BOARD_LABELS.FAILURE,
-  error
+  error,
 })
 
 export const addLabel = (projectId, label) => ({
   type: types.ADD_LABEL.REQUEST,
   projectId,
-  label
+  label,
 })
 
 export const addLabelSuccess = () => ({
-  type: types.ADD_LABEL.SUCCESS
+  type: types.ADD_LABEL.SUCCESS,
 })
 
 export const addLabelFailure = error => ({
   type: types.ADD_LABEL.FAILURE,
-  error
+  error,
 })
 
 export const removeLabel = (projectId, labelId) => ({
   type: types.REMOVE_LABEL.REQUEST,
   projectId,
-  labelId
+  labelId,
 })
 
 export const removeLabelSuccess = () => ({
-  type: types.REMOVE_LABEL.SUCCESS
+  type: types.REMOVE_LABEL.SUCCESS,
 })
 
 export const removeLabelFailure = error => ({
   type: types.REMOVE_LABEL.FAILURE,
-  error
+  error,
 })
 
 export const syncLabels = labels => ({
   type: types.SYNC_LABELS,
-  labels
+  labels,
 })

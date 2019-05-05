@@ -10,7 +10,7 @@ import {
   removeLabelSuccess,
   removeLabelFailure,
   syncLabels,
-  types
+  types,
 } from '@actions/labels'
 import { types as projectTypes } from '@actions/projects'
 
@@ -25,10 +25,10 @@ const labelColours = [
   '#c5b960',
   '#98c560',
   '#e95dcf',
-  '#29bd96'
+  '#29bd96',
 ]
 
-function * loadBoardLabelsSaga ({ boardId }) {
+function* loadBoardLabelsSaga({ boardId }) {
   const loggedIn = yield select(state => state.auth.loggedIn)
 
   if (!loggedIn) {
@@ -43,61 +43,46 @@ function * loadBoardLabelsSaga ({ boardId }) {
   }
 }
 
-function * addLabelSaga ({ projectId, label }) {
+function* addLabelSaga({ projectId, label }) {
   try {
-    const labels = yield call(
-      rsf.database.read,
-      `labels/${projectId}`
-    )
-    const count = labels
-      ? Object.keys(labels).length
-      : 0
+    const labels = yield call(rsf.database.read, `labels/${projectId}`)
+    const count = labels ? Object.keys(labels).length : 0
 
-    yield call(
-      rsf.database.update,
-      `labels/${projectId}/${label.id}`,
-      {
-        colour: labelColours[count % labelColours.length],
-        name: label.name
-      }
-    )
+    yield call(rsf.database.update, `labels/${projectId}/${label.id}`, {
+      colour: labelColours[count % labelColours.length],
+      name: label.name,
+    })
     yield put(addLabelSuccess())
   } catch (error) {
     yield put(addLabelFailure(error))
   }
 }
 
-function * removeLabelSaga ({ projectId, labelId }) {
+function* removeLabelSaga({ projectId, labelId }) {
   try {
-    yield call(
-      rsf.database.delete,
-      `labels/${projectId}/${labelId}`
-    )
+    yield call(rsf.database.delete, `labels/${projectId}/${labelId}`)
     yield put(removeLabelSuccess())
   } catch (error) {
     yield put(removeLabelFailure(error))
   }
 }
 
-function * syncLabelsSaga ({ projectId }) {
+function* syncLabelsSaga({ projectId }) {
   yield fork(
     rsf.database.sync,
     `labels/${projectId}`,
     {
-      successActionCreator: syncLabels
+      successActionCreator: syncLabels,
     },
-    'value'
+    'value',
   )
 }
 
-export default function * labelsSaga () {
+export default function* labelsSaga() {
   yield takeLatest(types.LOAD_BOARD_LABELS.REQUEST, loadBoardLabelsSaga)
-  yield takeLatest(
-    projectTypes.SELECT_PROJECT,
-    function * ({ projectId }) {
-      yield put(loadBoardLabels(projectId))
-    }
-  )
+  yield takeLatest(projectTypes.SELECT_PROJECT, function*({ projectId }) {
+    yield put(loadBoardLabels(projectId))
+  })
 
   yield takeEvery(types.ADD_LABEL.REQUEST, addLabelSaga)
   yield takeEvery(types.REMOVE_LABEL.REQUEST, removeLabelSaga)

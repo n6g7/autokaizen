@@ -9,13 +9,14 @@ import projects from './projects'
 import sprints from './sprints'
 import tracker from './tracker'
 
-export default (history) => combineReducers({
-  auth,
-  boards,
-  defects,
-  labels,
-  projects,
-  router: connectRouter(history),
-  sprints,
-  tracker
-})
+export default history =>
+  combineReducers({
+    auth,
+    boards,
+    defects,
+    labels,
+    projects,
+    router: connectRouter(history),
+    sprints,
+    tracker,
+  })

@@ -1,5 +1,5 @@
 export default {
-  authorize () {
+  authorize() {
     return new Promise((resolve, reject) => {
       window.Trello.authorize({
         name: 'Auto Kaizen',
@@ -7,42 +7,38 @@ export default {
         type: 'popup',
         expiration: 'never',
         success: resolve,
-        error: reject
+        error: reject,
       })
     })
   },
-  createWebhook (idModel, callbackURL) {
+  createWebhook(idModel, callbackURL) {
     return new Promise((resolve, reject) => {
       window.Trello.post(
         '/webhooks',
         {
           idModel,
-          callbackURL
+          callbackURL,
         },
         resolve,
-        reject
+        reject,
       )
     })
   },
-  getBoards () {
+  getBoards() {
     return new Promise((resolve, reject) => {
-      window.Trello.get(
-        '/member/me/boards',
-        resolve,
-        reject
-      )
+      window.Trello.get('/member/me/boards', resolve, reject)
     })
   },
-  getBoardLabels (boardId) {
+  getBoardLabels(boardId) {
     return new Promise((resolve, reject) => {
       window.Trello.get(
         `/boards/${boardId}/labels`,
         {
-          fields: 'color,id,name'
+          fields: 'color,id,name',
         },
         resolve,
-        reject
+        reject,
       )
     })
-  }
+  },
 }

@@ -10,7 +10,7 @@ import {
   currentSprintSelector,
   filteredDefectsSelector,
   trelloLabelsSelector,
-  projectSelector
+  projectSelector,
 } from '@selectors'
 
 import Template from './Template'
@@ -45,24 +45,21 @@ class ProjectDetails extends PureComponent {
     match: PropTypes.object.isRequired,
     project: PropTypes.object.isRequired,
     removeLabel: PropTypes.func.isRequired,
-    sprints: PropTypes.oneOfType([
-      PropTypes.array,
-      PropTypes.object
-    ]).isRequired,
-    trelloLabels: PropTypes.array.isRequired
+    sprints: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
+    trelloLabels: PropTypes.array.isRequired,
   }
 
   state = {
-    loading: false
+    loading: false,
   }
 
-  componentDidCatch () {
+  componentDidCatch() {
     return {
-      loading: true
+      loading: true,
     }
   }
 
-  render () {
+  render() {
     const {
       addLabel,
       currentSprint,
@@ -72,66 +69,74 @@ class ProjectDetails extends PureComponent {
       project,
       removeLabel,
       sprints,
-      trelloLabels
+      trelloLabels,
     } = this.props
     const { loading } = this.state
 
     if (!project || loading) return null
 
-    return <Template project={project}>
-      { defects && labels &&
-        <Section title='Score' print>
-          <ScoreFigure
-            currentSprint={currentSprint}
-            defects={defects}
-            labels={labels}
-            sprints={sprints}
-            standard={project.standard}
-            style={project.perfStyle}
-          />
-        </Section>
-      }
+    return (
+      <Template project={project}>
+        {defects && labels && (
+          <Section title="Score" print>
+            <ScoreFigure
+              currentSprint={currentSprint}
+              defects={defects}
+              labels={labels}
+              sprints={sprints}
+              standard={project.standard}
+              style={project.perfStyle}
+            />
+          </Section>
+        )}
 
-      { defects &&
-        <Section title='Latest defects'>
-          <DefectList>
-            {[...defects].slice(-8).reverse().map(defect =>
-              <li key={defect.id}>
-                <TransparentLink to={`${match.url}/defects/${defect.id}`}>
-                  <Defect defect={defect} />
-                </TransparentLink>
-              </li>
-            )}
-          </DefectList>
-        </Section>
-      }
+        {defects && (
+          <Section title="Latest defects">
+            <DefectList>
+              {[...defects]
+                .slice(-8)
+                .reverse()
+                .map(defect => (
+                  <li key={defect.id}>
+                    <TransparentLink to={`${match.url}/defects/${defect.id}`}>
+                      <Defect defect={defect} />
+                    </TransparentLink>
+                  </li>
+                ))}
+            </DefectList>
+          </Section>
+        )}
 
-      { trelloLabels &&
-        <Section title='Trello labels' collapsible>
-          <LabelList>
-            {trelloLabels.map(label => {
-              const id = `label-${label.id}`
-              const checked = labels && labels.hasOwnProperty(label.id)
+        {trelloLabels && (
+          <Section title="Trello labels" collapsible>
+            <LabelList>
+              {trelloLabels.map(label => {
+                const id = `label-${label.id}`
+                const checked = labels && labels.hasOwnProperty(label.id)
 
-              return <li key={label.id}>
-                <input
-                  type='checkbox'
-                  id={id}
-                  checked={checked}
-                  onChange={checked
-                    ? () => removeLabel(project.id, label.id)
-                    : () => addLabel(project.id, label)
-                  }
-                />
-                <label htmlFor={id}>
-                  <Label colour={label.color}>{label.name}</Label>
-                </label>
-              </li>
-            })}
-          </LabelList>
-        </Section>
-      }
-    </Template>
+                return (
+                  <li key={label.id}>
+                    <input
+                      type="checkbox"
+                      id={id}
+                      checked={checked}
+                      onChange={
+                        checked
+                          ? () => removeLabel(project.id, label.id)
+                          : () => addLabel(project.id, label)
+                      }
+                    />
+                    <label htmlFor={id}>
+                      <Label colour={label.color}>{label.name}</Label>
+                    </label>
+                  </li>
+                )
+              })}
+            </LabelList>
+          </Section>
+        )}
+      </Template>
+    )
   }
 }
 
@@ -141,12 +146,15 @@ const mapStateToProps = (state, ownProps) => ({
   labels: state.labels.list,
   project: projectSelector(state, ownProps),
   sprints: state.sprints.list,
-  trelloLabels: trelloLabelsSelector(state)
+  trelloLabels: trelloLabelsSelector(state),
 })
 
 const mapDispatchToProps = {
   addLabel,
-  removeLabel
+  removeLabel,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProjectDetails)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ProjectDetails)

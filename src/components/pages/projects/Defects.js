@@ -12,31 +12,33 @@ class ProjectDefects extends PureComponent {
   static propTypes = {
     defects: PropTypes.array.isRequired,
     match: PropTypes.object.isRequired,
-    project: PropTypes.object.isRequired
+    project: PropTypes.object.isRequired,
   }
 
-  render () {
+  render() {
     const { defects, match, project } = this.props
 
-    return <Template project={project}>
-      <Section title='Defects'>
-        <DefectList>
-          {[...defects].reverse().map(defect =>
-            <li key={defect.id}>
-              <TransparentLink to={`${match.url}/${defect.id}`}>
-                <Defect defect={defect} />
-              </TransparentLink>
-            </li>
-          )}
-        </DefectList>
-      </Section>
-    </Template>
+    return (
+      <Template project={project}>
+        <Section title="Defects">
+          <DefectList>
+            {[...defects].reverse().map(defect => (
+              <li key={defect.id}>
+                <TransparentLink to={`${match.url}/${defect.id}`}>
+                  <Defect defect={defect} />
+                </TransparentLink>
+              </li>
+            ))}
+          </DefectList>
+        </Section>
+      </Template>
+    )
   }
 }
 
 const mapStateToProps = (state, ownProps) => ({
   defects: defectsSelector(state),
-  project: projectSelector(state, ownProps)
+  project: projectSelector(state, ownProps),
 })
 
 export default connect(mapStateToProps)(ProjectDefects)

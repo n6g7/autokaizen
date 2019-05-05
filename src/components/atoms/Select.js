@@ -6,37 +6,26 @@ class Select extends PureComponent {
     emptyValue: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     options: PropTypes.array.isRequired,
-    value: PropTypes.string.isRequired
+    value: PropTypes.string.isRequired,
   }
 
   static defaultProps = {
-    emptyValue: '-----'
+    emptyValue: '-----',
   }
 
-  render () {
-    const {
-      emptyValue,
-      onChange,
-      options,
-      value,
-      ...props
-    } = this.props
+  render() {
+    const { emptyValue, onChange, options, value, ...props } = this.props
 
-    return <select
-      onChange={onChange}
-      value={value}
-      {...props}
-    >
-      { emptyValue && <option value=''>{ emptyValue }</option> }
-      { options.map(option =>
-        <option
-          key={option.value}
-          value={option.value}
-        >
-          { option.label }
-        </option>
-      )}
-    </select>
+    return (
+      <select onChange={onChange} value={value} {...props}>
+        {emptyValue && <option value="">{emptyValue}</option>}
+        {options.map(option => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    )
   }
 }
 

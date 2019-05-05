@@ -9,22 +9,25 @@ const propsDefectIdSelector = (state, props) => props.match.params.defectId
 const defectIdSelector = createSelector(
   propsDefectIdSelector,
   routerDefectIdSelector,
-  (propsId, routerId) => propsId || routerId
+  (propsId, routerId) => propsId || routerId,
 )
 
 export const defectsSelector = createSelector(
   rawDefectsSelector,
-  defects => objectToArray(defects).sort(keyComparator(['creation']))
+  defects => objectToArray(defects).sort(keyComparator(['creation'])),
 )
 
 export const filteredDefectsSelector = createSelector(
-  defectsSelector, labelFiltersSelector,
-  (defects, labelFilters) => labelFilters.length === 0
-    ? defects
-    : defects.filter(d => labelFilters.includes(d.labelId))
+  defectsSelector,
+  labelFiltersSelector,
+  (defects, labelFilters) =>
+    labelFilters.length === 0
+      ? defects
+      : defects.filter(d => labelFilters.includes(d.labelId)),
 )
 
 export const defectSelector = createSelector(
-  defectsSelector, defectIdSelector,
-  (defects, defectId) => defects.find(d => d.id === defectId)
+  defectsSelector,
+  defectIdSelector,
+  (defects, defectId) => defects.find(d => d.id === defectId),
 )

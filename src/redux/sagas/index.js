@@ -11,7 +11,7 @@ import sprints from './sprints'
 
 const projectPathRegex = /^\/projects\/([0-9a-f]{10,})/
 
-export default function * rootSaga () {
+export default function* rootSaga() {
   yield all([
     fork(auth),
     fork(boards),
@@ -19,7 +19,7 @@ export default function * rootSaga () {
     fork(labels),
     fork(notifications),
     fork(projects),
-    fork(sprints)
+    fork(sprints),
   ])
 
   const match = projectPathRegex.exec(window.location.pathname)

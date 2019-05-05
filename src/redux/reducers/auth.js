@@ -5,16 +5,16 @@ const initialState = {
   loading: false,
   loggedIn: false,
   messagingToken: null,
-  user: null
+  user: null,
 }
 
-export default function auth (state = initialState, action = {}) {
+export default function auth(state = initialState, action = {}) {
   switch (action.type) {
     case types.LOGIN.REQUEST:
     case types.LOGOUT.REQUEST:
       return {
         ...state,
-        loading: true
+        loading: true,
       }
     case types.LOGIN.SUCCESS:
     case types.LOGIN.FAILURE:
@@ -22,18 +22,18 @@ export default function auth (state = initialState, action = {}) {
     case types.LOGOUT.FAILURE:
       return {
         ...state,
-        loading: true
+        loading: true,
       }
     case types.SYNC_USER:
       return {
         ...state,
         loggedIn: !!action.user,
-        user: action.user
+        user: action.user,
       }
     case notifTypes.SET_REGISTRATION_TOKEN:
       return {
         ...state,
-        messagingToken: action.token
+        messagingToken: action.token,
       }
     default:
       return state

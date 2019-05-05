@@ -3,5 +3,5 @@ import AxisLeft from './AxisLeft'
 
 export default {
   AxisBottom,
-  AxisLeft
+  AxisLeft,
 }

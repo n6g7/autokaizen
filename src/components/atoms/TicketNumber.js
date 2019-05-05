@@ -5,9 +5,11 @@ export default styled.h3`
   font-size: 1.5em;
   margin: 0 0 ${p => p.theme.spacing}px 0;
 
-  ${p => p.large && css`
-    font-size: 2.5em;
-  `}
+  ${p =>
+    p.large &&
+    css`
+      font-size: 2.5em;
+    `}
 
   &::before {
     content: '#';

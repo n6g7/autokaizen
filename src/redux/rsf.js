@@ -7,7 +7,7 @@ const firebaseApp = firebase.initializeApp({
   databaseURL: 'https://autokaizen-b153e.firebaseio.com',
   projectId: 'autokaizen-b153e',
   storageBucket: 'autokaizen-b153e.appspot.com',
-  messagingSenderId: '879071603246'
+  messagingSenderId: '879071603246',
 })
 
 const rsf = new ReduxSagaFirebase(firebaseApp)

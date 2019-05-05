@@ -14,7 +14,7 @@ const Figure = styled.figure`
   margin: 0 0 ${p => 2 * p.theme.spacing} 0;
 
   svg {
-    margin: 8*spacing 0;
+    margin: 8 * spacing 0;
     width: 100%;
   }
 
@@ -41,33 +41,38 @@ class ScoreFigure extends PureComponent {
   static propTypes = {
     defects: PropTypes.array.isRequired,
     labels: PropTypes.object.isRequired,
-    toggleLabelFilter: PropTypes.func.isRequired
+    toggleLabelFilter: PropTypes.func.isRequired,
   }
 
-  render () {
+  render() {
     const { defects, labels, ...props } = this.props
 
-    return <Figure>
-      <Caption>
-        <List>
-          {Object.keys(labels).map(labelId =>
-            <li key={labelId}>
-              <Category
-                labelId={labelId}
-                onClick={() => this.props.toggleLabelFilter(labelId)}
-              />
-            </li>
-          )}
-        </List>
-      </Caption>
+    return (
+      <Figure>
+        <Caption>
+          <List>
+            {Object.keys(labels).map(labelId => (
+              <li key={labelId}>
+                <Category
+                  labelId={labelId}
+                  onClick={() => this.props.toggleLabelFilter(labelId)}
+                />
+              </li>
+            ))}
+          </List>
+        </Caption>
 
-      <StyledScore defects={defects} labels={labels} {...props} />
-    </Figure>
+        <StyledScore defects={defects} labels={labels} {...props} />
+      </Figure>
+    )
   }
 }
 
 const mapDispatchToProps = {
-  toggleLabelFilter
+  toggleLabelFilter,
 }
 
-export default connect(null, mapDispatchToProps)(ScoreFigure)
+export default connect(
+  null,
+  mapDispatchToProps,
+)(ScoreFigure)

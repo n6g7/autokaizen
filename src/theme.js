@@ -2,14 +2,14 @@ export default {
   background: {
     base: '#171b32',
     light: '#252c48',
-    lighter: '#3C4460'
+    lighter: '#3C4460',
   },
   colours: {
-    standard: '#eb2f06'
+    standard: '#eb2f06',
   },
   spacing: 8,
   text: {
     darker: '#8f90a4',
-    lighter: '#ede7ed'
-  }
+    lighter: '#ede7ed',
+  },
 }

@@ -39,7 +39,8 @@ const Container = styled.section`
 `
 
 const Main = styled.main`
-  padding: ${p => 6 * p.theme.spacing}px ${p => 6 * p.theme.spacing}px ${p => 5 * p.theme.spacing}px;
+  padding: ${p => 6 * p.theme.spacing}px ${p => 6 * p.theme.spacing}px
+    ${p => 5 * p.theme.spacing}px;
 
   @media print {
     padding: 0;
@@ -48,7 +49,8 @@ const Main = styled.main`
 
 const Footer = styled.footer`
   background: ${p => p.theme.background.base};
-  padding: ${p => 5 * p.theme.spacing}px ${p => 6 * p.theme.spacing}px ${p => 6 * p.theme.spacing}px;
+  padding: ${p => 5 * p.theme.spacing}px ${p => 6 * p.theme.spacing}px
+    ${p => 6 * p.theme.spacing}px;
 
   @media print {
     border-top: 1px dashed black;
@@ -60,25 +62,30 @@ class Popup extends PureComponent {
   static propTypes = {
     footer: PropTypes.any.isRequired,
     goBack: PropTypes.func.isRequired,
-    main: PropTypes.any.isRequired
+    main: PropTypes.any.isRequired,
   }
 
   stop = event => event.stopPropagation()
 
-  render () {
+  render() {
     const { footer, goBack, main } = this.props
 
-    return <Backdrop onClick={goBack}>
-      <Container onClick={this.stop}>
-        <Main>{ main }</Main>
-        <Footer>{ footer }</Footer>
-      </Container>
-    </Backdrop>
+    return (
+      <Backdrop onClick={goBack}>
+        <Container onClick={this.stop}>
+          <Main>{main}</Main>
+          <Footer>{footer}</Footer>
+        </Container>
+      </Backdrop>
+    )
   }
 }
 
 const mapDispatchToProps = {
-  goBack
+  goBack,
 }
 
-export default connect(null, mapDispatchToProps)(Popup)
+export default connect(
+  null,
+  mapDispatchToProps,
+)(Popup)

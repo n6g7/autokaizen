@@ -10,10 +10,10 @@ class ProjectTemplate extends PureComponent {
   static propTypes = {
     children: PropTypes.any.isRequired,
     followBoard: PropTypes.func.isRequired,
-    project: PropTypes.object.isRequired
+    project: PropTypes.object.isRequired,
   }
 
-  renderMissingProject () {
+  renderMissingProject() {
     return <p>This project does not exist.</p>
   }
 
@@ -22,33 +22,34 @@ class ProjectTemplate extends PureComponent {
     followBoard(project.id)
   }
 
-  render () {
-    const {
-      children,
-      project
-    } = this.props
+  render() {
+    const { children, project } = this.props
 
     if (!project) return this.renderMissingProject()
 
-    return <article>
-      <PageHeader>
-        <Title
-          pre={project.client}
-          to={`/projects/${project.id}`}
-        >
-          {project.name}
-        </Title>
-        <Link to={`/projects/${project.id}/defects`}>
-          <Button small>Defects</Button>
-        </Link>
-        <Button onClick={this.follow} small>Follow</Button>
-      </PageHeader>
+    return (
+      <article>
+        <PageHeader>
+          <Title pre={project.client} to={`/projects/${project.id}`}>
+            {project.name}
+          </Title>
+          <Link to={`/projects/${project.id}/defects`}>
+            <Button small>Defects</Button>
+          </Link>
+          <Button onClick={this.follow} small>
+            Follow
+          </Button>
+        </PageHeader>
 
-      { children }
-    </article>
+        {children}
+      </article>
+    )
   }
 }
 
 const mapDispatchToProps = { followBoard }
 
-export default connect(null, mapDispatchToProps)(ProjectTemplate)
+export default connect(
+  null,
+  mapDispatchToProps,
+)(ProjectTemplate)

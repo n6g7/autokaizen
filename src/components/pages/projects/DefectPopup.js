@@ -57,51 +57,52 @@ const Textarea = styled.textarea`
 class DefectPopup extends PureComponent {
   static propTypes = {
     defect: PropTypes.object.isRequired,
-    project: PropTypes.object.isRequired
+    project: PropTypes.object.isRequired,
   }
 
-  renderMain () {
+  renderMain() {
     const { defect, project } = this.props
 
     if (!project) return null
 
-    return <Fragment>
-      <Project>
-        {project.client && <span>{project.client} / </span>}
-        {project.name}
-      </Project>
-      <TicketNumber large>{ defect.cardNumber }</TicketNumber>
-      <UserStory>
-        <Points>{defect.points}</Points>
-        {defect.userStory}
-      </UserStory>
-      <Date date={DateTime.fromMillis(defect.creation)} dark />
-      <Sprint number={defect.sprint} dark />
-      <Category labelId={defect.labelId} dark />
-    </Fragment>
+    return (
+      <Fragment>
+        <Project>
+          {project.client && <span>{project.client} / </span>}
+          {project.name}
+        </Project>
+        <TicketNumber large>{defect.cardNumber}</TicketNumber>
+        <UserStory>
+          <Points>{defect.points}</Points>
+          {defect.userStory}
+        </UserStory>
+        <Date date={DateTime.fromMillis(defect.creation)} dark />
+        <Sprint number={defect.sprint} dark />
+        <Category labelId={defect.labelId} dark />
+      </Fragment>
+    )
   }
 
-  renderFooter () {
-    return <Fragment>
-      <SubTitle>Notes</SubTitle>
-      <Textarea />
-    </Fragment>
+  renderFooter() {
+    return (
+      <Fragment>
+        <SubTitle>Notes</SubTitle>
+        <Textarea />
+      </Fragment>
+    )
   }
 
-  render () {
+  render() {
     return ReactDOM.createPortal(
-      <Popup
-        main={this.renderMain()}
-        footer={this.renderFooter()}
-      />,
-      document.getElementById('popup')
+      <Popup main={this.renderMain()} footer={this.renderFooter()} />,
+      document.getElementById('popup'),
     )
   }
 }
 
 const mapStateToProps = (state, ownProps) => ({
   defect: defectSelector(state, ownProps),
-  project: projectSelector(state, ownProps)
+  project: projectSelector(state, ownProps),
 })
 
 export default connect(mapStateToProps)(DefectPopup)

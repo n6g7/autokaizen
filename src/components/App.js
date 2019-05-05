@@ -4,10 +4,7 @@ import { ConnectedRouter } from 'connected-react-router'
 import { history } from '@redux/enhancers/middlewares'
 import styled from 'styled-components'
 
-import {
-  Footer,
-  Header
-} from '@organisms'
+import { Footer, Header } from '@organisms'
 import { Projects } from '@pages'
 
 const Main = styled.main`
@@ -20,20 +17,22 @@ const Main = styled.main`
 `
 
 class App extends PureComponent {
-  render () {
-    return <ConnectedRouter history={history}>
-      <div>
-        <Route component={Header} />
+  render() {
+    return (
+      <ConnectedRouter history={history}>
+        <div>
+          <Route component={Header} />
 
-        <Main>
-          <Switch>
-            <Route path='/projects' component={Projects} />
-          </Switch>
+          <Main>
+            <Switch>
+              <Route path="/projects" component={Projects} />
+            </Switch>
 
-          <Footer />
-        </Main>
-      </div>
-    </ConnectedRouter>
+            <Footer />
+          </Main>
+        </div>
+      </ConnectedRouter>
+    )
   }
 }
 

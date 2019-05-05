@@ -6,10 +6,10 @@ const rawTrelloLabelsSelector = state => state.labels.trello
 
 export const labelsSelector = createSelector(
   rawLabelsSelector,
-  labels => objectToArray(labels).sort(keyComparator(['name']))
+  labels => objectToArray(labels).sort(keyComparator(['name'])),
 )
 
 export const trelloLabelsSelector = createSelector(
   rawTrelloLabelsSelector,
-  labels => labels.sort(keyComparator(['color', 'name']))
+  labels => labels.sort(keyComparator(['color', 'name'])),
 )

@@ -14,7 +14,7 @@ const Container = styled.h1`
   a {
     color: inherit;
     text-decoration: none;
-    transition: .2s;
+    transition: 0.2s;
 
     &:hover {
       opacity: 0.9;
@@ -38,19 +38,18 @@ class Title extends PureComponent {
   static propTypes = {
     children: PropTypes.any.isRequired,
     pre: PropTypes.string,
-    to: PropTypes.string
+    to: PropTypes.string,
   }
 
-  render () {
+  render() {
     const { children, pre, to, ...props } = this.props
 
-    return <Container {...props}>
-      {pre && <Pre>{pre}</Pre>}
-      { to
-        ? <Link to={to}>{children}</Link>
-        : children
-      }
-    </Container>
+    return (
+      <Container {...props}>
+        {pre && <Pre>{pre}</Pre>}
+        {to ? <Link to={to}>{children}</Link> : children}
+      </Container>
+    )
   }
 }
 

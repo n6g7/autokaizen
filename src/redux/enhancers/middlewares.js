@@ -7,7 +7,4 @@ export const history = createBrowserHistory()
 
 export const sagaMiddleware = createSagaMiddleware()
 
-export default applyMiddleware(
-  sagaMiddleware,
-  routerMiddleware(history)
-)
+export default applyMiddleware(sagaMiddleware, routerMiddleware(history))

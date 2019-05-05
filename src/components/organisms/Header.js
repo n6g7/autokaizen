@@ -47,7 +47,7 @@ class Header extends PureComponent {
     logout: PropTypes.func.isRequired,
     projects: PropTypes.array.isRequired,
     push: PropTypes.func.isRequired,
-    selectProject: PropTypes.func.isRequired
+    selectProject: PropTypes.func.isRequired,
   }
 
   onChangeProject = event => {
@@ -59,61 +59,63 @@ class Header extends PureComponent {
     } else this.props.push('/')
   }
 
-  render () {
-    const {
-      currentProject,
-      login,
-      loggedIn,
-      logout,
-      projects
-    } = this.props
+  render() {
+    const { currentProject, login, loggedIn, logout, projects } = this.props
 
-    const options = projects.map(project => ({
-      label: project.client ? `${project.client} / ${project.name}` : project.name,
-      value: project.id
-    })).sort((a, b) => a.label > b.label ? 1 : a.label < b.label ? -1 : 0)
+    const options = projects
+      .map(project => ({
+        label: project.client ? `${project.client} / ${project.name}` : project.name,
+        value: project.id,
+      }))
+      .sort((a, b) => (a.label > b.label ? 1 : a.label < b.label ? -1 : 0))
 
-    return <Container>
-      <Title>Auto Kaizen</Title>
+    return (
+      <Container>
+        <Title>Auto Kaizen</Title>
 
-      <Nav>
-        <List>
-          <li>
-            <Select
-              onChange={this.onChangeProject}
-              options={options}
-              value={currentProject ? currentProject.id : ''}
-            />
-          </li>
-        </List>
+        <Nav>
+          <List>
+            <li>
+              <Select
+                onChange={this.onChangeProject}
+                options={options}
+                value={currentProject ? currentProject.id : ''}
+              />
+            </li>
+          </List>
 
-        <List>
-          <li>
-            <LinkButton to='/projects/add'>Add a project</LinkButton>
-          </li>
-          <li>
-            { loggedIn
-              ? <Button onClick={logout}>Log Out</Button>
-              : <Button onClick={login}>Log In</Button>
-            }
-          </li>
-        </List>
-      </Nav>
-    </Container>
+          <List>
+            <li>
+              <LinkButton to="/projects/add">Add a project</LinkButton>
+            </li>
+            <li>
+              {loggedIn ? (
+                <Button onClick={logout}>Log Out</Button>
+              ) : (
+                <Button onClick={login}>Log In</Button>
+              )}
+            </li>
+          </List>
+        </Nav>
+      </Container>
+    )
   }
 }
 
 const mapStateToProps = (state, ownProps) => ({
   currentProject: projectSelector(state, ownProps),
   loggedIn: state.auth.loggedIn,
-  projects: projectsSelector(state)
+  projects: projectsSelector(state),
 })
 
 const mapDispatchToProps = {
   login,
   logout,
   push,
-  selectProject
+  selectProject,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Header)

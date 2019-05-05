@@ -23,32 +23,34 @@ class Category extends PureComponent {
     dark: PropTypes.bool.isRequired,
     filters: PropTypes.array.isRequired,
     labelId: PropTypes.string.isRequired,
-    labels: PropTypes.object.isRequired
+    labels: PropTypes.object.isRequired,
   }
 
   static defaultProps = {
-    dark: false
+    dark: false,
   }
 
-  render () {
+  render() {
     const { filters, labelId, labels, ...props } = this.props
     const { colour, name } = labels[labelId] || {
       colour: 'black',
-      name: 'Unknown label'
+      name: 'Unknown label',
     }
 
     const faded = filters.length !== 0 && !filters.includes(labelId)
 
-    return <LabelContainer faded={faded} {...props}>
-      <ColourSquare colour={colour} />
-      { name }
-    </LabelContainer>
+    return (
+      <LabelContainer faded={faded} {...props}>
+        <ColourSquare colour={colour} />
+        {name}
+      </LabelContainer>
+    )
   }
 }
 
 const mapStateToProps = state => ({
   filters: state.tracker.filters.labels,
-  labels: state.labels.list
+  labels: state.labels.list,
 })
 
 export default connect(mapStateToProps)(Category)

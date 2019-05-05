@@ -9,7 +9,7 @@ const List = styled.ul`
   padding: 0;
 
   li:not(:last-child) {
-    margin-right: ${p => 2 * p.theme.spacing}
+    margin-right: ${p => 2 * p.theme.spacing};
   }
 `
 

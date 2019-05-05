@@ -1,15 +1,15 @@
 import { types } from '@actions/defects'
 
 const initialState = {
-  list: {}
+  list: {},
 }
 
-export default function defects (state = initialState, action = {}) {
+export default function defects(state = initialState, action = {}) {
   switch (action.type) {
     case types.SYNC_DEFECTS:
       return {
         ...state,
-        list: action.defects
+        list: action.defects,
       }
     default:
       return state

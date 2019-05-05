@@ -7,7 +7,7 @@ export const routerDefectIdSelector = createSelector(
   pathname => {
     const match = /^\/projects\/([0-9a-f]+)\/defects\/([0-9a-f]+)(\/|$)/.exec(pathname)
     return match ? match[2] : null
-  }
+  },
 )
 
 export const routerProjectIdSelector = createSelector(
@@ -15,5 +15,5 @@ export const routerProjectIdSelector = createSelector(
   pathname => {
     const match = /^\/projects\/([0-9a-f]+)(\/|$)/.exec(pathname)
     return match ? match[1] : null
-  }
+  },
 )

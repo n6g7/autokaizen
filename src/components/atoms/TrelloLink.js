@@ -20,23 +20,25 @@ const Image = styled.img`
 
 class TrelloLink extends PureComponent {
   static propTypes = {
-    cardId: PropTypes.string.isRequired
+    cardId: PropTypes.string.isRequired,
   }
 
   onClick = event => event.stopPropagation()
 
-  render () {
+  render() {
     const { cardId, ...props } = this.props
 
-    return <Link
-      href={`https://trello.com/c/${cardId}`}
-      target='blank'
-      title='Go to Trello card'
-      onClick={this.onClick}
-      {...props}
-    >
-      <Image src={trello} alt='Trello' />
-    </Link>
+    return (
+      <Link
+        href={`https://trello.com/c/${cardId}`}
+        target="blank"
+        title="Go to Trello card"
+        onClick={this.onClick}
+        {...props}
+      >
+        <Image src={trello} alt="Trello" />
+      </Link>
+    )
   }
 }
 

@@ -7,13 +7,13 @@ import {
   logoutSuccess,
   logoutFailure,
   syncUser,
-  types
+  types,
 } from '@actions/auth'
 import { loadBoards } from '@actions/boards'
 
 import Trello from '@services/trello'
 
-function * loginSaga () {
+function* loginSaga() {
   try {
     yield call(rsf.auth.signInWithPopup, authProvider)
     yield put(loginSuccess())
@@ -22,7 +22,7 @@ function * loginSaga () {
   }
 }
 
-function * logoutSaga () {
+function* logoutSaga() {
   try {
     yield call(rsf.auth.signOut)
     yield put(logoutSuccess())
@@ -31,7 +31,7 @@ function * logoutSaga () {
   }
 }
 
-function * syncUserSaga () {
+function* syncUserSaga() {
   const channel = yield call(rsf.auth.channel)
 
   while (true) {
@@ -47,7 +47,7 @@ function * syncUserSaga () {
   }
 }
 
-export default function * authSaga () {
+export default function* authSaga() {
   yield takeLatest(types.LOGIN.REQUEST, loginSaga)
   yield takeLatest(types.LOGOUT.REQUEST, logoutSaga)
 

@@ -35,5 +35,5 @@ ReactDOM.render(
       </>
     </ThemeProvider>
   </Provider>,
-  document.getElementById('app')
+  document.getElementById('app'),
 )

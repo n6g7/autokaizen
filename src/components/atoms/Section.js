@@ -5,19 +5,21 @@ import styled, { css } from 'styled-components'
 import caret from '@assets/caret.svg'
 
 const StyledSection = styled.section`
-  ${p => !p.print && css`
-    @media print {
-      display: none;
-    }
-  `}
+  ${p =>
+    !p.print &&
+    css`
+      @media print {
+        display: none;
+      }
+    `}
 `
 
 const Caret = styled.img.attrs({
   alt: 'caret',
-  src: caret
+  src: caret,
 })`
-  transition: .5s;
-  transform: rotate(${p => p.up ? 0 : 180}deg);
+  transition: 0.5s;
+  transform: rotate(${p => (p.up ? 0 : 180)}deg);
 `
 
 const Title = styled.h2`
@@ -30,13 +32,15 @@ const Title = styled.h2`
   margin: ${p => 2 * p.theme.spacing} 0;
   text-transform: uppercase;
 
-  ${p => p.onClick && css`
-    cursor: pointer;
+  ${p =>
+    p.onClick &&
+    css`
+      cursor: pointer;
 
-    &:hover ${Caret} {
-      opacity: 0.5;
-    }
-  `}
+      &:hover ${Caret} {
+        opacity: 0.5;
+      }
+    `}
 
   ${Caret} {
     cursor: pointer;
@@ -54,59 +58,55 @@ const Title = styled.h2`
 const Content = styled.div`
   transition: 0.5s ease;
 
-  ${p => p.collapsible && css`
-    max-height: ${p => p.collapsed ? 0 : 4000}px;
-    overflow: hidden;
-  `}
+  ${p =>
+    p.collapsible &&
+    css`
+      max-height: ${p => (p.collapsed ? 0 : 4000)}px;
+      overflow: hidden;
+    `}
 `
 
 class Section extends PureComponent {
   static propTypes = {
     collapsible: PropTypes.bool.isRequired,
     children: PropTypes.node,
-    title: PropTypes.string.isRequired
+    title: PropTypes.string.isRequired,
   }
 
   static defaultProps = {
-    collapsible: false
+    collapsible: false,
   }
 
   state = {
-    collapsed: true
+    collapsed: true,
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.setState({
-      collapsed: this.props.collapsible
+      collapsed: this.props.collapsible,
     })
   }
 
   toggle = () => this.setState(state => ({ collapsed: !state.collapsed }))
 
-  render () {
-    const {
-      collapsible,
-      children,
-      title,
-      ...props
-    } = this.props
+  render() {
+    const { collapsible, children, title, ...props } = this.props
     const { collapsed } = this.state
 
-    return <StyledSection {...props}>
-      <Title onClick={collapsible ? this.toggle : null}>
-        {title}
-        { collapsible &&
-          <Caret
-            title={collapsed ? 'Expand' : 'Collapse'}
-            up={collapsed}
-          />
-        }
-      </Title>
+    return (
+      <StyledSection {...props}>
+        <Title onClick={collapsible ? this.toggle : null}>
+          {title}
+          {collapsible && (
+            <Caret title={collapsed ? 'Expand' : 'Collapse'} up={collapsed} />
+          )}
+        </Title>
 
-      <Content collapsible={collapsible} collapsed={collapsed}>
-        { children }
-      </Content>
-    </StyledSection>
+        <Content collapsible={collapsible} collapsed={collapsed}>
+          {children}
+        </Content>
+      </StyledSection>
+    )
   }
 }
 

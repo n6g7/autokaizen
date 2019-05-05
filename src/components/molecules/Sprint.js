@@ -14,22 +14,17 @@ const Container = styled(LabelContainer)`
 class Sprint extends PureComponent {
   static propTypes = {
     dark: PropTypes.bool.isRequired,
-    number: PropTypes.number.isRequired
+    number: PropTypes.number.isRequired,
   }
 
   static defaultProps = {
-    dark: false
+    dark: false,
   }
 
-  render () {
-    const {
-      dark,
-      number
-    } = this.props
+  render() {
+    const { dark, number } = this.props
 
-    return <Container dark={dark}>
-      Sprint { number }
-    </Container>
+    return <Container dark={dark}>Sprint {number}</Container>
   }
 }
 

@@ -24,26 +24,28 @@ const Trello = styled(TrelloLink)`
 
 class Defect extends PureComponent {
   static propTypes = {
-    defect: PropTypes.object.isRequired
+    defect: PropTypes.object.isRequired,
   }
 
-  render () {
+  render() {
     const { defect } = this.props
 
-    return <Container>
-      <TicketNumber>
-        {defect.cardNumber}
-        <Trello cardId={defect.cardId} />
-      </TicketNumber>
+    return (
+      <Container>
+        <TicketNumber>
+          {defect.cardNumber}
+          <Trello cardId={defect.cardId} />
+        </TicketNumber>
 
-      <p>
-        { _isNumber(defect.points) && <Points>{ defect.points }</Points> }
-        { defect.userStory }
-      </p>
+        <p>
+          {_isNumber(defect.points) && <Points>{defect.points}</Points>}
+          {defect.userStory}
+        </p>
 
-      <Sprint number={defect.sprint} dark />
-      <Category labelId={defect.labelId} dark />
-    </Container>
+        <Sprint number={defect.sprint} dark />
+        <Category labelId={defect.labelId} dark />
+      </Container>
+    )
   }
 }
 

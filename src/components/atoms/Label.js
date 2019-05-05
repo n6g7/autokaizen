@@ -12,7 +12,7 @@ const colourMap = {
   purple: '#c377e0',
   red: '#eb5a46',
   sky: '#00c2e0',
-  yellow: '#f2d600'
+  yellow: '#f2d600',
 }
 
 const Container = styled.span`
@@ -27,22 +27,17 @@ const Container = styled.span`
 class Label extends PureComponent {
   static propTypes = {
     children: PropTypes.string.isRequired,
-    colour: PropTypes.string
+    colour: PropTypes.string,
   }
 
   static defaultProps = {
-    colour: 'black'
+    colour: 'black',
   }
 
-  render () {
-    const {
-      children,
-      colour
-    } = this.props
+  render() {
+    const { children, colour } = this.props
 
-    return <Container colour={colour}>
-      { children }
-    </Container>
+    return <Container colour={colour}>{children}</Container>
   }
 }
 

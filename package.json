@@ -15,7 +15,7 @@
     "deploy": "yarn build && firebase deploy",
     "deploy:ci": "yarn deploy --token $FIREBASE_TOKEN --project $FIREBASE_PROJECT",
     "dev": "webpack-dev-server --mode=development",
-    "test": "standard"
+    "test": "prettier -l \"src/**/*.js\""
   },
   "dependencies": {
     "@firebase/app-types": "^0.3.10",
@@ -55,7 +55,7 @@
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
     "dotenv-webpack": "^1.7.0",
-    "standard": "^12.0.1",
+    "prettier": "^1.17.0",
     "url-loader": "^1.1.2",
     "webpack": "^4.30.0",
     "webpack-cli": "^3.3.2",
