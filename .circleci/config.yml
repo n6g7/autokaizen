@@ -5,17 +5,17 @@ jobs:
     working_directory: ~/ak
 
     docker:
-      - image: node:latest
+      - image: node:11
 
     steps:
       - checkout
 
       - restore_cache:
           keys:
-            - ak-{{ .Branch }}-{{ checksum "package.json" }}
-            - ak-{{ .Branch }}
-            - ak-master-{{ checksum "package.json" }}
-            - ak-master
+            - ak-v1-{{ .Branch }}-{{ checksum "package.json" }}
+            - ak-v1-{{ .Branch }}
+            - ak-v1-master-{{ checksum "package.json" }}
+            - ak-v1-master
 
       - run:
           name: Install dependencies
@@ -26,7 +26,7 @@ jobs:
           command: yarn test
 
       - save_cache:
-          key: ak-{{ .Branch }}-{{ checksum "package.json" }}
+          key: ak-v1-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - ~/.yarn
             - ~/ak/node_modules
@@ -35,17 +35,17 @@ jobs:
     working_directory: ~/ak
 
     docker:
-      - image: node:latest
+      - image: node:11
 
     steps:
       - checkout
 
       - restore_cache:
           keys:
-            - ak-{{ .Branch }}-{{ checksum "package.json" }}
-            - ak-{{ .Branch }}
-            - ak-master-{{ checksum "package.json" }}
-            - ak-master
+            - ak-v1-{{ .Branch }}-{{ checksum "package.json" }}
+            - ak-v1-{{ .Branch }}
+            - ak-v1-master-{{ checksum "package.json" }}
+            - ak-v1-master
 
       - run:
           name: Install global dependencies
