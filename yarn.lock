@@ -1075,10 +1075,10 @@
   resolved "https://registry.yarnpkg.com/@vx/point/-/point-0.0.182.tgz#72abfa6ae923cf9bad23d9dd51709b2f31d81bf8"
   integrity sha512-ZWDFVL5+RQXDSY6a5DZDRAoTFUmz0nxqUJidIHP9kDN1MGwoX43yaG7Ss1iJxe5a7Np5XGB2sm3xvmgZvf4a6g==
 
-"@vx/scale@^0.0.182":
-  version "0.0.182"
-  resolved "https://registry.yarnpkg.com/@vx/scale/-/scale-0.0.182.tgz#22f4423c7188cc8be0b6dbfe9db3e1544d639a98"
-  integrity sha512-QFNWElBUscZD40SZoBOJtzqNU9fS5RAZypvYYJE1mipcEMLXLa8MExpeu/VushAbkSBz2B3T6K9myBL0QYi2xQ==
+"@vx/scale@^0.0.189":
+  version "0.0.189"
+  resolved "https://registry.yarnpkg.com/@vx/scale/-/scale-0.0.189.tgz#c185a7c36a0f23653358c86c0593159d3e0f8854"
+  integrity sha512-GzSv3HNBPjkIGh74jAg4fLCVf5z/EkvDTRi+u5ZxDHCM3jHV4Y13uXX5ozBUQ7URrYcUWOoEFC7L/QBFUp4yPQ==
   dependencies:
     d3-scale "^2.0.0"
 
