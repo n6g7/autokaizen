@@ -1000,9 +1000,10 @@ firebase-backup@^0.0.3-d:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/firebase-backup/-/firebase-backup-0.0.3.tgz#4004e8f2f46e91e0891d79b12f8031f84663ba96"
 
-firebase-functions@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/firebase-functions/-/firebase-functions-1.1.0.tgz#f6419b860fdbec6302c351ff5b0020e68936e097"
+firebase-functions@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/firebase-functions/-/firebase-functions-2.3.1.tgz#6ad741cb5f38f4ed1a679607ffdbec68fa11127f"
+  integrity sha512-MPeuzGFLS63VqfGErgf+kbZinXE4SoK+jxXh1NBWrjYUjXlOJBKRmVNAFJoQB8wzCvOtBuDYjGcnBNz6sKXsfw==
   dependencies:
     "@types/cors" "^2.8.1"
     "@types/express" "^4.11.1"
