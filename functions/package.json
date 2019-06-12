@@ -6,7 +6,7 @@
     "cors": "^2.8.4",
     "firebase-admin": "^5.11.0",
     "firebase-backup": "^0.0.3-d",
-    "firebase-functions": "^1.1.0"
+    "firebase-functions": "^3.0.0"
   },
   "private": true
 }
