@@ -22,7 +22,7 @@
     "@vx/axis": "^0.0.189",
     "@vx/group": "^0.0.183",
     "@vx/scale": "^0.0.189",
-    "connected-react-router": "^6.4.0",
+    "connected-react-router": "^6.5.0",
     "d3": "^5.9.2",
     "firebase": "^5.11.1",
     "history": "^4.9.0",
