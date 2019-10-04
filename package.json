@@ -20,7 +20,7 @@
   "dependencies": {
     "@firebase/app-types": "^0.4.0",
     "@vx/axis": "^0.0.189",
-    "@vx/group": "^0.0.183",
+    "@vx/group": "^0.0.192",
     "@vx/scale": "^0.0.189",
     "connected-react-router": "^6.4.0",
     "d3": "^5.9.2",
